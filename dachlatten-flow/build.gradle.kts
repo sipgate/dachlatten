@@ -1,7 +1,8 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
+    `maven-publish`
 }
 
 android {
@@ -9,12 +10,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "de.sipgate.dachlatten"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -42,4 +38,18 @@ dependencies {
     testImplementation(libs.junit)
     testImplementation(libs.coroutinesTest)
     testImplementation(libs.turbine)
+}
+
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            groupId = "de.sipgate"
+            artifactId = "dachlatten-flow"
+            version = "0.1"
+
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
+    }
 }
