@@ -73,8 +73,8 @@ publishing {
 }
 
 signing {
-    val signingKey: String? by project
-    val signingPassword: String? by project
-    useInMemoryPgpKeys(signingKey, signingPassword)
+    @Suppress("LocalVariableName") val SIGNING_KEY: String? by project
+    @Suppress("LocalVariableName") val SIGNING_PASSWORD: String? by project
+    useInMemoryPgpKeys(SIGNING_KEY, SIGNING_PASSWORD)
     sign(publishing.publications["release"])
 }
