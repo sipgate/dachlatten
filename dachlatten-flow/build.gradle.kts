@@ -47,6 +47,23 @@ publishing {
             artifactId = "dachlatten-flow"
             version = "0.1"
 
+            pom {
+                name.set("Dachlatten-flow")
+                description.set("")
+                url.set("https://github.com/sipgate/Dachlatten")
+                licenses {
+                    license {
+                        name.set("The Apache License, Version 2.0")
+                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                    }
+                }
+                scm {
+                    connection.set("scm:git:git://git@github.com:sipgate/Dachlatten.git")
+                    developerConnection.set("scm:git:ssh://git@github.com:sipgate/Dachlatten.git")
+                    url.set("https://github.com/sipgate/Dachlatten")
+                }
+            }
+
             afterEvaluate {
                 from(components["release"])
             }
