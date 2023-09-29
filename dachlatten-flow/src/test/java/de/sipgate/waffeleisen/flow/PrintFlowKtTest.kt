@@ -69,6 +69,19 @@ class PrintFlowKtTest {
         assertEquals(expected, stringBuffer.toString())
     }
 
+    @Test
+    fun printFlowWorksWithNullableValues() = runTest {
+        val flow = flowOf("first", null, "third")
+
+        val resultPrinted = mutableListOf<String>()
+        val resultPassed = flow.printFlow(
+            printFunc = { resultPrinted.add(it) }
+        ).collectAsList()
+
+        assertEquals(listOf("first", null, "third"), resultPassed)
+        assertEquals(listOf("first", "null", "third"), resultPrinted)
+    }
+
     private suspend fun <T> Flow<T>.collectAsList() =
         mutableListOf<T>().apply {
             this@collectAsList.map(this::add).collect()
