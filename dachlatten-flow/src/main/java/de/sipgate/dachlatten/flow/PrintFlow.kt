@@ -1,4 +1,4 @@
-package de.sipgate.waffeleisen.flow
+package de.sipgate.dachlatten.flow
 
 import android.util.Log
 import kotlinx.coroutines.flow.Flow

@@ -1,4 +1,4 @@
-package de.sipgate.waffeleisen.flow
+package de.sipgate.dachlatten.flow
 
 import app.cash.turbine.test
 import kotlinx.coroutines.flow.MutableStateFlow
