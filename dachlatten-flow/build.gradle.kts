@@ -6,5 +6,7 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.coroutines)
+    compileOnly(libs.coroutines)
+
+    testImplementation(libs.coroutines)
 }
