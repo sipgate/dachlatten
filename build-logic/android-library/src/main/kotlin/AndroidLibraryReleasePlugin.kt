@@ -25,7 +25,7 @@ class AndroidLibraryReleasePlugin : Plugin<Project> {
     }
 }
 
-fun Project.setupReleaseBuild() {
+private fun Project.setupReleaseBuild() {
     extensions.configure<LibraryExtension> {
         buildTypes {
             release {
@@ -39,7 +39,7 @@ fun Project.setupReleaseBuild() {
     }
 }
 
-fun Project.setupPublishing(): Publication {
+private fun Project.setupPublishing(): Publication {
     extensions.configure<PublishingExtension> {
         publications {
             register<MavenPublication>("release") {
@@ -58,7 +58,7 @@ fun Project.setupPublishing(): Publication {
     return extensions.getByType(PublishingExtension::class.java).publications["release"]
 }
 
-fun MavenPublication.setPom() {
+private fun MavenPublication.setPom() {
     pom {
         name.set("Dachlatten-flow")
         description.set("")
@@ -77,7 +77,7 @@ fun MavenPublication.setPom() {
     }
 }
 
-fun Project.setupSigning(publication: Publication) {
+private fun Project.setupSigning(publication: Publication) {
     extensions.configure<SigningExtension> {
         @Suppress("LocalVariableName") val SIGNING_KEY: String? by project
         @Suppress("LocalVariableName") val SIGNING_PASSWORD: String? by project
