@@ -13,6 +13,10 @@ gradlePlugin {
             id = "android-library-base"
             implementationClass = "AndroidLibraryBasePlugin"
         }
+        register("androidLibraryTest") {
+            id = "android-library-test"
+            implementationClass = "AndroidLibraryTestPlugin"
+        }
         register("androidLibraryRelease") {
             id = "android-library-release"
             implementationClass = "AndroidLibraryReleasePlugin"
