@@ -23,6 +23,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/build-logic" />
             <option value="$PROJECT_DIR$/build-logic/android-library" />
+            <option value="$PROJECT_DIR$/dachlatten-debug" />
             <option value="$PROJECT_DIR$/dachlatten-flow" />
           </set>
         </option>

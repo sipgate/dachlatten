@@ -15,4 +15,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Dachlatten"
+include(":dachlatten-debug")
 include(":dachlatten-flow")
