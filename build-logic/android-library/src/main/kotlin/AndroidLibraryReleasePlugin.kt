@@ -10,7 +10,7 @@ import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.register
 import org.gradle.plugins.signing.SigningExtension
 
-class ReleaseLibraryPlugin : Plugin<Project> {
+class AndroidLibraryReleasePlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {

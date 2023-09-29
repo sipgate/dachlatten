@@ -13,9 +13,9 @@ gradlePlugin {
             id = "android-library-base"
             implementationClass = "AndroidLibraryBasePlugin"
         }
-        register("releaseLibrary") {
+        register("androidLibraryRelease") {
             id = "android-library-release"
-            implementationClass = "ReleaseLibraryPlugin"
+            implementationClass = "AndroidLibraryReleasePlugin"
         }
     }
 }
