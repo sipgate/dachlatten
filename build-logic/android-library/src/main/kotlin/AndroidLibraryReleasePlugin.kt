@@ -54,6 +54,17 @@ private fun Project.setupPublishing(): Publication {
                 }
             }
         }
+
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/sipgate/dachlatten")
+                credentials {
+                    username = "sipgate"
+                    password = System.getenv("GITHUB_TOKEN")
+                }
+            }
+        }
     }
     return extensions.getByType(PublishingExtension::class.java).publications["release"]
 }

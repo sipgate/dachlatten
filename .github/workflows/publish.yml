@@ -1,14 +1,17 @@
-name: Build and Test
+name: Build, Test, Release
 
 on:
   push:
-    branches: [ "**" ]
+    branches: [ "main" ]
     paths-ignore:
       - 'README.md'
 
 jobs:
-  test:
+  publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
 
     steps:
       - uses: actions/checkout@v4
@@ -24,6 +27,14 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      - name: 'Automated Version Bump'
+        id: version-bump
+        uses: 'phips28/gh-action-bump-version@master'
+        with:
+          tag-prefix: 'v'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build release with Gradle
         run: ./gradlew assemble check
 
@@ -32,3 +43,6 @@ jobs:
         if: always()
         with:
           files: '**/build/test-results/**/*.xml'
+
+      - name: Build release with Gradle
+        run: ./gradlew publish
