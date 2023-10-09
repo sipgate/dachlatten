@@ -27,11 +27,9 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: 'Automated Version Bump'
-        id: version-bump
-        uses: 'phips28/gh-action-bump-version@master'
-        with:
-          tag-prefix: 'v'
+      - name: Bump version
+        id: bump_version
+        uses: oflynned/Android-Semantic-Release@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
