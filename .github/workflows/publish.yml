@@ -30,7 +30,7 @@ jobs:
 
       - name: Bump version
         id: bump_version
-        uses: tiendung717/android-version-bump@v1.0.0
+        uses: oflynned/android-version-bump@v1.1.15
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
