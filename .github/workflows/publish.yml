@@ -30,7 +30,7 @@ jobs:
 
       - name: Bump version
         id: bump_version
-        uses: oflynned/Android-Semantic-Release@master
+        uses: tiendung717/android-version-bump@v1.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
