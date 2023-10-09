@@ -7,7 +7,7 @@ plugins {
 
 dependencies {
     implementation(libs.coroutines)
-//    compileOnly(libs.coroutines)
+    implementation(libs.annotation.jvm)
 
     testImplementation(libs.coroutines)
 }

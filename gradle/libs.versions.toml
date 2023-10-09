@@ -4,6 +4,7 @@ kotlin = "1.9.10"
 junit = "5.10.0"
 coroutines = "1.7.3"
 turbine = "1.0.0"
+annotation-jvm = "1.7.0"
 
 [libraries]
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
@@ -12,6 +13,7 @@ turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+annotation-jvm = { group = "androidx.annotation", name = "annotation-jvm", version.ref = "annotation-jvm" }
 
 [plugins]
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
