@@ -10,6 +10,8 @@ import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.register
 import org.gradle.plugins.signing.SigningExtension
 import java.io.File
+import java.nio.charset.Charset
+import java.util.Base64
 import java.util.Properties
 
 class AndroidLibraryReleasePlugin : Plugin<Project> {

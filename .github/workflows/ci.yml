@@ -9,7 +9,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: nautilus-build
 
     steps:
       - uses: actions/checkout@v4
@@ -18,6 +18,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
 
       - name: Setup Gradle to support advanced caching
         uses: gradle/gradle-build-action@v2.9.0
