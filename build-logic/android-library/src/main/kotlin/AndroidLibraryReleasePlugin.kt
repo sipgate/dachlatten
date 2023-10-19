@@ -9,6 +9,8 @@ import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.register
 import org.gradle.plugins.signing.SigningExtension
+import java.io.File
+import java.util.Properties
 
 class AndroidLibraryReleasePlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -19,6 +21,7 @@ class AndroidLibraryReleasePlugin : Plugin<Project> {
             }
 
             setupReleaseBuild()
+            setupVersionInfo()
             val publication = setupPublishing()
             setupSigning(publication)
         }
@@ -37,6 +40,24 @@ private fun Project.setupReleaseBuild() {
             }
         }
     }
+}
+
+private fun Project.setupVersionInfo() {
+    val versionProperties = File(project.rootDir, "version.properties")
+    println("version properties: $versionProperties")
+    versionProperties.inputStream().use { inputStream ->
+        Properties().apply {
+            load(inputStream)
+            project.version = getVersionCode()
+        }
+    }
+}
+
+private fun Properties.getVersionCode(): Int {
+    val major = (get("majorVersion") as String).toInt()
+    val minor = (get("minorVersion") as String).toInt()
+    val patch = (get("patchVersion") as String).toInt()
+    return major * 10000 + minor * 100 + patch
 }
 
 private fun Project.setupPublishing(): Publication {
