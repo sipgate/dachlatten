@@ -10,8 +10,6 @@ import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.register
 import org.gradle.plugins.signing.SigningExtension
 import java.io.File
-import java.nio.charset.Charset
-import java.util.Base64
 import java.util.Properties
 
 class AndroidLibraryReleasePlugin : Plugin<Project> {
@@ -46,20 +44,19 @@ private fun Project.setupReleaseBuild() {
 
 private fun Project.setupVersionInfo() {
     val versionProperties = File(project.rootDir, "version.properties")
-    println("version properties: $versionProperties")
     versionProperties.inputStream().use { inputStream ->
         Properties().apply {
             load(inputStream)
-            project.version = getVersionCode()
+            project.version = getVersionName()
         }
     }
 }
 
-private fun Properties.getVersionCode(): Int {
+private fun Properties.getVersionName(): String {
     val major = (get("majorVersion") as String).toInt()
     val minor = (get("minorVersion") as String).toInt()
     val patch = (get("patchVersion") as String).toInt()
-    return major * 10000 + minor * 100 + patch
+    return "$major.$minor.$patch"
 }
 
 private fun Project.setupPublishing(): Publication {
@@ -68,7 +65,7 @@ private fun Project.setupPublishing(): Publication {
             register<MavenPublication>("release") {
                 groupId = "de.sipgate"
                 artifactId = project.name
-                version = "0.1"
+                version = project.version.toString()
 
                 setPom()
 

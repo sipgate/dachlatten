@@ -1,15 +1,12 @@
-name: Build, Test, Release
+name: Release
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ "main" ]
-    paths-ignore:
-      - 'README.md'
 
 jobs:
   publish:
     runs-on: nautilus-build
+    environment: release
     permissions:
       actions: read
       checks: write
