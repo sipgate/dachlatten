@@ -14,18 +14,15 @@ import kotlinx.coroutines.flow.stateIn
 
 private val lifecycleEventFlow =
     callbackFlow {
-        val lifecycleListener = LifecycleEventObserver { _, event -> trySend(event) }
-
-        ProcessLifecycleOwner
+        val observer = LifecycleEventObserver { _, event -> trySend(event) }
+        val lifecycle = ProcessLifecycleOwner
             .get()
             .lifecycle
-            .addObserver(lifecycleListener)
+
+        lifecycle.addObserver(observer)
 
         awaitClose {
-            ProcessLifecycleOwner
-                .get()
-                .lifecycle
-                .removeObserver(lifecycleListener)
+            lifecycle.removeObserver(observer)
         }
     }
 
