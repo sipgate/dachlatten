@@ -26,6 +26,7 @@
             <option value="$PROJECT_DIR$/dachlatten-android" />
             <option value="$PROJECT_DIR$/dachlatten-debug" />
             <option value="$PROJECT_DIR$/dachlatten-flow" />
+            <option value="$PROJECT_DIR$/dachlatten-primitives" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
