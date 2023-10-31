@@ -6,6 +6,7 @@ plugins {
 
 dependencies {
     implementation(libs.coroutines)
+    implementation(libs.lifecycle.process)
     implementation(libs.annotation.jvm)
 
     testImplementation(libs.coroutines)
