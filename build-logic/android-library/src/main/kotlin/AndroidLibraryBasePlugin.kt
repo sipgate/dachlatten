@@ -15,7 +15,7 @@ class AndroidLibraryBasePlugin: Plugin<Project> {
             }
 
             extensions.configure<LibraryExtension> {
-                namespace = "de.sipgate.dachlatten"
+                namespace = "de.sipgate.${target.name.replace("-", ".")}"
                 compileSdk = 34
 
                 defaultConfig.minSdk = 24
