@@ -8,6 +8,9 @@ dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
             from(files("../gradle/libs.versions.toml"))
+
+            library("robolectric", "org.robolectric", "robolectric")
+                .versionRef("robolectric")
         }
     }
 }
