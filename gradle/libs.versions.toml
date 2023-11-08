@@ -8,6 +8,7 @@ turbine = "1.0.0"
 annotation-jvm = "1.7.0"
 androidx-lifecycle = "2.6.2"
 robolectric = "4.10.3"
+compose = "1.5.3"
 
 [libraries]
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
@@ -16,6 +17,7 @@ turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 
 lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "androidx-lifecycle" }
+compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
