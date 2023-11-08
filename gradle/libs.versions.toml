@@ -8,7 +8,8 @@ turbine = "1.0.0"
 annotation-jvm = "1.7.0"
 androidx-lifecycle = "2.6.2"
 robolectric = "4.10.3"
-compose = "1.5.3"
+compose = "1.5.4"
+compose-compiler = "1.5.4"
 
 [libraries]
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
