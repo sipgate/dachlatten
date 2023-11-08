@@ -14,31 +14,28 @@ typealias AndroidClickHandler = context (ContextProvider) () -> Unit
 
 @Composable
 inline fun withContext(crossinline target: AndroidClickHandler): ClickHandler {
-    val context = LocalContext.current
-    return {
-        with(ContextProviderImpl(context)) {
-            target.invoke(this)
-        }
-    }
+    return LocalContext.current.withContext(target)
 }
 
 @Composable
-inline fun <reified T> withContext(
+inline fun <reified T, R> withContext(
     crossinline target: context (ContextProvider)
-        (T) -> Unit,
-): (T) -> Unit {
-    val context = LocalContext.current
-    return {
-        with(ContextProviderImpl(context)) {
-            target.invoke(this, it)
-        }
+        (T) -> R,
+): (T) -> R = LocalContext.current.withContext(target)
+
+inline fun <reified T, R> Context.withContext(
+    crossinline target: context (ContextProvider)
+        (T) -> R,
+): (T) -> R = { param ->
+    with(ContextProviderImpl(this)) {
+        target.invoke(this, param)
     }
 }
 
-inline fun Context.withContext(
+inline fun <R> Context.withContext(
     crossinline target: context (ContextProvider)
-        () -> Unit,
-): HandlerFunc = {
+        () -> R,
+): () -> R = {
     with(ContextProviderImpl(this)) {
         target(this)
     }
