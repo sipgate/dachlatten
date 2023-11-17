@@ -8,7 +8,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class PrintFlowKtTest {
+class PrintFlowTest {
 
     @Test
     fun printFlowPassesThroughValuesTransparently() = runTest {
