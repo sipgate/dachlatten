@@ -6,7 +6,9 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.compose.ui)
+    compileOnly(libs.compose.ui)
+
+    testImplementation(libs.bundles.compose.ui.test)
 }
 
 android {

@@ -10,12 +10,10 @@ import androidx.compose.ui.platform.LocalContext
 // Warning:
 // Depending on the situation this can easily leak the Context!
 
-typealias AndroidClickHandler = context (ContextProvider) () -> Unit
-
 @Composable
-inline fun withContext(crossinline target: AndroidClickHandler): ClickHandler {
-    return LocalContext.current.withContext(target)
-}
+inline fun <reified R> withContext(
+    crossinline target: context (ContextProvider) () -> R
+): () -> R = LocalContext.current.withContext(target)
 
 @Composable
 inline fun <reified T, R> withContext(
