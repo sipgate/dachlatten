@@ -29,7 +29,7 @@ class BooleanExtTest {
      */
     @Test
     fun emptyArrayReturnsTrue() {
-        val emptyList = arrayOf<Boolean>()
-        assertTrue(emptyList.allTrue)
+        val emptyArray = arrayOf<Boolean>()
+        assertTrue(emptyArray.allTrue)
     }
 }
