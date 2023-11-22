@@ -2,7 +2,7 @@
 
 Shared Toolbox of battle-proven bits and pieces of code to help with wrangling Kotlin/Android code.
 
-Think of the modern-day variant of Louis CAD's [Splitties Library][splitties] or [Apache Commons][commons] if that's your jam, just with Coroutines and Compose.
+Think of it as the modern-day variant of Louis CAD's [Splitties Library][splitties] or [Apache Commons][commons] if that's your jam, just with Coroutines and Compose.
 
 ## Future plans and contributions
 
