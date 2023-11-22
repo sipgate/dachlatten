@@ -10,16 +10,26 @@ import androidx.compose.ui.res.stringResource
 sealed interface UiText {
     data class DynamicString(val value: String) : UiText
 
-    class StringResource(
+    data class StringResource(
         @StringRes val resId: Int,
-        vararg val args: Any,
-    ) : UiText
+        val args: List<Any>,
+    ) : UiText {
+        constructor(
+            @StringRes resId: Int,
+            vararg args: Any) : this(resId, args.asList())
+    }
 
-    class MultiLangString(
+    data class MultiLangString(
         private val language: Map<String, String>,
         @StringRes val fallbackResource: Int? = null,
-        vararg val args: Any,
+        val args: List<Any>,
     ) : UiText {
+        constructor(
+            language: Map<String, String>,
+            @StringRes fallbackResource: Int? = null,
+            vararg args: Any,
+        ) : this(language, fallbackResource, args.asList())
+
         fun LocaleList.getStringForLocales(): String? {
             val locale = getFirstMatch(language.keys.toTypedArray())
             return language[locale?.language]
@@ -28,10 +38,11 @@ sealed interface UiText {
 
     fun asString(resources: Resources) = when (this) {
         is DynamicString -> value
-        is StringResource -> resources.getString(resId, *args)
+        is StringResource -> resources.getString(resId, *(args.toTypedArray()))
         is MultiLangString -> {
-            resources.configuration.locales.getStringForLocales()
-                ?: fallbackResource?.let { resources.getString(it, *args) }
+            val arguments = args.toTypedArray()
+            resources.configuration.locales.getStringForLocales()?.format(*arguments)
+                ?: fallbackResource?.let { resources.getString(it, *arguments) }
                 ?: throw Resources.NotFoundException("Could not find multilang string")
         }
     }
@@ -39,10 +50,11 @@ sealed interface UiText {
     @Composable
     fun asString() = when (this) {
             is DynamicString -> value
-            is StringResource -> stringResource(id = resId, formatArgs = args)
+            is StringResource -> stringResource(id = resId, formatArgs = args.toTypedArray())
             is MultiLangString -> {
-                LocalConfiguration.current.locales.getStringForLocales()
-                    ?: fallbackResource?.let { stringResource(id = it, formatArgs = args) }
+                val arguments = args.toTypedArray()
+                LocalConfiguration.current.locales.getStringForLocales()?.format(*arguments)
+                    ?: fallbackResource?.let { stringResource(id = it, formatArgs = *arguments) }
                     ?: throw Resources.NotFoundException("Could not find multilang string")
             }
         }

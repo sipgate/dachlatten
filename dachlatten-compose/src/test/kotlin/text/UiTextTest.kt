@@ -65,6 +65,33 @@ class UiTextTest {
         expectResolvedResourceString("String", uiText)
     }
 
+    @Test
+    @Config(qualifiers = "en")
+    fun stringSubstitutionWorks() {
+        val uiText = UiText.MultiLangString(mapOf("en" to "string %s"),
+            fallbackResource = null,
+            "substitution")
+        expectResolvedResourceString("string substitution", uiText)
+    }
+
+    @Test
+    @Config(qualifiers = "en")
+    fun stringSubstitutionWorksForMultipleArguments() {
+        val uiText = UiText.MultiLangString(mapOf("en" to "string %s and %s"),
+            fallbackResource = null,
+            "substitution", "others")
+        expectResolvedResourceString("string substitution and others", uiText)
+    }
+
+    @Test
+    @Config(qualifiers = "en")
+    fun stringSubstitutionWorksFromCompose() {
+        val uiText = UiText.MultiLangString(mapOf("en" to "string %s and %s"),
+            fallbackResource = null,
+            "substitution", "others")
+        expectResolvedComposeString("string substitution and others", uiText)
+    }
+
     private fun expectResolvedResourceString(expected: String, uiText: UiText) {
         assertEquals(expected, uiText.asString(context.resources))
     }
