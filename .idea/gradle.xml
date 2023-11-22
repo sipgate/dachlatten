@@ -25,6 +25,7 @@
             <option value="$PROJECT_DIR$/build-logic/android-library" />
             <option value="$PROJECT_DIR$/dachlatten-android" />
             <option value="$PROJECT_DIR$/dachlatten-compose" />
+            <option value="$PROJECT_DIR$/dachlatten-datetime" />
             <option value="$PROJECT_DIR$/dachlatten-debug" />
             <option value="$PROJECT_DIR$/dachlatten-flow" />
             <option value="$PROJECT_DIR$/dachlatten-primitives" />

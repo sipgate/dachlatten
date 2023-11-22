@@ -10,6 +10,7 @@ androidx-lifecycle = "2.6.2"
 robolectric = "4.10.3"
 compose = "1.5.4"
 compose-compiler = "1.5.4"
+kotlinx-datetime = "0.4.1"
 
 [libraries]
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
@@ -25,6 +26,7 @@ compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-mani
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 annotation-jvm = { group = "androidx.annotation", name = "annotation-jvm", version.ref = "annotation-jvm" }
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime-jvm", version.ref = "kotlinx-datetime" }
 
 [bundles]
 compose-ui-test = ["compose-ui-test-junit4", "compose-ui-test-manifest"]
