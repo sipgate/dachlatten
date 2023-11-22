@@ -22,8 +22,8 @@ class AndroidLibraryReleasePlugin : Plugin<Project> {
 
             setupReleaseBuild()
             setupVersionInfo()
-            val publication = setupPublishing()
-            setupSigning(publication)
+            setupPublishing()
+            setupSigning()
         }
     }
 }
@@ -59,7 +59,7 @@ private fun Properties.getVersionName(): String {
     return "$major.$minor.$patch"
 }
 
-private fun Project.setupPublishing(): Publication {
+private fun Project.setupPublishing() {
     extensions.configure<PublishingExtension> {
         publications {
             register<MavenPublication>("release") {
@@ -86,7 +86,6 @@ private fun Project.setupPublishing(): Publication {
             }
         }
     }
-    return extensions.getByType(PublishingExtension::class.java).publications["release"]
 }
 
 private fun MavenPublication.setPom() {
@@ -108,11 +107,12 @@ private fun MavenPublication.setPom() {
     }
 }
 
-private fun Project.setupSigning(publication: Publication) {
+private fun Project.setupSigning() {
+    val publishingExtension = extensions.getByType(PublishingExtension::class.java)
     extensions.configure<SigningExtension> {
         val signingKey: String? by project
         val signingPassword: String? by project
         useInMemoryPgpKeys(signingKey, signingPassword)
-        sign(publication)
+        sign(publishingExtension.publications["release"])
     }
 }
