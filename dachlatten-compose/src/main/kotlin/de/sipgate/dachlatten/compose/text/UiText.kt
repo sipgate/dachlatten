@@ -54,7 +54,7 @@ sealed interface UiText {
             is MultiLangString -> {
                 val arguments = args.toTypedArray()
                 LocalConfiguration.current.locales.getStringForLocales()?.format(*arguments)
-                    ?: fallbackResource?.let { stringResource(id = it, formatArgs = *arguments) }
+                    ?: fallbackResource?.let { stringResource(id = it, formatArgs = arguments) }
                     ?: throw Resources.NotFoundException("Could not find multilang string")
             }
         }
