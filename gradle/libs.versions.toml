@@ -4,6 +4,7 @@ kotlin = "1.9.20"
 junit5 = "5.10.0"
 junit4 = "4.13.2"
 coroutines = "1.7.3"
+support-annotations = "28.0.0"
 turbine = "1.0.0"
 annotation-jvm = "1.7.0"
 androidx-lifecycle = "2.6.2"
@@ -15,6 +16,7 @@ kotlinx-datetime = "0.4.1"
 [libraries]
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutinesTest = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
+support-annotations = { module = "com.android.support:support-annotations", version.ref = "support-annotations" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 

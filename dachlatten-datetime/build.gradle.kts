@@ -6,4 +6,5 @@ plugins {
 
 dependencies {
     compileOnly(libs.kotlinx.datetime)
+    compileOnly(libs.support.annotations)
 }
