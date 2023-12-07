@@ -20,6 +20,7 @@ class CycleBetweenNonNullTest {
     @Test
     fun cyclerReturnsAlwaysAWhenBIsNull() = runTest {
         cycleBetweenNonNull(ticker.toFlow(), flowA, nullFlow).test {
+            tick()
             assertEquals(contentA, awaitItem())
 
             tick()
@@ -33,6 +34,7 @@ class CycleBetweenNonNullTest {
     @Test
     fun cyclerReturnsAlwaysBWhenAIsNull() = runTest {
         cycleBetweenNonNull(ticker.toFlow(), nullFlow, flowB).test {
+            tick()
             assertEquals(contentB, awaitItem())
 
             tick()
@@ -46,6 +48,7 @@ class CycleBetweenNonNullTest {
     @Test
     fun cyclerReturnsNullWhenBothAAndBAreNull() = runTest {
         cycleBetweenNonNull(ticker.toFlow(), nullFlow, nullFlow).test {
+            tick()
             Assertions.assertNull(awaitItem())
 
             tick()
@@ -72,6 +75,7 @@ class CycleBetweenNonNullTest {
     @Test
     fun cycleBetweenWithDurationAndNullWorks() = runTest {
         cycleBetweenNonNull(ticker.toFlow(), flowA, nullFlow).test {
+            tick()
             assertEquals(contentA, awaitItem())
 
             tick()
