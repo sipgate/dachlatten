@@ -35,11 +35,11 @@ annotation-jvm = { group = "androidx.annotation", name = "annotation-jvm", versi
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime-jvm", version.ref = "kotlinx-datetime" }
 
 mockk-agent = { group = "io.mockk", name = "mockk-agent", version.ref = "mockk" }
-mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
+mockk-jvm = { group = "io.mockk", name = "mockk-jvm", version.ref = "mockk" }
 
 [bundles]
 compose-ui-test = ["compose-ui-test-junit4", "compose-ui-test-manifest"]
-mockk =  ["mockk-agent", "mockk-android"]
+mockk =  ["mockk-agent", "mockk-jvm"]
 
 [plugins]
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
