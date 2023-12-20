@@ -6,6 +6,7 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.toUpperCase
 
 sealed interface UiText {
     data class DynamicString(val value: String) : UiText
@@ -32,7 +33,7 @@ sealed interface UiText {
 
         fun LocaleList.getStringForLocales(): String? {
             val locale = getFirstMatch(language.keys.toTypedArray())
-            return language[locale?.language]
+            return language[locale?.language?.uppercase()]
         }
     }
 
