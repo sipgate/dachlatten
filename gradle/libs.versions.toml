@@ -13,9 +13,11 @@ compose = "1.5.4"
 compose-compiler = "1.5.5"
 kotlinx-datetime = "0.5.0"
 kover = "0.7.5"
+mockk = "1.13.8"
 
 [libraries]
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutines-playServices = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version.ref = "coroutines" }
 coroutinesTest = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 support-annotations = { module = "com.android.support:support-annotations", version.ref = "support-annotations" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
@@ -32,8 +34,12 @@ kover-gradlePlugin = { group = "org.jetbrains.kotlinx.kover", name = "org.jetbra
 annotation-jvm = { group = "androidx.annotation", name = "annotation-jvm", version.ref = "annotation-jvm" }
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime-jvm", version.ref = "kotlinx-datetime" }
 
+mockk-agent = { group = "io.mockk", name = "mockk-agent", version.ref = "mockk" }
+mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
+
 [bundles]
 compose-ui-test = ["compose-ui-test-junit4", "compose-ui-test-manifest"]
+mockk =  ["mockk-agent", "mockk-android"]
 
 [plugins]
 androidLibrary = { id = "com.android.library", version.ref = "agp" }

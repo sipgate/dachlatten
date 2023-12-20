@@ -28,6 +28,7 @@
             <option value="$PROJECT_DIR$/dachlatten-datetime" />
             <option value="$PROJECT_DIR$/dachlatten-debug" />
             <option value="$PROJECT_DIR$/dachlatten-flow" />
+            <option value="$PROJECT_DIR$/dachlatten-google" />
             <option value="$PROJECT_DIR$/dachlatten-primitives" />
           </set>
         </option>
