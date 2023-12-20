@@ -70,27 +70,33 @@ class UiTextTest {
     @Test
     @Config(qualifiers = "en")
     fun stringSubstitutionWorks() {
-        val uiText = UiText.MultiLangString(mapOf("EN" to "string %s"),
+        val uiText = UiText.MultiLangString(
+            mapOf("EN" to "string %s"),
             fallbackResource = null,
-            "substitution")
+            "substitution"
+        )
         expectResolvedResourceString("string substitution", uiText)
     }
 
     @Test
     @Config(qualifiers = "en")
     fun stringSubstitutionWorksForMultipleArguments() {
-        val uiText = UiText.MultiLangString(mapOf("EN" to "string %s and %s"),
+        val uiText = UiText.MultiLangString(
+            mapOf("EN" to "string %s and %s"),
             fallbackResource = null,
-            "substitution", "others")
+            "substitution", "others"
+        )
         expectResolvedResourceString("string substitution and others", uiText)
     }
 
     @Test
     @Config(qualifiers = "en")
     fun stringSubstitutionWorksFromCompose() {
-        val uiText = UiText.MultiLangString(mapOf("EN" to "string %s and %s"),
+        val uiText = UiText.MultiLangString(
+            mapOf("EN" to "string %s and %s"),
             fallbackResource = null,
-            "substitution", "others")
+            "substitution", "others"
+        )
         expectResolvedComposeString("string substitution and others", uiText)
     }
 
@@ -109,16 +115,20 @@ class UiTextTest {
     @Test
     @Config(qualifiers = "en")
     fun fallbackIsUsedIfTranslationCannotBeFound() {
-        val uiText = UiText.MultiLangString(mapOf("invalid-key" to "some string"),
-            fallbackResource = R.string.call_notification_answer_action)
+        val uiText = UiText.MultiLangString(
+            mapOf("invalid-key" to "some string"),
+            fallbackResource = R.string.call_notification_answer_action
+        )
         expectResolvedComposeString("Answer", uiText)
     }
 
     @Test
     @Config(qualifiers = "en")
     fun multiLangKeyInWrongCaseWill() {
-        val uiText = UiText.MultiLangString(mapOf("en" to "some string"),
-            fallbackResource = R.string.call_notification_answer_action)
+        val uiText = UiText.MultiLangString(
+            mapOf("en" to "some string"),
+            fallbackResource = R.string.call_notification_answer_action
+        )
         expectResolvedComposeString("Answer", uiText)
     }
 
