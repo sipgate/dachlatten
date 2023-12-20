@@ -8,5 +8,4 @@ dependencies {
     compileOnly(libs.coroutines.playServices)
 
     testImplementation(libs.coroutines.playServices)
-    testImplementation(libs.bundles.mockk)
 }
