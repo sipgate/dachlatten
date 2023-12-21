@@ -11,3 +11,6 @@ fun Context.getActivity(): Activity? =
         is ContextWrapper -> baseContext.getActivity()
         else -> null
     }
+
+val Context.languageTag: String
+    get() = resources.configuration.locales[0].toLanguageTag() ?: "en-GB"
