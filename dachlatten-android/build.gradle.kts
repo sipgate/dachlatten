@@ -9,6 +9,7 @@ dependencies {
     implementation(libs.coroutines)
     implementation(libs.lifecycle.process)
     implementation(libs.annotation.jvm)
+    implementation(libs.androidx.activity)
 
     testImplementation(libs.coroutines)
 }
