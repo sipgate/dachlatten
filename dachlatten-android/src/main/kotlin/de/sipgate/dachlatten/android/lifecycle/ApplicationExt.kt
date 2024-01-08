@@ -10,7 +10,7 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.shareIn
 
 private val lifecycleEventFlow =
     callbackFlow {
@@ -42,4 +42,4 @@ val isInForeground =
         }.also {
             Log.d("dachlatten-android", "Event $event set Application is in foreground to: $it")
         }
-    }.stateIn(CoroutineScope(Dispatchers.Unconfined), SharingStarted.Eagerly, false)
+    }.shareIn(CoroutineScope(Dispatchers.Unconfined), SharingStarted.Eagerly, 1)
