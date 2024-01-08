@@ -6,10 +6,11 @@ plugins {
 }
 
 dependencies {
+    compileOnly(libs.androidx.activity)
+
     implementation(libs.coroutines)
     implementation(libs.lifecycle.process)
     implementation(libs.annotation.jvm)
-    implementation(libs.androidx.activity)
 
-    testImplementation(libs.coroutines)
+    testImplementation(libs.androidx.activity)
 }
