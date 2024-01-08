@@ -1,7 +1,7 @@
 [versions]
 agp = "8.3.0"
-kotlin = "1.9.22"
-compose-compiler = "1.5.8"
+kotlin = "2.0.0-Beta4"
+compose-compiler = "1.5.11-dev-k2.0.0-Beta4-21f5e479a96"
 
 android-support-annotations = "28.0.0"
 androidx-activity = "1.8.2"
