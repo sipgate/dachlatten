@@ -12,9 +12,12 @@ robolectric = "4.10.3"
 compose = "1.5.4"
 compose-compiler = "1.5.5"
 kotlinx-datetime = "0.5.0"
+kotlinx-serialization = "1.6.2"
 kover = "0.7.5"
 mockk = "1.13.9"
 androidx-activity = "1.8.2"
+okhttp = "4.12.0"
+retrofit-serialization = "1.0.0"
 
 [libraries]
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
@@ -35,15 +38,20 @@ kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-pl
 kover-gradlePlugin = { group = "org.jetbrains.kotlinx.kover", name = "org.jetbrains.kotlinx.kover.gradle.plugin", version.ref = "kover" }
 annotation-jvm = { group = "androidx.annotation", name = "annotation-jvm", version.ref = "annotation-jvm" }
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime-jvm", version.ref = "kotlinx-datetime" }
+kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+okhttp-mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver3-junit5", version.prefer = "5.0.0-alpha.12" }
+retrofit-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofit-serialization" }
 
 mockk-agent = { group = "io.mockk", name = "mockk-agent", version.ref = "mockk" }
 mockk-jvm = { group = "io.mockk", name = "mockk-jvm", version.ref = "mockk" }
 
 [bundles]
 compose-ui-test = ["compose-ui-test-junit4", "compose-ui-test-manifest"]
-mockk =  ["mockk-agent", "mockk-jvm"]
+mockk = ["mockk-agent", "mockk-jvm"]
 
 [plugins]
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 koverPlugin = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+kotlin-serialization-plugin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
