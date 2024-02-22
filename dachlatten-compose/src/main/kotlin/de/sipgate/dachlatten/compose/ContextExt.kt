@@ -1,19 +1,10 @@
-package de.sipgate.dachlatten.android.activity
+package de.sipgate.dachlatten.compose
 
-import android.app.Activity
 import android.content.Context
-import android.content.ContextWrapper
 import android.content.res.Configuration
 import android.os.Build
-import androidx.activity.ComponentActivity
 import java.util.Locale
 
-fun Context.getActivity(): Activity? =
-    when (this) {
-        is ComponentActivity -> this
-        is ContextWrapper -> baseContext.getActivity()
-        else -> null
-    }
 
 const val DEFAULT_LANGUAGE = "en"
 

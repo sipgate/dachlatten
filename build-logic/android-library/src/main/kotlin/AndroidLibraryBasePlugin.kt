@@ -18,7 +18,7 @@ class AndroidLibraryBasePlugin: Plugin<Project> {
                 namespace = "de.sipgate.${target.name.replace("-", ".")}"
                 compileSdk = 34
 
-                defaultConfig.minSdk = 24
+                defaultConfig.minSdk = 23
             }
 
             setJdkVersion(JavaVersion.VERSION_1_8)
