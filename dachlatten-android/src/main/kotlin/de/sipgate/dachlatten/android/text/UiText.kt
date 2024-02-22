@@ -1,12 +1,9 @@
-package de.sipgate.dachlatten.compose.text
+package de.sipgate.dachlatten.android.text
 
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
 import androidx.annotation.StringRes
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.stringResource
 import java.util.Locale
 
 sealed interface UiText {
@@ -57,16 +54,4 @@ sealed interface UiText {
                 ?: throw Resources.NotFoundException("Could not find multilang string")
         }
     }
-
-    @Composable
-    fun asString() = when (this) {
-            is DynamicString -> value
-            is StringResource -> stringResource(id = resId, formatArgs = args.toTypedArray())
-            is MultiLangString -> {
-                val arguments = args.toTypedArray()
-                LocalConfiguration.current.getStringForLocales() ?.format(*arguments)
-                    ?: fallbackResource?.let { stringResource(id = it, formatArgs = arguments) }
-                    ?: throw Resources.NotFoundException("Could not find multilang string")
-            }
-        }
 }

@@ -6,8 +6,10 @@ plugins {
 }
 
 dependencies {
+    compileOnly(project(":dachlatten-android"))
     compileOnly(libs.compose.ui)
 
+    testImplementation(project(":dachlatten-android"))
     testImplementation(libs.bundles.compose.ui.test)
 }
 

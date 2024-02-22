@@ -13,4 +13,5 @@ dependencies {
     implementation(libs.annotation.jvm)
 
     testImplementation(libs.androidx.activity)
+    testImplementation(libs.androidx.core)
 }
