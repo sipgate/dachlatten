@@ -1,59 +1,65 @@
 [versions]
 agp = "8.2.2"
 kotlin = "1.9.22"
+compose-compiler = "1.5.8"
+
+android-support-annotations = "28.0.0"
+androidx-activity = "1.8.2"
+androidx-annotation = "1.7.1"
+androidx-compose = "1.6.2"
+androidx-core = "1.12.0"
+
 junit5 = "5.10.0"
 junit4 = "4.13.2"
-coroutines = "1.8.0"
-support-annotations = "28.0.0"
+kotlinx-coroutines = "1.8.0"
 turbine = "1.0.0"
-annotation-jvm = "1.7.1"
 androidx-lifecycle = "2.7.0"
 robolectric = "4.10.3"
-compose = "1.6.2"
-compose-compiler = "1.5.8"
 kotlinx-datetime = "0.5.0"
 kotlinx-serialization = "1.6.3"
 kover = "0.7.6"
 mockk = "1.13.9"
-androidx-activity = "1.8.2"
-androidx-core = "1.12.0"
 okhttp = "4.12.0"
 retrofit-serialization = "1.0.0"
 
 [libraries]
-androidx-core = { module = "androidx.core:core", version.ref="androidx-core" }
-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
-coroutines-playServices = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version.ref = "coroutines" }
-coroutinesTest = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
-support-annotations = { module = "com.android.support:support-annotations", version.ref = "support-annotations" }
-turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
-junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
+android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+
+android-support-annotations = { module = "com.android.support:support-annotations", version.ref = "android-support-annotations" }
 androidx-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activity" }
+androidx-annotation = { group = "androidx.annotation", name = "annotation-jvm", version.ref = "androidx-annotation" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "androidx-compose" }
+androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "androidx-compose" }
+androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "androidx-compose" }
+androidx-core = { module = "androidx.core:core", version.ref="androidx-core" }
+androidx-lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "androidx-lifecycle" }
 
-lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "androidx-lifecycle" }
-compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "compose" }
-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "compose" }
+junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 
-android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
-kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
-kover-gradlePlugin = { group = "org.jetbrains.kotlinx.kover", name = "org.jetbrains.kotlinx.kover.gradle.plugin", version.ref = "kover" }
-annotation-jvm = { group = "androidx.annotation", name = "annotation-jvm", version.ref = "annotation-jvm" }
+kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-play-services = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime-jvm", version.ref = "kotlinx-datetime" }
 kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
-okhttp-mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver3-junit5", version.prefer = "5.0.0-alpha.12" }
-retrofit-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofit-serialization" }
+kover-gradle-plugin = { group = "org.jetbrains.kotlinx.kover", name = "org.jetbrains.kotlinx.kover.gradle.plugin", version.ref = "kover" }
 
 mockk-agent = { group = "io.mockk", name = "mockk-agent", version.ref = "mockk" }
 mockk-jvm = { group = "io.mockk", name = "mockk-jvm", version.ref = "mockk" }
 
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+okhttp-mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver3-junit5", version.prefer = "5.0.0-alpha.12" }
+
+retrofit-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofit-serialization" }
+
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+
 [bundles]
-compose-ui-test = ["compose-ui-test-junit4", "compose-ui-test-manifest"]
+androidx-compose-ui-test = ["androidx-compose-ui-test-junit4", "androidx-compose-ui-test-manifest"]
 mockk = ["mockk-agent", "mockk-jvm"]
 
 [plugins]
-androidLibrary = { id = "com.android.library", version.ref = "agp" }
-kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-koverPlugin = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kover-plugin = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 kotlin-serialization-plugin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

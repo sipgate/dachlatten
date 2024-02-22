@@ -5,7 +5,7 @@ plugins {
 }
 
 dependencies {
-    compileOnly(libs.coroutines)
+    compileOnly(libs.kotlinx.coroutines)
 
-    testImplementation(libs.coroutines)
+    testImplementation(libs.kotlinx.coroutines)
 }

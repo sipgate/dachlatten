@@ -8,9 +8,9 @@ plugins {
 dependencies {
     compileOnly(libs.androidx.activity)
 
-    implementation(libs.coroutines)
-    implementation(libs.lifecycle.process)
-    implementation(libs.annotation.jvm)
+    implementation(libs.androidx.annotation)
+    implementation(libs.androidx.lifecycle.process)
+    implementation(libs.kotlinx.coroutines)
 
     testImplementation(libs.androidx.activity)
     testImplementation(libs.androidx.core)

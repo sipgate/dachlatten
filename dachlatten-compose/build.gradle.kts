@@ -7,10 +7,10 @@ plugins {
 
 dependencies {
     compileOnly(project(":dachlatten-android"))
-    compileOnly(libs.compose.ui)
+    compileOnly(libs.androidx.compose.ui)
 
     testImplementation(project(":dachlatten-android"))
-    testImplementation(libs.bundles.compose.ui.test)
+    testImplementation(libs.bundles.androidx.compose.ui.test)
 }
 
 android {

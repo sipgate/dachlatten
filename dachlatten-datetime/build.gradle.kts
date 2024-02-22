@@ -6,5 +6,5 @@ plugins {
 
 dependencies {
     compileOnly(libs.kotlinx.datetime)
-    compileOnly(libs.support.annotations)
+    compileOnly(libs.android.support.annotations)
 }

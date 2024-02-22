@@ -5,7 +5,7 @@ plugins {
 }
 
 dependencies {
-    compileOnly(libs.coroutines.playServices)
+    compileOnly(libs.kotlinx.coroutines.play.services)
 
-    testImplementation(libs.coroutines.playServices)
+    testImplementation(libs.kotlinx.coroutines.play.services)
 }
