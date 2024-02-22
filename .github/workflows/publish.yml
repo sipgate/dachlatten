@@ -5,7 +5,7 @@ on:
 
 jobs:
   publish:
-    runs-on: nautilus-build
+    runs-on: ubuntu-latest
     environment: release
     permissions:
       actions: read
