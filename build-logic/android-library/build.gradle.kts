@@ -26,5 +26,9 @@ gradlePlugin {
             id = "android-library-robolectric-test"
             implementationClass = "AndroidLibraryRobolectricTestPlugin"
         }
+        register("kotliLibrary") {
+            id = "kotlin-library"
+            implementationClass = "KotlinLibraryPlugin"
+        }
     }
 }

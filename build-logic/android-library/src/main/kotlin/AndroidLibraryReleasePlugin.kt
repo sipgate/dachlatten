@@ -1,6 +1,9 @@
 import com.android.build.gradle.LibraryExtension
+import java.io.File
+import java.util.Properties
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.component.SoftwareComponent
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.kotlin.dsl.configure
@@ -8,8 +11,6 @@ import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.register
 import org.gradle.plugins.signing.SigningExtension
-import java.io.File
-import java.util.Properties
 
 class AndroidLibraryReleasePlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -21,7 +22,9 @@ class AndroidLibraryReleasePlugin : Plugin<Project> {
 
             setupReleaseBuild()
             setupVersionInfo()
-            setupPublishing()
+            afterEvaluate {
+                setupPublishing(components["release"])
+            }
             setupSigning()
         }
     }
@@ -41,7 +44,7 @@ private fun Project.setupReleaseBuild() {
     }
 }
 
-private fun Project.setupVersionInfo() {
+internal fun Project.setupVersionInfo() {
     val versionProperties = File(project.rootDir, "version.properties")
     versionProperties.inputStream().use { inputStream ->
         Properties().apply {
@@ -51,14 +54,14 @@ private fun Project.setupVersionInfo() {
     }
 }
 
-private fun Properties.getVersionName(): String {
+internal fun Properties.getVersionName(): String {
     val major = (get("majorVersion") as String).toInt()
     val minor = (get("minorVersion") as String).toInt()
     val patch = (get("patchVersion") as String).toInt()
     return "$major.$minor.$patch"
 }
 
-private fun Project.setupPublishing() {
+internal fun Project.setupPublishing(component: SoftwareComponent) {
     extensions.configure<PublishingExtension> {
         publications {
             register<MavenPublication>("release") {
@@ -68,9 +71,7 @@ private fun Project.setupPublishing() {
 
                 setPom()
 
-                afterEvaluate {
-                    from(components["release"])
-                }
+                from(component)
             }
         }
 
@@ -87,7 +88,7 @@ private fun Project.setupPublishing() {
     }
 }
 
-private fun MavenPublication.setPom() {
+internal fun MavenPublication.setPom() {
     pom {
         name.set("Dachlatten-flow")
         description.set("")
@@ -106,7 +107,7 @@ private fun MavenPublication.setPom() {
     }
 }
 
-private fun Project.setupSigning() {
+fun Project.setupSigning() {
     extensions.configure<SigningExtension> {
         val signingKey: String? by project
         val signingPassword: String? by project
