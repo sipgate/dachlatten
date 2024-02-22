@@ -31,6 +31,7 @@
             <option value="$PROJECT_DIR$/dachlatten-google" />
             <option value="$PROJECT_DIR$/dachlatten-primitives" />
             <option value="$PROJECT_DIR$/dachlatten-retrofit" />
+            <option value="$PROJECT_DIR$/dachlatten-text" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

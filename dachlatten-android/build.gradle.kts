@@ -6,12 +6,14 @@ plugins {
 }
 
 dependencies {
+    compileOnly(project(":dachlatten-text"))
     compileOnly(libs.androidx.activity)
 
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.lifecycle.process)
     implementation(libs.kotlinx.coroutines)
 
+    testImplementation(project(":dachlatten-text"))
     testImplementation(libs.androidx.activity)
     testImplementation(libs.androidx.core)
 }

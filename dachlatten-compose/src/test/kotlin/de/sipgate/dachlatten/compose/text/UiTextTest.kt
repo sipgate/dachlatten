@@ -3,7 +3,7 @@ package de.sipgate.dachlatten.compose.text
 import android.content.res.Resources
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.core.R
-import de.sipgate.dachlatten.android.text.UiText
+import de.sipgate.dachlatten.text.UiText
 import org.junit.Rule
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals

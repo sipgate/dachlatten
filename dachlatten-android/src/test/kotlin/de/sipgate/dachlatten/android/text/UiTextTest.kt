@@ -2,6 +2,7 @@ package de.sipgate.dachlatten.android.text
 
 import android.content.res.Resources
 import androidx.core.R
+import de.sipgate.dachlatten.text.UiText
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.assertThrows
