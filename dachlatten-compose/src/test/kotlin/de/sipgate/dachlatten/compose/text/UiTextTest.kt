@@ -48,22 +48,41 @@ class UiTextTest {
         expectResolvedComposeString("Annehmen", uiText)
     }
 
-    private val languageMap = mapOf(
+    private val upperCaselanguageMap = mapOf(
         "EN" to "String",
         "DE" to "Zeichenfolge"
     )
 
     @Test
     @Config(qualifiers = "de")
-    fun multiLangStringResolvesValueWhenRequestedDe() {
-        val uiText = UiText.MultiLangString(languageMap)
+    fun multiLangStringResolvesValueWhenRequestedUpperCaseDe() {
+        val uiText = UiText.MultiLangString(upperCaselanguageMap)
         expectResolvedResourceString("Zeichenfolge", uiText)
     }
 
     @Test
     @Config(qualifiers = "en")
-    fun multiLangStringResolvesValueWhenRequestedEn() {
-        val uiText = UiText.MultiLangString(languageMap)
+    fun multiLangStringResolvesValueWhenRequestedUpperCaseEn() {
+        val uiText = UiText.MultiLangString(upperCaselanguageMap)
+        expectResolvedResourceString("String", uiText)
+    }
+
+    private val lowerCaselanguageMap = mapOf(
+        "en" to "String",
+        "de" to "Zeichenfolge"
+    )
+
+    @Test
+    @Config(qualifiers = "de")
+    fun multiLangStringResolvesValueWhenRequestedLowerCaseDe() {
+        val uiText = UiText.MultiLangString(lowerCaselanguageMap)
+        expectResolvedResourceString("Zeichenfolge", uiText)
+    }
+
+    @Test
+    @Config(qualifiers = "en")
+    fun multiLangStringResolvesValueWhenRequestedLowerCaseEn() {
+        val uiText = UiText.MultiLangString(lowerCaselanguageMap)
         expectResolvedResourceString("String", uiText)
     }
 
@@ -117,16 +136,6 @@ class UiTextTest {
     fun fallbackIsUsedIfTranslationCannotBeFound() {
         val uiText = UiText.MultiLangString(
             mapOf("invalid-key" to "some string"),
-            fallbackResource = R.string.call_notification_answer_action
-        )
-        expectResolvedComposeString("Answer", uiText)
-    }
-
-    @Test
-    @Config(qualifiers = "en")
-    fun multiLangKeyInWrongCaseWill() {
-        val uiText = UiText.MultiLangString(
-            mapOf("en" to "some string"),
             fallbackResource = R.string.call_notification_answer_action
         )
         expectResolvedComposeString("Answer", uiText)

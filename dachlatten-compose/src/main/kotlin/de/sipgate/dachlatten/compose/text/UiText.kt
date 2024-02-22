@@ -34,7 +34,7 @@ sealed interface UiText {
 
         fun Configuration.getStringForLocales(): String? {
             val locale = resolveLocale(language.keys)
-            return language[locale?.language?.uppercase()]
+            return language[locale?.language?.lowercase()] ?: language[locale?.language?.uppercase()]
         }
 
         private fun Configuration.resolveLocale(supportedLanguages: Set<String>): Locale? {
