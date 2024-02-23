@@ -1,4 +1,3 @@
-import kotlinx.kover.gradle.plugin.dsl.KoverProjectExtension
 import kotlinx.kover.gradle.plugin.dsl.KoverReportExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -9,7 +8,7 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.withType
 
-class AndroidLibraryUnitTestPlugin: Plugin<Project> {
+class KotlinLibraryUnitTestPlugin: Plugin<Project> {
     override fun apply(target: Project) {
         with (target) {
             setupKover()
@@ -21,12 +20,6 @@ class AndroidLibraryUnitTestPlugin: Plugin<Project> {
 
 private fun Project.setupKover() {
     pluginManager.apply("org.jetbrains.kotlinx.kover")
-
-    extensions.configure<KoverReportExtension> {
-        this.defaults{
-            this.mergeWith("release")
-        }
-    }
 
     dependencies {
         add("kover", project(":${this@setupKover.name}"))

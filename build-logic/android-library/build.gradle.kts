@@ -14,10 +14,6 @@ gradlePlugin {
             id = "android-library-base"
             implementationClass = "AndroidLibraryBasePlugin"
         }
-        register("androidLibraryUnitTest") {
-            id = "android-library-unit-test"
-            implementationClass = "AndroidLibraryUnitTestPlugin"
-        }
         register("androidLibraryRelease") {
             id = "android-library-release"
             implementationClass = "AndroidLibraryReleasePlugin"
@@ -26,9 +22,13 @@ gradlePlugin {
             id = "android-library-robolectric-test"
             implementationClass = "AndroidLibraryRobolectricTestPlugin"
         }
-        register("kotliLibrary") {
+        register("kotlinLibrary") {
             id = "kotlin-library"
             implementationClass = "KotlinLibraryPlugin"
+        }
+        register("kotlinLibraryUnitTest") {
+            id = "kotlin-library-unit-test"
+            implementationClass = "KotlinLibraryUnitTestPlugin"
         }
     }
 }

@@ -1,5 +1,6 @@
 plugins {
     id("kotlin-library")
+    id("kotlin-library-unit-test")
 }
 
 dependencies {
