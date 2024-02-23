@@ -62,4 +62,4 @@ mockk = ["mockk-agent", "mockk-jvm"]
 android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kover-plugin = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
-kotlin-serialization-plugin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

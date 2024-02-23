@@ -2,7 +2,7 @@ plugins {
     id("android-library-base")
     id("android-library-unit-test")
     id("android-library-release")
-    alias(libs.plugins.kotlin.serialization.plugin)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 dependencies {
