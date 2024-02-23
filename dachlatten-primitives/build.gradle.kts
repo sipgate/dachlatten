@@ -1,5 +1,7 @@
 plugins {
-    id("android-library-base")
-    id("android-library-unit-test")
-    id("android-library-release")
+    id("kotlin-library")
+}
+
+dependencies {
+    implementation(libs.androidx.annotation)
 }
