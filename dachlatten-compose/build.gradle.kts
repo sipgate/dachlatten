@@ -8,9 +8,11 @@ plugins {
 dependencies {
     implementation(project(":dachlatten-primitives"))
 
+    compileOnly(libs.androidx.compose.foundation)
     compileOnly(libs.androidx.compose.ui)
 
     testImplementation(libs.bundles.androidx.compose.ui.test)
+    testImplementation(libs.androidx.compose.foundation)
 }
 
 android {
