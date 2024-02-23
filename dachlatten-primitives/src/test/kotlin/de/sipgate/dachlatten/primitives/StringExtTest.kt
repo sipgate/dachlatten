@@ -13,4 +13,18 @@ class StringExtTest {
     fun sha256PropertyForUnicodeStringReturnsTheCorrectValue() {
         assertEquals("d7a5c5e0d1d94c32218539e7e47d4ba9c3c7b77d61332fb60d633dde89e473fb", "\uD83E\uDD86".sha256)
     }
+
+    @Test
+    fun trimmedMultilineIndentEqualsTheOldLongFormat() {
+        // assurance check, to guard against regression
+        @Suppress("MaxLineLength")
+        val long = "c582a45454fc09fbd35c640d92308cb4b2a23f4b16d25bada01691ad04f3f9fb3e4320e0e84e2cfcd20e33290eabea91d1399"
+
+        val short = """
+        c582a45454fc09fbd35c640d92308cb4b2a23f4b16d25bada01691ad04f3f9fb
+        3e4320e0e84e2cfcd20e33290eabea91d1399
+        """.trimWhitespace()
+
+        assertEquals(long, short)
+    }
 }

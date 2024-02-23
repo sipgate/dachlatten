@@ -7,3 +7,5 @@ val String.sha256: String
         .getInstance("SHA-256")
         .digest(toByteArray())
         .joinToString(separator = "")  { "%02x".format(it) }
+
+fun String.trimWhitespace(): String = this.trimIndent().replace("\n", "")
