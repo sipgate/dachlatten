@@ -1,7 +1,7 @@
-package de.sipgate.dachlatten.compose.image
+package de.sipgate.dachlatten.compose.asset
 
 import androidx.compose.ui.test.junit4.createComposeRule
-import de.sipgate.dachlatten.image.DisplayableImage
+import de.sipgate.dachlatten.asset.DisplayableAsset
 import org.junit.Rule
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -10,15 +10,15 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-class DisplayableImageTest {
+class DisplayableAssetTest {
 
     @get:Rule
     val composeTestRule = createComposeRule()
 
-    private val darkModeVariantUrl = "dark-mode-variant-of-image"
-    private val lightModeVariantUrl = "light-mode-variant-of-image"
+    private val darkModeVariantUrl = "dark-mode-variant-of-asset"
+    private val lightModeVariantUrl = "light-mode-variant-of-asset"
 
-    private val image = DisplayableImage(
+    private val image = DisplayableAsset(
         dark = darkModeVariantUrl,
         light = lightModeVariantUrl,
     )
@@ -35,7 +35,7 @@ class DisplayableImageTest {
         expectResolvedComposeUrl(lightModeVariantUrl, image)
     }
 
-    private fun expectResolvedComposeUrl(expected: String, image: DisplayableImage) {
+    private fun expectResolvedComposeUrl(expected: String, image: DisplayableAsset) {
         composeTestRule.setContent {
             val resolvedString = image.getThemeDependingUri()
             assertEquals(expected, resolvedString)
