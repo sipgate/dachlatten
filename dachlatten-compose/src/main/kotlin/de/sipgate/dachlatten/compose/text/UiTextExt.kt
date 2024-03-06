@@ -28,7 +28,7 @@ private fun Configuration.getStringForLocales(translations: TranslatedText, fall
         ?: fallbackLocale?.let { fallback -> translations[fallback] }
 }
 
-operator fun TranslatedText.get(locale: Locale): String? =
+operator fun <T> Map<String, T>.get(locale: Locale): T? =
     this[locale.language.lowercase()] ?: this[locale.language.uppercase()]
 
 
