@@ -45,7 +45,7 @@ class UiTextTest {
 
         assertThrows<Resources.NotFoundException> {
             composeTestRule.setContent {
-                uiText.asString()
+                uiText.resolve()
             }
         }
     }
@@ -72,7 +72,7 @@ class UiTextTest {
 
     private fun expectResolvedComposeString(expected: String, uiText: UiText, fallbackLocale: Locale? = null) {
         composeTestRule.setContent {
-            val resolvedString = uiText.asString(fallbackLocale)
+            val resolvedString = uiText.resolve(fallbackLocale)
 
             /*
              * This is needed because the Strings we have packaged with Robolectric

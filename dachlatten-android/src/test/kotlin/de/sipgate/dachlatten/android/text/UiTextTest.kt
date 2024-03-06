@@ -116,6 +116,6 @@ class UiTextTest {
     }
 
     private fun expectResolvedResourceString(expected: String, uiText: UiText, fallbackLocale: Locale? = null) {
-        assertEquals(expected, uiText.asString(context.resources, fallbackLocale))
+        assertEquals(expected, uiText.resolve(context.resources, fallbackLocale))
     }
 }

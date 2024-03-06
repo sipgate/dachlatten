@@ -11,7 +11,7 @@ import de.sipgate.dachlatten.text.UiText
 import java.util.Locale
 
 @Composable
-fun UiText.asString(fallbackLocale: Locale? = null) = when (this) {
+fun UiText.resolve(fallbackLocale: Locale? = null) = when (this) {
     is UiText.DynamicString -> value
     is UiText.StringResource -> stringResource(id = resId, formatArgs = args.toTypedArray())
     is UiText.MultiLangString -> {
