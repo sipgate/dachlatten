@@ -30,6 +30,16 @@ class DisplayableAssetTest {
     }
 
     @Test
+    @Config(qualifiers = "night")
+    fun urlResolvesToLightVariantInDarkModeWhenDarkVariantCannotBeResolved() {
+        val lightModeOnly = DisplayableAsset(
+            light = lightModeVariantUrl
+        )
+
+        expectResolvedComposeUrl(lightModeVariantUrl, lightModeOnly)
+    }
+
+    @Test
     @Config(qualifiers = "notnight")
     fun urlResolvesToLightVariantInLightMode() {
         expectResolvedComposeUrl(lightModeVariantUrl, image)

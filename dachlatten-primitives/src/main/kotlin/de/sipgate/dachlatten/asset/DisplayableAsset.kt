@@ -5,4 +5,7 @@ import kotlinx.serialization.Serializable
 typealias AssetUrl = String
 
 @Serializable
-data class DisplayableAsset(val dark: AssetUrl, val light: AssetUrl)
+data class DisplayableAsset(
+    val light: AssetUrl,
+    val dark: AssetUrl? = null
+)

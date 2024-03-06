@@ -8,6 +8,6 @@ import de.sipgate.dachlatten.asset.AssetUrl
 @Composable
 fun DisplayableAsset.getThemeDependingUri(): AssetUrl =
     when {
-        isSystemInDarkTheme() -> dark
+        isSystemInDarkTheme() -> dark ?: light
         else -> light
     }
