@@ -4,6 +4,7 @@ import android.content.res.Resources
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.core.R
 import de.sipgate.dachlatten.text.UiText
+import java.util.Locale
 import org.junit.Rule
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -21,6 +22,7 @@ class UiTextTest {
     @Test
     @Config(qualifiers = "de")
     fun stringResourceResolvesValueWhenCompositionIsRequested() {
+
         val uiText = UiText.StringResource(R.string.call_notification_answer_action)
         expectResolvedComposeString("Annehmen", uiText)
     }
@@ -58,9 +60,19 @@ class UiTextTest {
         expectResolvedComposeString("Answer", uiText)
     }
 
-    private fun expectResolvedComposeString(expected: String, uiText: UiText) {
+    @Test
+    @Config(qualifiers = "fr")
+    fun multilangResolvesFallbackWhenLanguageCannotBeFound() {
+        val uiText = UiText.MultiLangString(mapOf(
+            "en" to "String",
+            "de" to "Zeichenfolge"
+        ))
+        expectResolvedComposeString("String", uiText, fallbackLocale = Locale.ENGLISH)
+    }
+
+    private fun expectResolvedComposeString(expected: String, uiText: UiText, fallbackLocale: Locale? = null) {
         composeTestRule.setContent {
-            val resolvedString = uiText.asString()
+            val resolvedString = uiText.asString(fallbackLocale)
 
             /*
              * This is needed because the Strings we have packaged with Robolectric

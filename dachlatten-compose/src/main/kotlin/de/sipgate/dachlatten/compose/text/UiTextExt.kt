@@ -11,21 +11,26 @@ import de.sipgate.dachlatten.text.UiText
 import java.util.Locale
 
 @Composable
-fun UiText.asString() = when (this) {
+fun UiText.asString(fallbackLocale: Locale? = null) = when (this) {
     is UiText.DynamicString -> value
     is UiText.StringResource -> stringResource(id = resId, formatArgs = args.toTypedArray())
     is UiText.MultiLangString -> {
         val arguments = args.toTypedArray()
-        LocalConfiguration.current.getStringForLocales(language) ?.format(*arguments)
+        LocalConfiguration.current.getStringForLocales(language, fallbackLocale) ?.format(*arguments)
             ?: fallbackResource?.let { stringResource(id = it, formatArgs = arguments) }
             ?: throw Resources.NotFoundException("Could not find multilang string")
     }
 }
 
-private fun Configuration.getStringForLocales(translations: TranslatedText): String? {
-    val locale = resolveLocale(translations.keys)
-    return translations[locale?.language?.lowercase()] ?: translations[locale?.language?.uppercase()]
+private fun Configuration.getStringForLocales(translations: TranslatedText, fallbackLocale: Locale?): String? {
+    val resolvedLocale = resolveLocale(translations.keys)
+    return resolvedLocale?.let { locale -> translations[locale] }
+        ?: fallbackLocale?.let { fallback -> translations[fallback] }
 }
+
+operator fun TranslatedText.get(locale: Locale): String? =
+    this[locale.language.lowercase()] ?: this[locale.language.uppercase()]
+
 
 private fun Configuration.resolveLocale(supportedLanguages: Set<String>): Locale? {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

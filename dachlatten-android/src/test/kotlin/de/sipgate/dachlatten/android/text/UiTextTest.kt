@@ -3,6 +3,7 @@ package de.sipgate.dachlatten.android.text
 import android.content.res.Resources
 import androidx.core.R
 import de.sipgate.dachlatten.text.UiText
+import java.util.Locale
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.assertThrows
@@ -37,7 +38,7 @@ class UiTextTest {
         expectResolvedResourceString("Answer", uiText)
     }
 
-    private val upperCaselanguageMap = mapOf(
+    private val upperCaseLanguageMap = mapOf(
         "EN" to "String",
         "DE" to "Zeichenfolge"
     )
@@ -45,18 +46,18 @@ class UiTextTest {
     @Test
     @Config(qualifiers = "de")
     fun multiLangStringResolvesValueWhenRequestedUpperCaseDe() {
-        val uiText = UiText.MultiLangString(upperCaselanguageMap)
+        val uiText = UiText.MultiLangString(upperCaseLanguageMap)
         expectResolvedResourceString("Zeichenfolge", uiText)
     }
 
     @Test
     @Config(qualifiers = "en")
     fun multiLangStringResolvesValueWhenRequestedUpperCaseEn() {
-        val uiText = UiText.MultiLangString(upperCaselanguageMap)
+        val uiText = UiText.MultiLangString(upperCaseLanguageMap)
         expectResolvedResourceString("String", uiText)
     }
 
-    private val lowerCaselanguageMap = mapOf(
+    private val lowerCaseLanguageMap = mapOf(
         "en" to "String",
         "de" to "Zeichenfolge"
     )
@@ -64,15 +65,22 @@ class UiTextTest {
     @Test
     @Config(qualifiers = "de")
     fun multiLangStringResolvesValueWhenRequestedLowerCaseDe() {
-        val uiText = UiText.MultiLangString(lowerCaselanguageMap)
+        val uiText = UiText.MultiLangString(lowerCaseLanguageMap)
         expectResolvedResourceString("Zeichenfolge", uiText)
     }
 
     @Test
     @Config(qualifiers = "en")
     fun multiLangStringResolvesValueWhenRequestedLowerCaseEn() {
-        val uiText = UiText.MultiLangString(lowerCaselanguageMap)
+        val uiText = UiText.MultiLangString(lowerCaseLanguageMap)
         expectResolvedResourceString("String", uiText)
+    }
+
+    @Test
+    @Config(qualifiers = "fr")
+    fun multilangResolvesFallbackWhenLanguageCannotBeFound() {
+        val uiText = UiText.MultiLangString(lowerCaseLanguageMap)
+        expectResolvedResourceString("String", uiText, fallbackLocale = Locale.ENGLISH)
     }
 
     @Test
@@ -107,7 +115,7 @@ class UiTextTest {
         }
     }
 
-    private fun expectResolvedResourceString(expected: String, uiText: UiText) {
-        assertEquals(expected, uiText.asString(context.resources))
+    private fun expectResolvedResourceString(expected: String, uiText: UiText, fallbackLocale: Locale? = null) {
+        assertEquals(expected, uiText.asString(context.resources, fallbackLocale))
     }
 }
