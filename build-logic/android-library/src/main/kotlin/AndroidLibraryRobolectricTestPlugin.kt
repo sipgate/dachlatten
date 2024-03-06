@@ -18,8 +18,9 @@ private fun Project.setUpRobolectric() {
     val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
     dependencies {
-        add("testImplementation", "org.robolectric:robolectric:4.10.3")
+        add("testImplementation", "org.robolectric:robolectric:${libs.findVersion("robolectric").get()}")
         add("testImplementation", libs.findLibrary("junit4").get())
+
         add("testRuntimeOnly", "org.junit.vintage:junit-vintage-engine")
         add("testImplementation", "org.junit.platform:junit-platform-suite")
         add("testRuntimeOnly", "org.junit.platform:junit-platform-launcher")
