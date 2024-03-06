@@ -2,12 +2,13 @@ package de.sipgate.dachlatten.compose.asset
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
-import de.sipgate.dachlatten.asset.DisplayableAsset
 import de.sipgate.dachlatten.asset.AssetUrl
+import de.sipgate.dachlatten.asset.DisplayableAsset
 
 @Composable
-fun DisplayableAsset.getThemeDependingUri(): AssetUrl =
-    when {
-        isSystemInDarkTheme() -> dark ?: light
-        else -> light
-    }
+fun DisplayableAsset.resolve(
+    useDarkMode: Boolean = isSystemInDarkTheme()
+): AssetUrl = when {
+    useDarkMode -> dark ?: light
+    else -> light
+}

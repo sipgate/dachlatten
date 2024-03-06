@@ -45,9 +45,19 @@ class DisplayableAssetTest {
         expectResolvedComposeUrl(lightModeVariantUrl, image)
     }
 
-    private fun expectResolvedComposeUrl(expected: String, image: DisplayableAsset) {
+    @Test
+    @Config(qualifiers = "notnight")
+    fun urlResolvesToDarkVariantInLightModeWhenExplicitlyRequested() {
+        expectResolvedComposeUrl(darkModeVariantUrl, image, true)
+    }
+
+    private fun expectResolvedComposeUrl(expected: String, image: DisplayableAsset, useDarkMode: Boolean? = null) {
         composeTestRule.setContent {
-            val resolvedString = image.getThemeDependingUri()
+            val resolvedString = if (useDarkMode != null) {
+                image.resolve(useDarkMode)
+            } else {
+                image.resolve()
+            }
             assertEquals(expected, resolvedString)
         }
     }
