@@ -1,7 +1,7 @@
 [versions]
 agp = "8.3.0"
 kotlin = "1.9.22"
-compose-compiler = "1.5.8"
+compose-compiler = "1.5.10"
 
 android-support-annotations = "28.0.0"
 androidx-activity = "1.8.2"
