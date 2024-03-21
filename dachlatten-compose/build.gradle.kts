@@ -6,6 +6,8 @@ plugins {
 }
 
 dependencies {
+    api(libs.androidx.lifecycle.process)
+
     implementation(project(":dachlatten-primitives"))
     implementation(libs.jetbrains.markdown)
 
