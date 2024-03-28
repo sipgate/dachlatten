@@ -67,13 +67,17 @@ private fun AnnotatedString.Builder.processNode(
 ) {
     fun ASTNode.processOneCharMarkdown(spanStyle: SpanStyle) {
         children.fastForEach { processNode(it, markdown, tempNodesToRemoveAfter) }
-        tempNodesToRemoveAfter.addAll(children.filterIndexed { i, _ -> i != 1 })
+        tempNodesToRemoveAfter.add(children[0])
+        tempNodesToRemoveAfter.add(children[children.lastIndex])
         addStyle(spanStyle, startOffset, endOffset)
     }
 
     fun ASTNode.processTwoCharMarkdown(spanStyle: SpanStyle) {
         children.fastForEach { processNode(it, markdown, tempNodesToRemoveAfter) }
-        tempNodesToRemoveAfter.addAll(children.filterIndexed { i, _ -> i != 2 })
+        tempNodesToRemoveAfter.add(children[0])
+        tempNodesToRemoveAfter.add(children[1])
+        tempNodesToRemoveAfter.add(children[children.lastIndex-1])
+        tempNodesToRemoveAfter.add(children[children.lastIndex])
         addStyle(spanStyle, startOffset, endOffset)
     }
 

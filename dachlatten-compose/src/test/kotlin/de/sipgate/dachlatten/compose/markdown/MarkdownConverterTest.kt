@@ -45,6 +45,14 @@ class MarkdownConverterTest {
     }
 
     @Test
+    fun checkRegressionWhereDashesBreakParsing() {
+        val markdownWithSpans = "some **bold text with- dashes** inside"
+        val parsedText = parseMarkdown(markdownWithSpans)
+        val boldSpan = parsedText.spanStyles.first { it.item.fontWeight == FontWeight.Bold }
+        assertEquals("bold text with- dashes", parsedText.slice(boldSpan))
+    }
+
+    @Test
     fun checkBoldAndItalicTextIsBoldAndItalic() {
         val markdownWithSpans = "some ***bold and italic*** text"
         val parsedText = parseMarkdown(markdownWithSpans)
