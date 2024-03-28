@@ -138,19 +138,22 @@ private fun AnnotatedString.Builder.processNode(
                 when (nodeType) {
                     MarkdownElementTypes.STRONG -> node.processTwoCharMarkdown(BoldSpanStyle)
                 }
-            } else
+            } else {
                 node.children.fastForEach { child ->
                     when (child.type) {
                         MarkdownElementTypes.STRONG -> child.processTwoCharMarkdown(BoldSpanStyle)
                         GFMElementTypes.STRIKETHROUGH ->
                             child.processTwoCharMarkdown(StrikethroughSpanStyle)
+
                         MarkdownElementTypes.EMPH -> child.processOneCharMarkdown(ItalicSpanStyle)
                         MarkdownElementTypes.INLINE_LINK -> child.processInlineLink()
                         MarkdownElementTypes.CODE_SPAN ->
                             child.processOneCharMarkdown(CodeSpanStyle)
+
                         else -> processNode(child, markdown, tempNodesToRemoveAfter)
                     }
                 }
+            }
         }
     }
 }
