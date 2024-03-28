@@ -49,7 +49,7 @@ fun parseMarkdown(markdown: String): AnnotatedString {
         MarkdownParser(GFMFlavourDescriptor())
             .buildMarkdownTreeFromString(markdown)
             .children
-            .fastForEach { processNode(it, markdown, tempNodesToRemoveAfter) }
+            .fastForEach { processNode(it, markdown, tempNodesToRemoveAfter::add) }
     }
 
     tempNodesToRemoveAfter.sortedByDescending(ASTNode::endOffset).fastForEach {
@@ -63,39 +63,39 @@ fun parseMarkdown(markdown: String): AnnotatedString {
 private fun AnnotatedString.Builder.processNode(
     node: ASTNode,
     markdown: String,
-    tempNodesToRemoveAfter: MutableList<ASTNode>
+    tempNodesToRemoveAfter: (ASTNode) -> Unit
 ) {
     fun ASTNode.processOneCharMarkdown(spanStyle: SpanStyle) {
         children.fastForEach { processNode(it, markdown, tempNodesToRemoveAfter) }
-        tempNodesToRemoveAfter.add(children[0])
-        tempNodesToRemoveAfter.add(children[children.lastIndex])
+        tempNodesToRemoveAfter(children[0])
+        tempNodesToRemoveAfter(children[children.lastIndex])
         addStyle(spanStyle, startOffset, endOffset)
     }
 
     fun ASTNode.processTwoCharMarkdown(spanStyle: SpanStyle) {
         children.fastForEach { processNode(it, markdown, tempNodesToRemoveAfter) }
-        tempNodesToRemoveAfter.add(children[0])
-        tempNodesToRemoveAfter.add(children[1])
-        tempNodesToRemoveAfter.add(children[children.lastIndex-1])
-        tempNodesToRemoveAfter.add(children[children.lastIndex])
+        tempNodesToRemoveAfter(children[0])
+        tempNodesToRemoveAfter(children[1])
+        tempNodesToRemoveAfter(children[children.lastIndex - 1])
+        tempNodesToRemoveAfter(children[children.lastIndex])
         addStyle(spanStyle, startOffset, endOffset)
     }
 
     fun ASTNode.processHeadline(spanStyle: SpanStyle) {
         children.fastForEach { processNode(it, markdown, tempNodesToRemoveAfter) }
-        tempNodesToRemoveAfter.add(children[0])
+        tempNodesToRemoveAfter(children[0])
         if (children[1].children[0].type == MarkdownTokenTypes.WHITE_SPACE) {
-            tempNodesToRemoveAfter.add(children[1].children[0])
+            tempNodesToRemoveAfter(children[1].children[0])
         }
         addStyle(spanStyle, startOffset, endOffset)
     }
 
     fun ASTNode.processInlineLink() {
         children.fastForEach { processNode(it, markdown, tempNodesToRemoveAfter) }
-        tempNodesToRemoveAfter.addAll(children.filterIndexed { i, _ -> i != 0 })
+        children.filterIndexed { i, _ -> i != 0 }.fastForEach(tempNodesToRemoveAfter)
         val labelParentNode = children[0]
 
-        tempNodesToRemoveAfter.addAll(labelParentNode.children.filterIndexed { i, _ -> i != 1 })
+        labelParentNode.children.filterIndexed { i, _ -> i != 1 }.fastForEach(tempNodesToRemoveAfter)
         val labelNode = labelParentNode.children[1]
 
         addUrlAnnotation(
