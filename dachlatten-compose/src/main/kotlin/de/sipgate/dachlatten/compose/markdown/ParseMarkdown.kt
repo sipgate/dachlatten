@@ -52,7 +52,7 @@ fun parseMarkdown(markdown: String): AnnotatedString {
             .fastForEach { processNode(it, markdown, tempNodesToRemoveAfter::add) }
     }
 
-    tempNodesToRemoveAfter.sortedByDescending(ASTNode::endOffset).fastForEach {
+    tempNodesToRemoveAfter.reversed().fastForEach {
         tempString = tempString.removeRange(it.startOffset, it.endOffset)
     }
 
@@ -66,24 +66,24 @@ private fun AnnotatedString.Builder.processNode(
     tempNodesToRemoveAfter: (ASTNode) -> Unit
 ) {
     fun ASTNode.processOneCharMarkdown(spanStyle: SpanStyle) {
-        children.fastForEach { processNode(it, markdown, tempNodesToRemoveAfter) }
         tempNodesToRemoveAfter(children[0])
+        children.fastForEach { processNode(it, markdown, tempNodesToRemoveAfter) }
         tempNodesToRemoveAfter(children[children.lastIndex])
         addStyle(spanStyle, startOffset, endOffset)
     }
 
     fun ASTNode.processTwoCharMarkdown(spanStyle: SpanStyle) {
-        children.fastForEach { processNode(it, markdown, tempNodesToRemoveAfter) }
         tempNodesToRemoveAfter(children[0])
         tempNodesToRemoveAfter(children[1])
+        children.fastForEach { processNode(it, markdown, tempNodesToRemoveAfter) }
         tempNodesToRemoveAfter(children[children.lastIndex - 1])
         tempNodesToRemoveAfter(children[children.lastIndex])
         addStyle(spanStyle, startOffset, endOffset)
     }
 
     fun ASTNode.processHeadline(spanStyle: SpanStyle) {
-        children.fastForEach { processNode(it, markdown, tempNodesToRemoveAfter) }
         tempNodesToRemoveAfter(children[0])
+        children.fastForEach { processNode(it, markdown, tempNodesToRemoveAfter) }
         if (children[1].children[0].type == MarkdownTokenTypes.WHITE_SPACE) {
             tempNodesToRemoveAfter(children[1].children[0])
         }
@@ -91,19 +91,39 @@ private fun AnnotatedString.Builder.processNode(
     }
 
     fun ASTNode.processInlineLink() {
-        children.fastForEach { processNode(it, markdown, tempNodesToRemoveAfter) }
-        children.filterIndexed { i, _ -> i != 0 }.fastForEach(tempNodesToRemoveAfter)
-        val labelParentNode = children[0]
+        // process link text node
+        val linkTextNode = children[0]
+        processNode(linkTextNode, markdown, tempNodesToRemoveAfter)
 
-        labelParentNode.children.filterIndexed { i, _ -> i != 1 }.fastForEach(tempNodesToRemoveAfter)
-        val labelNode = labelParentNode.children[1]
+        // [
+        tempNodesToRemoveAfter(linkTextNode.children[0])
+
+        // link text
+        //linkTextNode.children[1]
+
+        // ]
+        tempNodesToRemoveAfter(linkTextNode.children[2])
+
+        // (
+        processNode(children[1], markdown, tempNodesToRemoveAfter)
+        tempNodesToRemoveAfter(children[1])
+
+        // process destination
+        val linkDestinationNode = children[2]
+        processNode(linkDestinationNode, markdown, tempNodesToRemoveAfter)
+        val linkDestination = linkDestinationNode.getTextInNode(markdown)
+        tempNodesToRemoveAfter(children[2])
+
+        // )
+        processNode(children[3], markdown, tempNodesToRemoveAfter)
+        tempNodesToRemoveAfter(children[3])
 
         addUrlAnnotation(
-            UrlAnnotation(children[2].getTextInNode(markdown).toString()),
-            labelNode.startOffset,
-            labelNode.endOffset
+            UrlAnnotation(linkDestination.toString()),
+            linkTextNode.startOffset,
+            linkTextNode.endOffset
         )
-        addStyle(LinkStyle, labelNode.startOffset, labelNode.endOffset)
+        addStyle(LinkStyle, linkTextNode.startOffset, linkTextNode.endOffset)
     }
 
     when (node.type) {
@@ -137,6 +157,8 @@ private fun AnnotatedString.Builder.processNode(
             if (nodeType is MarkdownElementType && !nodeType.isToken) {
                 when (nodeType) {
                     MarkdownElementTypes.STRONG -> node.processTwoCharMarkdown(BoldSpanStyle)
+                    MarkdownElementTypes.EMPH -> node.processOneCharMarkdown(ItalicSpanStyle)
+                    GFMElementTypes.STRIKETHROUGH -> node.processTwoCharMarkdown(StrikethroughSpanStyle)
                 }
             } else {
                 node.children.fastForEach { child ->
