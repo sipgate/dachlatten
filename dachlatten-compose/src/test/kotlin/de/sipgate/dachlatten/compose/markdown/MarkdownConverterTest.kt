@@ -10,7 +10,6 @@ import androidx.compose.ui.util.fastJoinToString
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-@OptIn(ExperimentalTextApi::class)
 class MarkdownConverterTest {
 
     @Test
@@ -144,7 +143,7 @@ class MarkdownConverterTest {
             "Es geht *rund* und **rund** und ***rund***. Es ist eine `monospaced` Welt, " +
                 "in der ~~wir leben~~ und wir kaufen Sachen von [Apple](https://apple.com)."
 
-        val parsedText = parseMarkdown(markdown)
+        parseMarkdown(markdown)
     }
 }
 
