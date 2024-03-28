@@ -82,12 +82,21 @@ private fun AnnotatedString.Builder.processNode(
     }
 
     fun ASTNode.processHeadline(spanStyle: SpanStyle) {
-        tempNodesToRemoveAfter(children[0])
+        // process headline token
+        val headlineToken = children[0]
+        val childOffset = headlineToken.length
+        tempNodesToRemoveAfter(headlineToken)
+
+        val headlineContent = children[1]
+
+        // remove whitespace
+        val whitespaceOffset = headlineContent.children[0].length
+        tempNodesToRemoveAfter(headlineContent.children[0])
+
+        // process nodes and render headline text
         children.fastForEach { processNode(it, markdown, tempNodesToRemoveAfter) }
-        if (children[1].children[0].type == MarkdownTokenTypes.WHITE_SPACE) {
-            tempNodesToRemoveAfter(children[1].children[0])
-        }
-        addStyle(spanStyle, startOffset, endOffset)
+
+        addStyle(spanStyle, startOffset + childOffset + whitespaceOffset, endOffset)
     }
 
     fun ASTNode.processInlineLink() {
