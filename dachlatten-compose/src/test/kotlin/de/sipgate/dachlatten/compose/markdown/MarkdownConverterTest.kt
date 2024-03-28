@@ -37,6 +37,14 @@ class MarkdownConverterTest {
     }
 
     @Test
+    fun checkRegressionWhereDoubleSpaceBeforeBoldBreaksOffsetCalculations() {
+        val markdownWithSpans = "some  **bold** text"
+        val parsedText = parseMarkdown(markdownWithSpans)
+        val boldSpan = parsedText.spanStyles.first { it.item.fontWeight == FontWeight.Bold }
+        assertEquals("bold", parsedText.slice(boldSpan))
+    }
+
+    @Test
     fun checkBoldAndItalicTextIsBoldAndItalic() {
         val markdownWithSpans = "some ***bold and italic*** text"
         val parsedText = parseMarkdown(markdownWithSpans)

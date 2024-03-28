@@ -105,7 +105,7 @@ private fun AnnotatedString.Builder.processNode(
     when (node.type) {
         MarkdownTokenTypes.TEXT -> append(node.getTextInNode(markdown).toString())
         MarkdownTokenTypes.ATX_CONTENT -> append(node.getTextInNode(markdown).toString())
-        MarkdownTokenTypes.WHITE_SPACE -> append(" ")
+        MarkdownTokenTypes.WHITE_SPACE -> append(" ".repeat(node.endOffset - node.startOffset))
         MarkdownTokenTypes.SINGLE_QUOTE -> append("'")
         MarkdownTokenTypes.DOUBLE_QUOTE -> append("\"")
         MarkdownTokenTypes.LPAREN -> append("(")
