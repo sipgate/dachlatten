@@ -6,6 +6,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.util.fastJoinToString
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -59,6 +60,29 @@ class MarkdownConverterTest {
         val boldSpan = parsedText.spanStyles.first { it.item.fontWeight == FontWeight.Bold }
         assertEquals("bold and italic", parsedText.slice(italicSpan))
         assertEquals("bold and italic", parsedText.slice(boldSpan))
+    }
+
+    @Test
+    fun checkBoldAndStrikeThroughTextIsBoldAndStrikethrough() {
+        val markdownWithSpans = "some **bold and ~~strikethrough~~** text"
+        val parsedText = parseMarkdown(markdownWithSpans)
+        val strikethroughSpan = parsedText.spanStyles.first { it.item.textDecoration == TextDecoration.LineThrough }
+        val boldSpans = parsedText.spanStyles.filter { it.item.fontWeight == FontWeight.Bold }
+        assertEquals("bold and ", parsedText.slice(boldSpans[0]))
+        assertEquals("strikethrough", parsedText.slice(boldSpans[1]))
+        assertEquals("strikethrough", parsedText.slice(strikethroughSpan))
+    }
+
+    @Test
+    fun checkBoldAndItalicMixedIsParsedCorrectly() {
+        val markdownWithSpans = "some **bold and *inner italic* text** works"
+        val parsedText = parseMarkdown(markdownWithSpans)
+        val italicSpan = parsedText.spanStyles.first { it.item.fontStyle == FontStyle.Italic }
+        val boldSpans = parsedText.spanStyles.filter { it.item.fontWeight == FontWeight.Bold }
+        assertEquals("bold and ", parsedText.slice(boldSpans[0]))
+        assertEquals("inner italic", parsedText.slice(boldSpans[1]))
+        assertEquals(" text", parsedText.slice(boldSpans[2]))
+        assertEquals("inner italic", parsedText.slice(italicSpan))
     }
 
     @Test
