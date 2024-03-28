@@ -129,7 +129,7 @@ private fun AnnotatedString.Builder.processNode(
     when (node.type) {
         MarkdownTokenTypes.TEXT -> append(node.getTextInNode(markdown).toString())
         MarkdownTokenTypes.ATX_CONTENT -> append(node.getTextInNode(markdown).toString())
-        MarkdownTokenTypes.WHITE_SPACE -> append(" ".repeat(node.endOffset - node.startOffset))
+        MarkdownTokenTypes.WHITE_SPACE -> append(" ".repeat(node.length))
         MarkdownTokenTypes.SINGLE_QUOTE -> append("'")
         MarkdownTokenTypes.DOUBLE_QUOTE -> append("\"")
         MarkdownTokenTypes.LPAREN -> append("(")
@@ -144,7 +144,7 @@ private fun AnnotatedString.Builder.processNode(
         GFMTokenTypes.TILDE -> append("~")
         MarkdownTokenTypes.EOL -> append("\n")
         MarkdownTokenTypes.BACKTICK -> append("`")
-        MarkdownTokenTypes.ATX_HEADER -> append("#".repeat(node.endOffset - node.startOffset))
+        MarkdownTokenTypes.ATX_HEADER -> append("#".repeat(node.length))
         MarkdownElementTypes.ATX_1 -> node.processHeadline(H1SPanStyle)
         MarkdownElementTypes.ATX_2 -> node.processHeadline(H2SPanStyle)
         MarkdownElementTypes.ATX_3 -> node.processHeadline(H3SPanStyle)
@@ -179,3 +179,6 @@ private fun AnnotatedString.Builder.processNode(
         }
     }
 }
+
+private val ASTNode.length: Int
+    get() = endOffset - startOffset
