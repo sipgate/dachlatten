@@ -1,5 +1,8 @@
 # Dachlatten
 
+![Build Status](https://github.com/sipgate/dachlatten/actions/workflows/ci.yml/badge.svg)
+![GitHub License](https://img.shields.io/github/license/sipgate/dachlatten)
+
 Shared Toolbox of battle-proven bits and pieces of code to help with wrangling Kotlin/Android code.
 
 Think of it as the modern-day variant of Louis CAD's [Splitties Library][splitties] or [Apache Commons][commons] if that's your jam, just with Coroutines and Compose.
