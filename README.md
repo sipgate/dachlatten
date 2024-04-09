@@ -1,7 +1,7 @@
 # Dachlatten
 
-![Build Status](https://github.com/sipgate/dachlatten/actions/workflows/ci.yml/badge.svg)
-![GitHub License](https://img.shields.io/github/license/sipgate/dachlatten)
+[![Build Status](https://github.com/sipgate/dachlatten/actions/workflows/ci.yml/badge.svg)](https://github.com/sipgate/dachlatten/actions/workflows/ci.yml)
+[![GitHub License](https://img.shields.io/github/license/sipgate/dachlatten)](https://github.com/sipgate/dachlatten/blob/main/LICENSE)
 
 Shared Toolbox of battle-proven bits and pieces of code to help with wrangling Kotlin/Android code.
 
