@@ -7,4 +7,6 @@ plugins {
 dependencies {
     compileOnly(libs.kotlinx.datetime)
     compileOnly(libs.android.support.annotations)
+
+    testImplementation(libs.kotlinx.datetime)
 }
