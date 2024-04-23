@@ -7,6 +7,7 @@ import mockwebserver3.MockResponse
 import mockwebserver3.MockWebServer
 import mockwebserver3.junit5.internal.MockWebServerExtension
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.ExperimentalOkHttpApi
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -17,7 +18,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 
-@OptIn(ExperimentalSerializationApi::class)
+@OptIn(ExperimentalSerializationApi::class, ExperimentalOkHttpApi::class)
 @ExtendWith(MockWebServerExtension::class)
 class KotlinSerializationConverterFactoryStringTest {
     private lateinit var service: Service
