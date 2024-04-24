@@ -6,9 +6,8 @@ import kotlinx.serialization.json.Json
 import mockwebserver3.MockResponse
 import mockwebserver3.MockWebServer
 import mockwebserver3.junit5.internal.MockWebServerExtension
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.ExperimentalOkHttpApi
-import org.junit.jupiter.api.Assertions.assertEquals
+import okhttp3.MediaType.Companion.toMediaType
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -17,6 +16,7 @@ import retrofit2.Retrofit
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import kotlin.test.assertEquals
 
 @OptIn(ExperimentalSerializationApi::class, ExperimentalOkHttpApi::class)
 @ExtendWith(MockWebServerExtension::class)

@@ -3,9 +3,9 @@ package de.sipgate.dachlatten.primitives
 import de.sipgate.dachlatten.primitives.EnumExtTest.SomeValues.A
 import de.sipgate.dachlatten.primitives.EnumExtTest.SomeValues.B
 import de.sipgate.dachlatten.primitives.EnumExtTest.SomeValues.C
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 class EnumExtTest {
     enum class SomeValues {
