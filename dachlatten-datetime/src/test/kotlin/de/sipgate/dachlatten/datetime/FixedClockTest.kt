@@ -2,8 +2,8 @@ package de.sipgate.dachlatten.datetime
 
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class FixedClockTest {
     @Test

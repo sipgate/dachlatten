@@ -3,17 +3,14 @@ package de.sipgate.dachlatten.flow
 import app.cash.turbine.test
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.onEmpty
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Nested
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNull
 import kotlin.time.Duration.Companion.seconds
 
 class CycleBetweenNonNullTest {
@@ -49,10 +46,10 @@ class CycleBetweenNonNullTest {
     fun cyclerReturnsNullWhenBothAAndBAreNull() = runTest {
         cycleBetweenNonNull(ticker.toFlow(), nullFlow, nullFlow).test {
             tick()
-            Assertions.assertNull(awaitItem())
+            assertNull(awaitItem())
 
             tick()
-            Assertions.assertNull(awaitItem())
+            assertNull(awaitItem())
         }
     }
 

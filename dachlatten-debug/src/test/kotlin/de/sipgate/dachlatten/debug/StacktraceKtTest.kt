@@ -1,7 +1,7 @@
 package de.sipgate.dachlatten.debug
 
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
+import kotlin.test.assertTrue
 
 class StacktraceKtTest {
 
