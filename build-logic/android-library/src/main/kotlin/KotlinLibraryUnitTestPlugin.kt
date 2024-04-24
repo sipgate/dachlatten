@@ -30,8 +30,7 @@ private fun Project.setupTestDeps() {
     val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
     dependencies {
-        add("testImplementation", platform("org.junit:junit-bom:${libs.findVersion("junit5").get()}"))
-        add("testImplementation", "org.junit.jupiter:junit-jupiter")
+        add("testImplementation", libs.findLibrary("kotlin-test").get())
         add("testImplementation", libs.findLibrary("kotlinx-coroutines-test").get())
         add("testImplementation", libs.findLibrary("turbine").get())
     }

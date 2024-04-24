@@ -5,13 +5,13 @@ import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.gms.tasks.Task
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertInstanceOf
-import org.junit.jupiter.api.Assertions.assertNull
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
 import java.util.concurrent.Executor
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertIs
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 class TaskAwaitResultTest {
     @Test
@@ -33,7 +33,7 @@ class TaskAwaitResultTest {
         assertFalse(result.isSuccess)
         assertNull(result.getOrNull())
         assertTrue(result.isFailure)
-        assertInstanceOf(Exception::class.java, result.exceptionOrNull())
+        assertIs<Exception>(result.exceptionOrNull())
     }
 
     private class DummyResult<T>(

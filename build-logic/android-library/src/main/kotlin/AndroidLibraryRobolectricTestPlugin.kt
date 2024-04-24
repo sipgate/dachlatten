@@ -21,6 +21,7 @@ private fun Project.setUpRobolectric() {
         add("testImplementation", "org.robolectric:robolectric:${libs.findVersion("robolectric").get()}")
         add("testImplementation", libs.findLibrary("junit4").get())
 
+        add("testImplementation", platform("org.junit:junit-bom:${libs.findVersion("junit5").get()}"))
         add("testRuntimeOnly", "org.junit.vintage:junit-vintage-engine")
         add("testImplementation", "org.junit.platform:junit-platform-suite")
         add("testRuntimeOnly", "org.junit.platform:junit-platform-launcher")
