@@ -1,8 +1,8 @@
 package de.sipgate.dachlatten.compose.color
 
 import androidx.compose.ui.graphics.Color
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class ColorTest {
     @Test

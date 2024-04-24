@@ -3,10 +3,10 @@ package de.sipgate.dachlatten.compose
 import androidx.compose.ui.test.junit4.createComposeRule
 import org.junit.Rule
 import org.junit.Test
-import org.junit.jupiter.api.Assertions
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
+import kotlin.test.assertTrue
 
 @RunWith(RobolectricTestRunner::class)
 class AndroidHandlerFuncComposeTest {
@@ -43,7 +43,7 @@ class AndroidHandlerFuncComposeTest {
         val handlerFunc = context.withContext(::someFunctionThatAccessesTheAndroidContextAndReturnsSomething)
 
         val result = handlerFunc.invoke()
-        Assertions.assertTrue(result.isNotEmpty())
+        assertTrue(result.isNotEmpty())
     }
 
     context (ContextProvider)

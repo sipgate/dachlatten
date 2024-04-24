@@ -4,14 +4,14 @@ import android.content.res.Resources
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.core.R
 import de.sipgate.dachlatten.text.UiText
-import java.util.Locale
 import org.junit.Rule
 import org.junit.Test
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.assertThrows
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import java.util.Locale
+import kotlin.test.assertEquals
 
 @RunWith(RobolectricTestRunner::class)
 class UiTextTest {

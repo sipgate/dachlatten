@@ -1,10 +1,10 @@
 package de.sipgate.dachlatten.compose
 
 import org.junit.Test
-import org.junit.jupiter.api.Assertions
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
+import kotlin.test.assertTrue
 
 @RunWith(RobolectricTestRunner::class)
 class AndroidHandlerFuncTest {
@@ -23,7 +23,7 @@ class AndroidHandlerFuncTest {
         val handlerFunc = context.withContext(::someFunctionThatAccessesTheAndroidContextAndReturnsSomething)
 
         val result = handlerFunc.invoke()
-        Assertions.assertTrue(result.isNotEmpty())
+        assertTrue(result.isNotEmpty())
     }
 
     context (ContextProvider)

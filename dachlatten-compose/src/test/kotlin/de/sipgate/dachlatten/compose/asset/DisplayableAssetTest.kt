@@ -4,10 +4,10 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import de.sipgate.dachlatten.asset.DisplayableAsset
 import org.junit.Rule
 import org.junit.Test
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import kotlin.test.assertEquals
 
 @RunWith(RobolectricTestRunner::class)
 class DisplayableAssetTest {

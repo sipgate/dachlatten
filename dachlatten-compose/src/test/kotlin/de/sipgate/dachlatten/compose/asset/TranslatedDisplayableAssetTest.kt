@@ -3,13 +3,13 @@ package de.sipgate.dachlatten.compose.asset
 import androidx.compose.ui.test.junit4.createComposeRule
 import de.sipgate.dachlatten.asset.DisplayableAsset
 import de.sipgate.dachlatten.asset.TranslatedDisplayableAsset
-import java.util.Locale
 import org.junit.Rule
 import org.junit.Test
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import java.util.Locale
+import kotlin.test.assertEquals
 
 @RunWith(RobolectricTestRunner::class)
 class TranslatedDisplayableAssetTest {

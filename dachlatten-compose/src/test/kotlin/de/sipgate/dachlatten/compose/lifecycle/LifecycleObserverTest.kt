@@ -5,9 +5,9 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import org.junit.Rule
 import org.junit.Test
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import kotlin.test.assertTrue
 
 @RunWith(RobolectricTestRunner::class)
 class LifecycleObserverTest {

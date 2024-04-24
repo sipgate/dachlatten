@@ -1,7 +1,7 @@
 package de.sipgate.dachlatten.compose
 
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
+import kotlin.test.assertTrue
 
 class HandlerFuncTest {
     @Test
