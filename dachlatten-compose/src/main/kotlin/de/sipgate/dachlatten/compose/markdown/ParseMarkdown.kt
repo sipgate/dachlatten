@@ -34,10 +34,24 @@ internal val H5SPanStyle = SpanStyle(fontSize = 0.83.em, fontWeight = FontWeight
 internal val H6SPanStyle = SpanStyle(fontSize = 0.75.em, fontWeight = FontWeight.Bold)
 internal val LinkSpanStyle = SpanStyle(color = Color.Blue, textDecoration = TextDecoration.Underline)
 
+data class MarkdownStyles(
+    val boldSpanStyle: SpanStyle = BoldSpanStyle,
+    val italicSpanStyle: SpanStyle = ItalicSpanStyle,
+    val monospaceSpanStyle: SpanStyle = MonospaceSpanStyle,
+    val strikethroughSpanStyle: SpanStyle = StrikethroughSpanStyle,
+    val h1SpanStyle: SpanStyle = H1SPanStyle,
+    val h2SpanStyle: SpanStyle = H2SPanStyle,
+    val h3SpanStyle: SpanStyle = H3SPanStyle,
+    val h4SpanStyle: SpanStyle = H4SPanStyle,
+    val h5SpanStyle: SpanStyle = H5SPanStyle,
+    val h6SpanStyle: SpanStyle = H6SPanStyle,
+    val linkSpanStyle: SpanStyle = LinkSpanStyle,
+)
+
 private fun AnnotatedString.removeRange(start: Int, end: Int) =
     subSequence(0, start) + subSequence(end, length)
 
-fun parseMarkdown(markdown: String): AnnotatedString {
+fun parseMarkdown(markdown: String, styles: MarkdownStyles = MarkdownStyles()): AnnotatedString {
     val tempNodesToRemoveAfter = mutableListOf<ASTNode>()
     var tempString = buildAnnotatedString {
         /*
@@ -49,7 +63,7 @@ fun parseMarkdown(markdown: String): AnnotatedString {
         MarkdownParser(GFMFlavourDescriptor())
             .buildMarkdownTreeFromString(markdown)
             .children
-            .fastForEach { processNode(it, markdown, tempNodesToRemoveAfter::add) }
+            .fastForEach { processNode(it, markdown, styles, tempNodesToRemoveAfter::add) }
     }
 
     tempNodesToRemoveAfter.reversed().fastForEach {
@@ -63,11 +77,12 @@ fun parseMarkdown(markdown: String): AnnotatedString {
 private fun AnnotatedString.Builder.processNode(
     node: ASTNode,
     markdown: String,
+    colors: MarkdownStyles,
     tempNodesToRemoveAfter: (ASTNode) -> Unit
 ) {
     fun ASTNode.processOneCharMarkdown(spanStyle: SpanStyle) {
         tempNodesToRemoveAfter(children[0])
-        children.fastForEach { processNode(it, markdown, tempNodesToRemoveAfter) }
+        children.fastForEach { processNode(it, markdown, colors, tempNodesToRemoveAfter) }
         tempNodesToRemoveAfter(children[children.lastIndex])
         addStyle(spanStyle, startOffset + 1, endOffset - 1)
     }
@@ -75,7 +90,7 @@ private fun AnnotatedString.Builder.processNode(
     fun ASTNode.processTwoCharMarkdown(spanStyle: SpanStyle) {
         tempNodesToRemoveAfter(children[0])
         tempNodesToRemoveAfter(children[1])
-        children.fastForEach { processNode(it, markdown, tempNodesToRemoveAfter) }
+        children.fastForEach { processNode(it, markdown, colors, tempNodesToRemoveAfter) }
         tempNodesToRemoveAfter(children[children.lastIndex - 1])
         tempNodesToRemoveAfter(children[children.lastIndex])
         addStyle(spanStyle, startOffset + 2, endOffset - 2)
@@ -94,7 +109,7 @@ private fun AnnotatedString.Builder.processNode(
         tempNodesToRemoveAfter(headlineContent.children[0])
 
         // process nodes and render headline text
-        children.fastForEach { processNode(it, markdown, tempNodesToRemoveAfter) }
+        children.fastForEach { processNode(it, markdown, colors, tempNodesToRemoveAfter) }
 
         addStyle(spanStyle, startOffset + childOffset + whitespaceOffset, endOffset)
     }
@@ -102,7 +117,7 @@ private fun AnnotatedString.Builder.processNode(
     fun ASTNode.processInlineLink() {
         // process link text node
         val linkTextNode = children[0]
-        processNode(linkTextNode, markdown, tempNodesToRemoveAfter)
+        processNode(linkTextNode, markdown, colors, tempNodesToRemoveAfter)
 
         // [
         tempNodesToRemoveAfter(linkTextNode.children[0])
@@ -114,17 +129,17 @@ private fun AnnotatedString.Builder.processNode(
         tempNodesToRemoveAfter(linkTextNode.children[2])
 
         // (
-        processNode(children[1], markdown, tempNodesToRemoveAfter)
+        processNode(children[1], markdown, colors, tempNodesToRemoveAfter)
         tempNodesToRemoveAfter(children[1])
 
         // process destination
         val linkDestinationNode = children[2]
-        processNode(linkDestinationNode, markdown, tempNodesToRemoveAfter)
+        processNode(linkDestinationNode, markdown, colors, tempNodesToRemoveAfter)
         val linkDestination = linkDestinationNode.getTextInNode(markdown)
         tempNodesToRemoveAfter(children[2])
 
         // )
-        processNode(children[3], markdown, tempNodesToRemoveAfter)
+        processNode(children[3], markdown, colors, tempNodesToRemoveAfter)
         tempNodesToRemoveAfter(children[3])
 
         addUrlAnnotation(
@@ -132,7 +147,7 @@ private fun AnnotatedString.Builder.processNode(
             linkTextNode.startOffset,
             linkTextNode.endOffset
         )
-        addStyle(LinkSpanStyle, linkTextNode.startOffset, linkTextNode.endOffset)
+        addStyle(colors.linkSpanStyle, linkTextNode.startOffset, linkTextNode.endOffset)
     }
 
     when (node.type) {
@@ -154,34 +169,34 @@ private fun AnnotatedString.Builder.processNode(
         MarkdownTokenTypes.EOL -> append("\n")
         MarkdownTokenTypes.BACKTICK -> append("`")
         MarkdownTokenTypes.ATX_HEADER -> append("#".repeat(node.length))
-        MarkdownElementTypes.ATX_1 -> node.processHeadline(H1SPanStyle)
-        MarkdownElementTypes.ATX_2 -> node.processHeadline(H2SPanStyle)
-        MarkdownElementTypes.ATX_3 -> node.processHeadline(H3SPanStyle)
-        MarkdownElementTypes.ATX_4 -> node.processHeadline(H4SPanStyle)
-        MarkdownElementTypes.ATX_5 -> node.processHeadline(H5SPanStyle)
-        MarkdownElementTypes.ATX_6 -> node.processHeadline(H6SPanStyle)
+        MarkdownElementTypes.ATX_1 -> node.processHeadline(colors.h1SpanStyle)
+        MarkdownElementTypes.ATX_2 -> node.processHeadline(colors.h2SpanStyle)
+        MarkdownElementTypes.ATX_3 -> node.processHeadline(colors.h3SpanStyle)
+        MarkdownElementTypes.ATX_4 -> node.processHeadline(colors.h4SpanStyle)
+        MarkdownElementTypes.ATX_5 -> node.processHeadline(colors.h5SpanStyle)
+        MarkdownElementTypes.ATX_6 -> node.processHeadline(colors.h6SpanStyle)
         MarkdownElementTypes.LINK_DESTINATION -> append(node.getTextInNode(markdown).toString())
         else -> {
             val nodeType = node.type
             if (nodeType is MarkdownElementType && !nodeType.isToken) {
                 when (nodeType) {
-                    MarkdownElementTypes.STRONG -> node.processTwoCharMarkdown(BoldSpanStyle)
-                    MarkdownElementTypes.EMPH -> node.processOneCharMarkdown(ItalicSpanStyle)
-                    GFMElementTypes.STRIKETHROUGH -> node.processTwoCharMarkdown(StrikethroughSpanStyle)
+                    MarkdownElementTypes.STRONG -> node.processTwoCharMarkdown(colors.boldSpanStyle)
+                    MarkdownElementTypes.EMPH -> node.processOneCharMarkdown(colors.italicSpanStyle)
+                    GFMElementTypes.STRIKETHROUGH -> node.processTwoCharMarkdown(colors.strikethroughSpanStyle)
                 }
             } else {
                 node.children.fastForEach { child ->
                     when (child.type) {
-                        MarkdownElementTypes.STRONG -> child.processTwoCharMarkdown(BoldSpanStyle)
+                        MarkdownElementTypes.STRONG -> child.processTwoCharMarkdown(colors.boldSpanStyle)
                         GFMElementTypes.STRIKETHROUGH ->
-                            child.processTwoCharMarkdown(StrikethroughSpanStyle)
+                            child.processTwoCharMarkdown(colors.strikethroughSpanStyle)
 
-                        MarkdownElementTypes.EMPH -> child.processOneCharMarkdown(ItalicSpanStyle)
+                        MarkdownElementTypes.EMPH -> child.processOneCharMarkdown(colors.italicSpanStyle)
                         MarkdownElementTypes.INLINE_LINK -> child.processInlineLink()
                         MarkdownElementTypes.CODE_SPAN ->
-                            child.processOneCharMarkdown(MonospaceSpanStyle)
+                            child.processOneCharMarkdown(colors.monospaceSpanStyle)
 
-                        else -> processNode(child, markdown, tempNodesToRemoveAfter)
+                        else -> processNode(child, markdown, colors, tempNodesToRemoveAfter)
                     }
                 }
             }

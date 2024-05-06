@@ -169,8 +169,17 @@ class MarkdownConverterTest {
 
         parseMarkdown(markdown)
     }
-}
 
+    @Test
+    fun checkOverridingStylesWorks() {
+        val markdown = "Es ist eine `monospaced` Welt"
+
+        val parsedText = parseMarkdown(markdown, styles = MarkdownStyles(monospaceSpanStyle = SpanStyle(fontStyle = FontStyle.Italic)))
+        val overriddenSpan = parsedText.spanStyles.first { it.item.fontStyle == FontStyle.Italic }
+
+        assertEquals("monospaced", parsedText.slice(overriddenSpan))
+    }
+}
 
 private fun AnnotatedString.slice(span: AnnotatedString.Range<SpanStyle>): String =
     text.substring(span.start, span.end)
