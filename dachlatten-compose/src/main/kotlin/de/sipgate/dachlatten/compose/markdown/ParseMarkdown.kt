@@ -32,7 +32,7 @@ internal val H3SPanStyle = SpanStyle(fontSize = 1.17.em, fontWeight = FontWeight
 internal val H4SPanStyle = SpanStyle(fontSize = 1.12.em, fontWeight = FontWeight.Bold)
 internal val H5SPanStyle = SpanStyle(fontSize = 0.83.em, fontWeight = FontWeight.Bold)
 internal val H6SPanStyle = SpanStyle(fontSize = 0.75.em, fontWeight = FontWeight.Bold)
-internal val LinkStyle = SpanStyle(color = Color.Blue, textDecoration = TextDecoration.Underline)
+internal val LinkStyle = SpanStyle(color = Color(0xFFFF6B00), textDecoration = TextDecoration.Underline)
 
 private fun AnnotatedString.removeRange(start: Int, end: Int) =
     subSequence(0, start) + subSequence(end, length)
