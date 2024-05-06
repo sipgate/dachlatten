@@ -24,7 +24,7 @@ import org.intellij.markdown.parser.MarkdownParser
 
 internal val BoldSpanStyle = SpanStyle(fontWeight = FontWeight.Bold)
 internal val ItalicSpanStyle = SpanStyle(fontStyle = FontStyle.Italic)
-internal val CodeSpanStyle = SpanStyle(fontFamily = FontFamily.Monospace)
+internal val MonospaceSpanStyle = SpanStyle(fontFamily = FontFamily.Monospace)
 internal val StrikethroughSpanStyle = SpanStyle(textDecoration = TextDecoration.LineThrough)
 internal val H1SPanStyle = SpanStyle(fontSize = 2.em, fontWeight = FontWeight.Bold)
 internal val H2SPanStyle = SpanStyle(fontSize = 1.5.em, fontWeight = FontWeight.Bold)
@@ -32,7 +32,7 @@ internal val H3SPanStyle = SpanStyle(fontSize = 1.17.em, fontWeight = FontWeight
 internal val H4SPanStyle = SpanStyle(fontSize = 1.12.em, fontWeight = FontWeight.Bold)
 internal val H5SPanStyle = SpanStyle(fontSize = 0.83.em, fontWeight = FontWeight.Bold)
 internal val H6SPanStyle = SpanStyle(fontSize = 0.75.em, fontWeight = FontWeight.Bold)
-internal val LinkStyle = SpanStyle(color = Color(0xFFFF6B00), textDecoration = TextDecoration.Underline)
+internal val LinkSpanStyle = SpanStyle(color = Color.Blue, textDecoration = TextDecoration.Underline)
 
 private fun AnnotatedString.removeRange(start: Int, end: Int) =
     subSequence(0, start) + subSequence(end, length)
@@ -132,7 +132,7 @@ private fun AnnotatedString.Builder.processNode(
             linkTextNode.startOffset,
             linkTextNode.endOffset
         )
-        addStyle(LinkStyle, linkTextNode.startOffset, linkTextNode.endOffset)
+        addStyle(LinkSpanStyle, linkTextNode.startOffset, linkTextNode.endOffset)
     }
 
     when (node.type) {
@@ -179,7 +179,7 @@ private fun AnnotatedString.Builder.processNode(
                         MarkdownElementTypes.EMPH -> child.processOneCharMarkdown(ItalicSpanStyle)
                         MarkdownElementTypes.INLINE_LINK -> child.processInlineLink()
                         MarkdownElementTypes.CODE_SPAN ->
-                            child.processOneCharMarkdown(CodeSpanStyle)
+                            child.processOneCharMarkdown(MonospaceSpanStyle)
 
                         else -> processNode(child, markdown, tempNodesToRemoveAfter)
                     }
