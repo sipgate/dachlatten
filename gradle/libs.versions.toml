@@ -1,6 +1,6 @@
 [versions]
 agp = "8.4.1"
-kotlin = "1.9.23"
+kotlin = "2.0.0"
 compose-compiler = "1.5.11"
 
 android-support-annotations = "28.0.0"
