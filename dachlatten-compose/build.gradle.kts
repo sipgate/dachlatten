@@ -3,6 +3,7 @@ plugins {
     id("kotlin-library-unit-test")
     id("android-library-robolectric-test")
     id("android-library-release")
+    alias(libs.plugins.compose.compiler)
 }
 
 dependencies {
@@ -19,10 +20,6 @@ dependencies {
 }
 
 android {
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
-
     buildFeatures {
         compose = true
     }
