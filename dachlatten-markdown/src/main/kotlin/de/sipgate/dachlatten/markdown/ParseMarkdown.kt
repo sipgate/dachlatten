@@ -150,6 +150,11 @@ private fun AnnotatedString.Builder.processNode(
         addStyle(colors.linkSpanStyle, linkTextNode.startOffset, linkTextNode.endOffset)
     }
 
+    fun ASTNode.processHtmlTag() {
+        append(getTextInNode(markdown))
+        tempNodesToRemoveAfter(this)
+    }
+
     when (node.type) {
         MarkdownTokenTypes.TEXT -> append(node.getTextInNode(markdown).toString())
         MarkdownTokenTypes.ATX_CONTENT -> append(node.getTextInNode(markdown).toString())
@@ -176,6 +181,7 @@ private fun AnnotatedString.Builder.processNode(
         MarkdownElementTypes.ATX_5 -> node.processHeadline(colors.h5SpanStyle)
         MarkdownElementTypes.ATX_6 -> node.processHeadline(colors.h6SpanStyle)
         MarkdownElementTypes.LINK_DESTINATION -> append(node.getTextInNode(markdown).toString())
+        MarkdownTokenTypes.HTML_TAG -> node.processHtmlTag()
         else -> {
             val nodeType = node.type
             if (nodeType is MarkdownElementType && !nodeType.isToken) {

@@ -179,6 +179,24 @@ class MarkdownConverterTest {
 
         assertEquals("monospaced", parsedText.slice(overriddenSpan))
     }
+
+    @Test
+    fun pairedHtmlIsStrippedOut() {
+        val markdownWithSpans = "some <b>text</b> with **bold** parts"
+        val parsedText = parseMarkdown(markdownWithSpans)
+        val boldSpan = parsedText.spanStyles.first { it.item.fontWeight == FontWeight.Bold }
+        assertEquals("bold", parsedText.slice(boldSpan))
+        assertEquals("some text with bold parts", parsedText.text)
+    }
+
+    @Test
+    fun singleHtmlTagIsStrippedOut() {
+        val markdownWithSpans = "some <br> with **bold** parts"
+        val parsedText = parseMarkdown(markdownWithSpans)
+        val boldSpan = parsedText.spanStyles.first { it.item.fontWeight == FontWeight.Bold }
+        assertEquals("bold", parsedText.slice(boldSpan))
+        assertEquals("some  with bold parts", parsedText.text)
+    }
 }
 
 private fun AnnotatedString.slice(span: AnnotatedString.Range<SpanStyle>): String =
