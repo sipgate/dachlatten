@@ -7,9 +7,7 @@ plugins {
 }
 
 dependencies {
-    api(libs.androidx.lifecycle.process)
-
-    implementation(project(":dachlatten-primitives"))
+    implementation(libs.jetbrains.markdown)
 
     compileOnly(libs.androidx.compose.foundation)
     compileOnly(libs.androidx.compose.ui)

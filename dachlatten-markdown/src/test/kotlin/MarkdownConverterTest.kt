@@ -1,4 +1,4 @@
-package de.sipgate.dachlatten.compose.markdown
+package de.sipgate.dachlatten.markdown
 
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.ExperimentalTextApi
