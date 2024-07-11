@@ -20,8 +20,7 @@ The name is based off an in-joke that originated at [sipgate][sipgate], if you w
 
 ## On code maturity
 
-While this library strives for correctness, it is still in its early stages. Stuff will break and until Kotlin 2 is
-released this relies on pre-release libraries.
+While this library strives for correctness, it is still in its early stages. Stuff will break. You've been warned.
 
 [splitties]: https://github.com/LouisCAD/Splitties
 [commons]: https://commons.apache.org
