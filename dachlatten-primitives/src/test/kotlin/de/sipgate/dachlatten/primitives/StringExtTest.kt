@@ -27,4 +27,22 @@ class StringExtTest {
 
         assertEquals(long, short)
     }
+
+    @Test
+    fun ensureEndsWithSlashAppendsSlashToStringThatDoesntEndInSlash() {
+        val input = "some string"
+
+        val expected = "some string/"
+
+        assertEquals(expected, input.ensureEndsWithSlash())
+    }
+
+    @Test
+    fun ensureEndsWithSlashReturnsItsInputUnchangedWhenItAlreadyEndsInSlash() {
+        val input = "some string/"
+
+        val expected = input
+
+        assertEquals(expected, input.ensureEndsWithSlash())
+    }
 }

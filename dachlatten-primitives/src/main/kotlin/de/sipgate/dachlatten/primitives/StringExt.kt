@@ -9,3 +9,5 @@ val String.sha256: String
         .joinToString(separator = "")  { "%02x".format(it) }
 
 fun String.trimWhitespace(): String = this.trimIndent().replace("\n", "")
+
+fun String.ensureEndsWithSlash(): String = if (last() == '/') this else "$this/"
