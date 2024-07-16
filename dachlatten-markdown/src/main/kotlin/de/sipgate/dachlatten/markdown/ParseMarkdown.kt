@@ -66,8 +66,11 @@ fun parseMarkdown(markdown: String, styles: MarkdownStyles = MarkdownStyles()): 
             .fastForEach { processNode(it, markdown, styles, tempNodesToRemoveAfter::add) }
     }
 
+//    println(tempString)
     tempNodesToRemoveAfter.reversed().fastForEach {
         tempString = tempString.removeRange(it.startOffset, it.endOffset)
+//        println(" ".repeat(it.startOffset) + "^".repeat(it.endOffset - it.startOffset))
+//        println(tempString)
     }
 
     return tempString
