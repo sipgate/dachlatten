@@ -95,7 +95,7 @@ class MarkdownConverterTest {
     }
 
     @Test
-    fun checkH1HeadlinesWork() {
+    fun checkHeadlineWithParagraphWorks() {
         val markdownWithH1Headline = "some asdf\n\n# headline"
 
         val parsedText = parseMarkdown(markdownWithH1Headline)
@@ -104,39 +104,48 @@ class MarkdownConverterTest {
     }
 
     @Test
+    fun checkH1HeadlinesWork() {
+        val markdownWithH1Headline = "# headline"
+
+        val parsedText = parseMarkdown(markdownWithH1Headline)
+
+        assertEquals("headline", parsedText.text)
+    }
+
+    @Test
     fun checkH2HeadlinesWork() {
-        val markdownWithH2Headline = "some asdf\n\n## headline"
+        val markdownWithH2Headline = "## headline"
 
         val parsedText = parseMarkdown(markdownWithH2Headline)
 
-        assertEquals("some asdf\n\nheadline", parsedText.text)
+        assertEquals("headline", parsedText.text)
     }
 
     @Test
     fun checkH3HeadlinesWork() {
-        val markdownWithH3Headline = "some asdf\n\n### headline"
+        val markdownWithH3Headline = "### headline"
 
         val parsedText = parseMarkdown(markdownWithH3Headline)
 
-        assertEquals("some asdf\n\nheadline", parsedText.text)
+        assertEquals("headline", parsedText.text)
     }
 
     @Test
     fun checkH4HeadlinesWork() {
-        val markdownWithH4Headline = "some asdf\n\n#### headline"
+        val markdownWithH4Headline = "#### headline"
 
         val parsedText = parseMarkdown(markdownWithH4Headline)
 
-        assertEquals("some asdf\n\nheadline", parsedText.text)
+        assertEquals("headline", parsedText.text)
     }
 
     @Test
     fun checkH5HeadlinesWork() {
-        val markdownWithH5Headline = "some asdf\n\n##### headline"
+        val markdownWithH5Headline = "##### headline"
 
         val parsedText = parseMarkdown(markdownWithH5Headline)
 
-        assertEquals("some asdf\n\nheadline", parsedText.text)
+        assertEquals("headline", parsedText.text)
     }
 
     @OptIn(ExperimentalTextApi::class)
