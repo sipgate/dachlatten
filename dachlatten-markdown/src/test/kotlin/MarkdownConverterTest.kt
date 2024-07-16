@@ -206,6 +206,14 @@ class MarkdownConverterTest {
         assertEquals("bold", parsedText.slice(boldSpan))
         assertEquals("some  with bold parts", parsedText.text)
     }
+
+    @Test
+    fun linkEmbeddedInBoldSpan() {
+        val markdownWithSpans = "Wir haben in den *letzten Wochen [jede](google.com) Menge Änderungen* an " +
+            "der Inbox gemacht. Und **werden in den kommenden weitere** vornehmen...."
+        val parsedText = parseMarkdown(markdownWithSpans)
+        assertEquals("some text with bold parts.", parsedText.text)
+    }
 }
 
 private fun AnnotatedString.slice(span: AnnotatedString.Range<SpanStyle>): String =
