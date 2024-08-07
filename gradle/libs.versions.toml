@@ -4,7 +4,7 @@ kotlin = "2.0.0"
 
 android-support-annotations = "28.0.0"
 androidx-activity = "1.9.1"
-androidx-annotation = "1.8.1"
+androidx-annotation = "1.8.2"
 androidx-compose = "1.6.8"
 androidx-core = "1.13.1"
 jetbrains-markdown = "0.7.3"
