@@ -206,7 +206,6 @@ private fun AnnotatedString.Builder.processNode(
                             child.processTwoCharMarkdown(colors.strikethroughSpanStyle)
 
                         MarkdownElementTypes.EMPH -> child.processOneCharMarkdown(colors.italicSpanStyle)
-                        MarkdownElementTypes.INLINE_LINK -> child.processInlineLink()
                         MarkdownElementTypes.CODE_SPAN ->
                             child.processOneCharMarkdown(colors.monospaceSpanStyle)
 
