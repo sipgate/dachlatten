@@ -208,11 +208,16 @@ class MarkdownConverterTest {
     }
 
     @Test
-    fun linkEmbeddedInBoldSpan() {
+    fun linkEmbeddedInEmphasizedSpan() {
         val markdownWithSpans = "Wir haben in den *letzten Wochen [jede](google.com) Menge Änderungen* an " +
             "der Inbox gemacht. Und **werden in den kommenden weitere** vornehmen...."
         val parsedText = parseMarkdown(markdownWithSpans)
-        assertEquals("some text with bold parts.", parsedText.text)
+        val italicSpan = parsedText.spanStyles.filter { it.item.fontStyle == FontStyle.Italic }
+        assertEquals("letzten Wochen ", parsedText.slice(italicSpan[0]))
+        assertEquals("jede", parsedText.slice(italicSpan[1]))
+        assertEquals(" Menge Änderungen", parsedText.slice(italicSpan[2]))
+        assertEquals("Wir haben in den letzten Wochen jede Menge Änderungen an der Inbox gemacht. " +
+            "Und werden in den kommenden weitere vornehmen....", parsedText.text)
     }
 }
 
