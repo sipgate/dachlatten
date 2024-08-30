@@ -66,11 +66,15 @@ fun parseMarkdown(markdown: String, styles: MarkdownStyles = MarkdownStyles()): 
             .fastForEach { processNode(it, markdown, styles, tempNodesToRemoveAfter::add) }
     }
 
-//    println(tempString)
+    println(tempString)
     tempNodesToRemoveAfter.reversed().fastForEach {
-        tempString = tempString.removeRange(it.startOffset, it.endOffset)
-//        println(" ".repeat(it.startOffset) + "^".repeat(it.endOffset - it.startOffset))
-//        println(tempString)
+        tempString = try {
+            tempString.removeRange(it.startOffset, it.endOffset)
+        } catch (e: StringIndexOutOfBoundsException) {
+            AnnotatedString("")
+        }
+        println(" ".repeat(it.startOffset) + "^".repeat(it.endOffset - it.startOffset))
+        println(tempString)
     }
 
     return tempString
@@ -185,6 +189,7 @@ private fun AnnotatedString.Builder.processNode(
         MarkdownElementTypes.ATX_6 -> node.processHeadline(colors.h6SpanStyle)
         MarkdownElementTypes.LINK_DESTINATION -> append(node.getTextInNode(markdown).toString())
         MarkdownTokenTypes.HTML_TAG -> node.processHtmlTag()
+        MarkdownElementTypes.INLINE_LINK -> node.processInlineLink()
         else -> {
             val nodeType = node.type
             if (nodeType is MarkdownElementType && !nodeType.isToken) {
