@@ -66,15 +66,12 @@ fun parseMarkdown(markdown: String, styles: MarkdownStyles = MarkdownStyles()): 
             .fastForEach { processNode(it, markdown, styles, tempNodesToRemoveAfter::add) }
     }
 
-    println(tempString)
     tempNodesToRemoveAfter.reversed().fastForEach {
         tempString = try {
             tempString.removeRange(it.startOffset, it.endOffset)
-        } catch (e: StringIndexOutOfBoundsException) {
+        } catch (_: StringIndexOutOfBoundsException) {
             AnnotatedString("")
         }
-        println(" ".repeat(it.startOffset) + "^".repeat(it.endOffset - it.startOffset))
-        println(tempString)
     }
 
     return tempString
