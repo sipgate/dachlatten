@@ -2,6 +2,8 @@ package de.sipgate.dachlatten.primitives
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 
 class StringExtTest {
     @Test
@@ -44,5 +46,32 @@ class StringExtTest {
         val expected = input
 
         assertEquals(expected, input.ensureEndsWithSlash())
+    }
+
+    @Test
+    fun nullIfEmptyReturnsNullForEmptyString() {
+        val input = ""
+
+        val expected = input.nullIfEmpty()
+
+        assertNull(expected)
+    }
+
+    @Test
+    fun nullIfEmptyReturnsNonNullForBlankString() {
+        val input = "   "
+
+        val expected = input.nullIfEmpty()
+
+        assertNotNull(expected)
+    }
+
+    @Test
+    fun nullIfEmptyReturnsNonNullForNonEmptyString() {
+        val input = "test"
+
+        val expected = input.nullIfEmpty()
+
+        assertNotNull(expected)
     }
 }

@@ -11,3 +11,5 @@ val String.sha256: String
 fun String.trimWhitespace(): String = this.trimIndent().replace("\n", "")
 
 fun String.ensureEndsWithSlash(): String = if (last() == '/') this else "$this/"
+
+fun String.nullIfEmpty() = if(isEmpty()) null else this
