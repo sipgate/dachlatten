@@ -6,5 +6,8 @@ import java.time.LocalDateTime
 import java.util.Date
 import java.util.TimeZone
 
+/**
+ * Convenience converter from Java Date to the new DateTime API
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 fun Date.toLocalDateTime(zone: TimeZone): LocalDateTime = LocalDateTime.ofInstant(toInstant(), zone.toZoneId())
