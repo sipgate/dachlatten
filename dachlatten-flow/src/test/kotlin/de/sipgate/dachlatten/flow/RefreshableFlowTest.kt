@@ -1,8 +1,6 @@
 package de.sipgate.dachlatten.flow
 
 import app.cash.turbine.test
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
@@ -19,18 +17,15 @@ class RefreshableFlowTest {
 
     @Test
     fun invokingTheRefreshSignalCausesTheLastEmittedItemToBeEmittedAgain() = runTest {
-        val refreshSignal: RefreshSignal = MutableStateFlow(false)
+        val refreshSignal = createRefreshSignal()
 
-        val output = input
-            .shareIn(backgroundScope, SharingStarted.WhileSubscribed())
-            .refreshableFlow(refreshSignal)
-
-        output.test {
+        input.shareIn(backgroundScope, WhileSubscribed()).refreshableFlow(refreshSignal).test {
             val a = awaitItem()
             val b = awaitItem()
             assertEquals(1, a)
             assertEquals(2, b)
 
+            // Calling `refresh()` on external RefreshSignal
             refreshSignal.refresh()
 
             assertEquals(2, awaitItem())
@@ -38,12 +33,30 @@ class RefreshableFlowTest {
     }
 
     @Test
+    fun invokingTheRefreshMethodCausesTheLastEmittedItemToBeEmittedAgain() = runTest {
+        val refreshableFlow = input.shareIn(backgroundScope, WhileSubscribed())
+            .refreshableFlow()
+
+        refreshableFlow.test {
+            val a = awaitItem()
+            val b = awaitItem()
+            assertEquals(1, a)
+            assertEquals(2, b)
+
+            // Calling `refresh()` on the flow itself
+            refreshableFlow.refresh()
+
+            assertEquals(2, awaitItem())
+        }
+    }
+
+    @Test
     fun invokingTheRefreshSignalCausesTheLastEmittedItemToBeProcessedAgain() = runTest {
-        val refreshSignal: RefreshSignal = MutableStateFlow(false)
+        val refreshSignal = createRefreshSignal()
 
         var factor = 1
         val output = input
-            .shareIn(backgroundScope, SharingStarted.WhileSubscribed())
+            .shareIn(backgroundScope, WhileSubscribed())
             .refreshableFlow(refreshSignal)
             .map { it * factor }
 
