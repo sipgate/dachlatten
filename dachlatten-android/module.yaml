@@ -1,0 +1,18 @@
+product:
+    type: lib
+    platforms: [android]
+
+dependencies:
+    - ../dachlatten-primitives
+    - $libs.androidx.activity: compile-only
+    - $libs.androidx.annotation
+    - $libs.androidx.lifecycle.process
+
+test-dependencies:
+    - $libs.androidx.activity
+    - $libs.androidx.core
+
+apply:
+    - ../common/kotlin.yaml
+    - ../common/coroutines.yaml
+    - ../common/robolectric.yaml

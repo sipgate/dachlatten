@@ -9,6 +9,7 @@ androidx-compose = "1.7.2"
 androidx-core = "1.13.1"
 jetbrains-markdown = "0.7.3"
 junit5 = "5.10.0"
+junit-platform = "1.11.1"
 junit4 = "4.13.2"
 kotlinx-coroutines = "1.9.0"
 turbine = "1.1.0"
@@ -37,6 +38,10 @@ androidx-lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-p
 
 jetbrains-markdown = { module = "org.jetbrains:markdown", version.ref = "jetbrains-markdown" }
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
+junit-vintage-engine = { group = "org.junit.vintage", name = "junit-vintage-engine", version.ref = "junit5" }
+junit-platform-suite = { group = "org.junit.platform", name = "junit-platform-suite", version.ref = "junit-platform" }
+junit-platform-launcher = { group = "org.junit.platform", name = "junit-platform-launcher", version.ref = "junit-platform" }
+junit-platform-console = { group = "org.junit.platform", name = "junit-platform-console", version.ref = "junit-platform" }
 
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
 kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
@@ -53,6 +58,7 @@ okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhtt
 okhttp-mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver3-junit5", version.prefer = "5.0.0-alpha.14" }
 
 retrofit-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofit-serialization" }
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref="robolectric" }
 
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 

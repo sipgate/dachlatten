@@ -28,11 +28,5 @@ private fun Project.setUpRobolectric() {
         add("testRuntimeOnly", "org.junit.platform:junit-platform-console")
     }
 
-    extensions.configure<LibraryExtension> {
-        testOptions {
-            unitTests {
-                isIncludeAndroidResources = true
-            }
-        }
-    }
+    
 }

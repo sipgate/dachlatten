@@ -1,0 +1,6 @@
+test-dependencies:
+  - $libs.robolectric
+  - $libs.junit.vintage.engine
+  - $libs.junit.platform.console: runtime-only
+  - $libs.junit.platform.launcher: runtime-only
+  - $libs.junit.platform.suite
