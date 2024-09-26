@@ -1,0 +1,22 @@
+product:
+  type: lib
+  platforms: [android, jvm]
+
+dependencies:
+    - $compose.foundation
+    - $compose.ui
+    - $compose.material3
+    - $libs.jetbrains.markdown
+
+dependencies@jvm:
+    - $compose.desktop.currentOs
+
+test-dependencies@android:
+    - $libs.androidx.compose.ui.test.junit4
+    - $libs.androidx.compose.ui.test.manifest
+
+settings:
+    compose: enabled
+
+apply:
+    - ../common/kotlin.yaml
