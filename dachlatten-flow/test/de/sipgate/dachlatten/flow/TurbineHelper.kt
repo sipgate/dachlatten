@@ -2,9 +2,9 @@ package de.sipgate.dachlatten.flow
 
 import app.cash.turbine.test
 import kotlinx.coroutines.flow.Flow
-import org.junit.jupiter.api.Assertions
+import kotlin.test.assertEquals
 
 internal suspend fun <T> assertFinalValueEquals(expected: T, actual: Flow<T>) = actual.test {
-    Assertions.assertEquals(expected, awaitItem())
+    assertEquals(expected, awaitItem())
     awaitComplete()
 }
