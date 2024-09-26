@@ -1,0 +1,14 @@
+product:
+    type: lib
+    platforms: [android, jvm]
+
+dependencies@android:
+    - $libs.androidx.annotation
+
+settings:
+    kotlin:
+        serialization: json
+
+apply:
+    - ../common/kotlin.yaml
+    - ../common/coroutines.yaml
