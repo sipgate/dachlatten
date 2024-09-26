@@ -1,0 +1,12 @@
+product:
+    type: lib
+    platforms: [android, jvm]
+
+dependencies:
+    - $libs.kotlinx.datetime
+
+dependencies@android:
+    - $libs.android.support.annotations
+
+apply:
+    - ../common/kotlin.yaml

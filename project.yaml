@@ -1,3 +1,4 @@
 modules:
+    - dachlatten-datetime
     - dachlatten-markdown
     - dachlatten-primitives
