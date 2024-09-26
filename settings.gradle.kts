@@ -21,7 +21,7 @@ rootProject.name = "Dachlatten"
 include(":dachlatten-datetime")
 include(":dachlatten-debug")
 include(":dachlatten-flow")
-//include(":dachlatten-google")
+include(":dachlatten-google")
 include(":dachlatten-markdown")
 include(":dachlatten-primitives")
 //include(":dachlatten-retrofit")

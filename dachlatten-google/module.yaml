@@ -1,0 +1,13 @@
+product:
+  type: lib
+  platforms: [android]
+
+dependencies:
+  - $libs.kotlinx.coroutines.play.services: compile-only
+
+test-dependencies:
+  - $libs.kotlinx.coroutines.play.services
+
+apply:
+    - ../common/kotlin.yaml
+    - ../common/coroutines.yaml
