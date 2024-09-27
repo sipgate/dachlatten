@@ -1,0 +1,24 @@
+product:
+    type: lib
+    platforms: [android]
+
+dependencies:
+    - ../dachlatten-primitives
+    - $libs.androidx.lifecycle.process: exported
+    - $compose.foundation
+    - $compose.ui
+    - $compose.animation
+
+test-dependencies:
+    - $libs.androidx.compose.ui.test.junit4
+    - $libs.androidx.compose.ui.test.manifest
+
+settings:
+    compose: enabled
+    kotlin:
+        languageFeatures:
+            - contextReceivers
+
+apply:
+    - ../common/kotlin.yaml
+    - ../common/robolectric.yaml

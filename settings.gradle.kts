@@ -17,7 +17,7 @@ plugins {
 
 rootProject.name = "Dachlatten"
 include(":dachlatten-android")
-//include(":dachlatten-compose")
+include(":dachlatten-compose")
 include(":dachlatten-datetime")
 include(":dachlatten-debug")
 include(":dachlatten-flow")
