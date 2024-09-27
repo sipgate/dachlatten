@@ -13,6 +13,9 @@ test-dependencies:
 settings:
     kotlin:
         serialization: json
+    publishing:
+        group: de.sipgate
+        name: dachlatten-retrofit
 
 test-settings:
     junit: junit-5
@@ -21,3 +24,4 @@ apply:
     - ../common/kotlin.yaml
     - ../common/coroutines.yaml
     - ../common/kover.yaml
+    - ../common/publishing.yaml

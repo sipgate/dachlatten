@@ -2,7 +2,13 @@ product:
   type: lib
   platforms: [jvm]
 
+settings:
+    publishing:
+        group: de.sipgate
+        name: dachlatten-flow
+
 apply:
     - ../common/kotlin.yaml
     - ../common/coroutines.yaml
     - ../common/kover.yaml
+    - ../common/publishing.yaml

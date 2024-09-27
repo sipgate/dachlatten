@@ -8,8 +8,12 @@ dependencies@android:
 settings:
     kotlin:
         serialization: json
+    publishing:
+        group: de.sipgate
+        name: dachlatten-primitives
 
 apply:
     - ../common/kotlin.yaml
     - ../common/coroutines.yaml
     - ../common/kover.yaml
+    - ../common/publishing.yaml

@@ -8,7 +8,13 @@ dependencies:
 test-dependencies:
   - $libs.kotlinx.coroutines.play.services
 
+settings:
+  publishing:
+    group: de.sipgate
+    name: dachlatten-google
+
 apply:
     - ../common/kotlin.yaml
     - ../common/coroutines.yaml
     - ../common/kover.yaml
+    - ../common/publishing.yaml

@@ -1,0 +1,8 @@
+repositories:
+  - id: GitHub Packages
+    url: https://maven.pkg.github.com/sipgate/dachlatten
+    publish: true
+    credentials:
+      file: ../repository.properties
+      usernameKey: deploy.username
+      passwordKey: deploy.password

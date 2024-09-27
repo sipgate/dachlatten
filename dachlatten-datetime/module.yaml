@@ -8,6 +8,12 @@ dependencies:
 dependencies@android:
     - $libs.android.support.annotations
 
+settings:
+    publishing:
+        group: de.sipgate
+        name: dachlatten-datetime
+
 apply:
     - ../common/kotlin.yaml
     - ../common/kover.yaml
+    - ../common/publishing.yaml

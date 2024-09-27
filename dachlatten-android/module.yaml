@@ -12,8 +12,14 @@ test-dependencies:
     - $libs.androidx.activity
     - $libs.androidx.core
 
+settings:
+  publishing:
+    group: de.sipgate
+    name: dachlatten-android
+
 apply:
     - ../common/kotlin.yaml
     - ../common/coroutines.yaml
     - ../common/kover.yaml
     - ../common/robolectric.yaml
+    - ../common/publishing.yaml

@@ -18,8 +18,12 @@ settings:
     kotlin:
         languageFeatures:
             - contextReceivers
+    publishing:
+        group: de.sipgate
+        name: dachlatten-compose
 
 apply:
     - ../common/kotlin.yaml
     - ../common/kover.yaml
     - ../common/robolectric.yaml
+    - ../common/publishing.yaml

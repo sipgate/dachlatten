@@ -2,6 +2,12 @@ product:
   type: lib
   platforms: [ jvm]
 
+settings:
+    publishing:
+        group: de.sipgate
+        name: dachlatten-debug
+
 apply:
     - ../common/kotlin.yaml
     - ../common/kover.yaml
+    - ../common/publishing.yaml

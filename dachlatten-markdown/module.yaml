@@ -17,7 +17,11 @@ test-dependencies@android:
 
 settings:
     compose: enabled
+    publishing:
+        group: de.sipgate
+        name: dachlatten-markdown
 
 apply:
     - ../common/kotlin.yaml
     - ../common/kover.yaml
+    - ../common/publishing.yaml
