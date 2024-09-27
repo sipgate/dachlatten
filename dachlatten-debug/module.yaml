@@ -4,3 +4,4 @@ product:
 
 apply:
     - ../common/kotlin.yaml
+    - ../common/kover.yaml

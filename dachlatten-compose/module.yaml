@@ -21,4 +21,5 @@ settings:
 
 apply:
     - ../common/kotlin.yaml
+    - ../common/kover.yaml
     - ../common/robolectric.yaml

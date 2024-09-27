@@ -10,3 +10,4 @@ dependencies@android:
 
 apply:
     - ../common/kotlin.yaml
+    - ../common/kover.yaml

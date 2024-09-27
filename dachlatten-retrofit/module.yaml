@@ -20,3 +20,4 @@ test-settings:
 apply:
     - ../common/kotlin.yaml
     - ../common/coroutines.yaml
+    - ../common/kover.yaml
