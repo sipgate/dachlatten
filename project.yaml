@@ -7,3 +7,4 @@ modules:
     - dachlatten-google
     - dachlatten-markdown
     - dachlatten-primitives
+    - dachlatten-retrofit

@@ -1,0 +1,22 @@
+product:
+    type: lib
+    platforms: [android, jvm]
+
+dependencies:
+    - $libs.androidx.annotation
+    - $libs.retrofit.serialization
+    - $libs.okhttp
+
+test-dependencies:
+    - $libs.okhttp.mockwebserver
+
+settings:
+    kotlin:
+        serialization: json
+
+test-settings:
+    junit: junit-5
+
+apply:
+    - ../common/kotlin.yaml
+    - ../common/coroutines.yaml
