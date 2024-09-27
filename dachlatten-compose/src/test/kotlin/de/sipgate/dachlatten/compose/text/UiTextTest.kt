@@ -6,12 +6,12 @@ import androidx.core.R
 import de.sipgate.dachlatten.text.UiText
 import org.junit.Rule
 import org.junit.Test
-import org.junit.jupiter.api.assertThrows
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import java.util.Locale
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 @RunWith(RobolectricTestRunner::class)
 class UiTextTest {
@@ -43,7 +43,7 @@ class UiTextTest {
     fun exceptionIsThrownWhenTheTranslationCannotBeFound() {
         val uiText = UiText.MultiLangString(mapOf("invalid-key" to "some string"))
 
-        assertThrows<Resources.NotFoundException> {
+        assertFailsWith(Resources.NotFoundException::class) {
             composeTestRule.setContent {
                 uiText.resolve()
             }
