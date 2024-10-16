@@ -2,6 +2,7 @@ package de.sipgate.dachlatten.markdown
 
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.ExperimentalTextApi
+import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -156,8 +157,8 @@ class MarkdownConverterTest {
         val parsedText = parseMarkdown(markdownWithLink)
 
         assertEquals("phone is sipgate is phone", parsedText.text)
-        val urls = parsedText.getUrlAnnotations(0, parsedText.text.length)
-        assertEquals("https://sipgate.de", urls.first().item.url)
+        val urls = parsedText.getLinkAnnotations(0, parsedText.text.length)
+        assertEquals("https://sipgate.de", (urls.first().item as? LinkAnnotation.Url)?.url)
     }
 
     @Test
