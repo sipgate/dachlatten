@@ -3,8 +3,8 @@ package de.sipgate.dachlatten.markdown
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.ExperimentalTextApi
+import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.UrlAnnotation
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -146,8 +146,8 @@ private fun AnnotatedString.Builder.processNode(
         processNode(children[3], markdown, colors, tempNodesToRemoveAfter)
         tempNodesToRemoveAfter(children[3])
 
-        addUrlAnnotation(
-            UrlAnnotation(linkDestination.toString()),
+        addLink(
+            LinkAnnotation.Url(linkDestination.toString()),
             linkTextNode.startOffset,
             linkTextNode.endOffset
         )
