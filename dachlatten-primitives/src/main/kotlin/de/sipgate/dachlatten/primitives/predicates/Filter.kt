@@ -1,4 +1,4 @@
-package de.sipgate.dachlatten.primitives.filter
+package de.sipgate.dachlatten.primitives.predicates
 
 suspend fun <T> Iterable<T>.filter(predicate: Predicate<T>) = filter { item -> predicate(item) }
 

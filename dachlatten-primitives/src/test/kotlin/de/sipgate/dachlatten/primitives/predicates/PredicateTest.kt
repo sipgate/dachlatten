@@ -1,4 +1,4 @@
-package de.sipgate.dachlatten.primitives.filter
+package de.sipgate.dachlatten.primitives.predicates
 
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
