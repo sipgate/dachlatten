@@ -148,8 +148,8 @@ private fun AnnotatedString.Builder.processNode(
 
         addLink(
             LinkAnnotation.Url(linkDestination.toString()),
-            linkTextNode.startOffset,
-            linkTextNode.endOffset
+            linkTextNode.startOffset + 1,
+            linkTextNode.endOffset - 1
         )
         addStyle(colors.linkSpanStyle, linkTextNode.startOffset, linkTextNode.endOffset)
     }

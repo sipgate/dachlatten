@@ -149,16 +149,17 @@ class MarkdownConverterTest {
         assertEquals("headline", parsedText.text)
     }
 
-    @OptIn(ExperimentalTextApi::class)
     @Test
-    fun checkInlineLinksWork() {
+    fun checkInlineLinkWorks() {
         val markdownWithLink = "phone is [sipgate](https://sipgate.de) is phone"
 
         val parsedText = parseMarkdown(markdownWithLink)
 
         assertEquals("phone is sipgate is phone", parsedText.text)
         val urls = parsedText.getLinkAnnotations(0, parsedText.text.length)
-        assertEquals("https://sipgate.de", (urls.first().item as? LinkAnnotation.Url)?.url)
+        val url = urls.first()
+        assertEquals("https://sipgate.de", (url.item as? LinkAnnotation.Url)?.url)
+        assertEquals("sipgate", parsedText.substring(url.start, url.end))
     }
 
     @Test
