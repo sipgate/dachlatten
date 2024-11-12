@@ -6,13 +6,9 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class PredicateTest {
-    private val truePredicate = object : Predicate<Any> {
-        override suspend fun invoke(test: Any): Boolean = true
-    }
+    private val truePredicate: Predicate<Unit> = { true }
 
-    private val falsePredicate = object : Predicate<Any> {
-        override suspend fun invoke(test: Any): Boolean = false
-    }
+    private val falsePredicate:  Predicate<Unit> = { false }
 
     @Test
     fun truePredicateReturnsTrueResult() = runTest {
@@ -83,7 +79,7 @@ class PredicateTest {
     }
 
     @Test
-    fun falseOrfalsePredicatesCombineToFalseResult() = runTest {
+    fun falseOrFalsePredicatesCombineToFalseResult() = runTest {
         val combined = falsePredicate or falsePredicate
         val result = combined(Unit)
 
@@ -92,7 +88,7 @@ class PredicateTest {
 
     @Test
     fun notOnTrueResultsInFalse() = runTest {
-        val not = not(truePredicate)
+        val not = !truePredicate
         val result = not(Unit)
 
         assertFalse(result)
@@ -100,7 +96,7 @@ class PredicateTest {
 
     @Test
     fun notOnFalseResultsInTrue() = runTest {
-        val not = not(falsePredicate)
+        val not = !falsePredicate
         val result = not(Unit)
 
         assertTrue(result)

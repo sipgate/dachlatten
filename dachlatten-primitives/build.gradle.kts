@@ -7,6 +7,7 @@ plugins {
 dependencies {
     implementation(libs.androidx.annotation)
 
+    implementation(libs.kotlinx.coroutines)
     compileOnly(libs.kotlinx.serialization)
 
     testImplementation(libs.kotlinx.serialization)
