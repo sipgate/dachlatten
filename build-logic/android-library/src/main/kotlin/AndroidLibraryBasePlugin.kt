@@ -5,9 +5,10 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-class AndroidLibraryBasePlugin: Plugin<Project> {
+class AndroidLibraryBasePlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
@@ -43,10 +44,11 @@ private fun Project.setJdkVersion(version: JavaVersion) {
 
 private fun Project.enableContextReceivers() {
     tasks.withType<KotlinCompile>().configureEach {
-        kotlinOptions {
-            languageVersion = "2.0"
-            freeCompilerArgs = freeCompilerArgs + listOf(
+        compilerOptions {
+            languageVersion.set(KotlinVersion.KOTLIN_2_1)
+            freeCompilerArgs.addAll(listOf(
                 "-Xcontext-receivers"
+                )
             )
         }
     }
