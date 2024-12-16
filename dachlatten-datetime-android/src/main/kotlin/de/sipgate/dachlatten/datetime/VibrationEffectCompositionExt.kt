@@ -12,10 +12,8 @@ fun Composition.addPrimitive(
     primitiveId: Int,
     @FloatRange(from = 0.0, to = 1.0) scale: Float,
     delay: Duration
-) {
-    addPrimitive(
-        /* primitiveId = */ primitiveId,
-        /* scale = */ scale,
-        /* delay = */ delay.inWholeMilliseconds.toInt()
-    )
-}
+): Composition = addPrimitive(
+    /* primitiveId = */ primitiveId,
+    /* scale = */ scale,
+    /* delay = */ delay.inWholeMilliseconds.toInt()
+)
