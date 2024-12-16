@@ -28,11 +28,12 @@ kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-p
 android-support-annotations = { module = "com.android.support:support-annotations", version.ref = "android-support-annotations" }
 androidx-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activity" }
 androidx-annotation = { group = "androidx.annotation", name = "annotation-jvm", version.ref = "androidx-annotation" }
+androidx-compose-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "androidx-compose" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "androidx-compose" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "androidx-compose" }
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "androidx-compose" }
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "androidx-compose" }
-androidx-core = { module = "androidx.core:core", version.ref="androidx-core" }
+androidx-core = { module = "androidx.core:core-ktx", version.ref="androidx-core" }
 androidx-lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "androidx-lifecycle" }
 
 jetbrains-markdown = { module = "org.jetbrains:markdown", version.ref = "jetbrains-markdown" }

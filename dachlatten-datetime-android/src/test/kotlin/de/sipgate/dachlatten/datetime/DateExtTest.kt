@@ -1,8 +1,8 @@
 package de.sipgate.dachlatten.datetime
 
+import org.junit.jupiter.api.Test
 import java.util.Date
 import java.util.TimeZone
-import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class DateExtTest {

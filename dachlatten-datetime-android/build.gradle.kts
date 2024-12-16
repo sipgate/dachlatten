@@ -5,7 +5,12 @@ plugins {
 }
 
 dependencies {
+    api(project(":dachlatten-datetime"))
+
     compileOnly(libs.kotlinx.datetime)
+    compileOnly(libs.androidx.core)
+    compileOnly(libs.androidx.compose.animation)
+    compileOnly(libs.android.support.annotations)
 
     testImplementation(libs.kotlinx.datetime)
 }
