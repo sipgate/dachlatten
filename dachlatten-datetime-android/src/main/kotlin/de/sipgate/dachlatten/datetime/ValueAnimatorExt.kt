@@ -6,3 +6,8 @@ import kotlin.time.Duration
 @Suppress("unused")
 fun ValueAnimator.setDuration(duration: Duration): ValueAnimator =
     setDuration(duration.inWholeMilliseconds)
+
+@Suppress("unused")
+fun ValueAnimator.setStartDelay(duration: Duration) {
+    setStartDelay(duration.inWholeMilliseconds)
+}
