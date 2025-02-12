@@ -74,4 +74,33 @@ class StringExtTest {
 
         assertNotNull(expected)
     }
+
+    @Test
+    fun orReturnsDefaultForEmptyString() {
+        val input = ""
+
+        val expected = input or FALLBACK
+
+        assertEquals(FALLBACK, expected)
+    }
+
+    @Test
+    fun orReturnsDefaultForBlankString() {
+        val input = "   "
+
+        val expected = input or FALLBACK
+
+        assertEquals(FALLBACK, expected)
+    }
+
+    @Test
+    fun orReturnsValueForNonEmptyString() {
+        val input = "test"
+
+        val expected = input or FALLBACK
+
+        assertEquals("test", expected)
+    }
 }
+
+private const val FALLBACK = "default"
