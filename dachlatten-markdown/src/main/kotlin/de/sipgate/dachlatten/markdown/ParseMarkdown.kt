@@ -2,7 +2,6 @@ package de.sipgate.dachlatten.markdown
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -77,7 +76,6 @@ fun parseMarkdown(markdown: String, styles: MarkdownStyles = MarkdownStyles()): 
     return tempString
 }
 
-@OptIn(ExperimentalTextApi::class)
 private fun AnnotatedString.Builder.processNode(
     node: ASTNode,
     markdown: String,
