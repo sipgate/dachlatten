@@ -13,3 +13,11 @@ dependencies {
     testImplementation(libs.kotlinx.serialization)
     testImplementation(libs.okhttp.mockwebserver)
 }
+
+android {
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
+}

@@ -16,3 +16,11 @@ dependencies {
     testImplementation(libs.androidx.activity)
     testImplementation(libs.androidx.core)
 }
+
+android {
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
+}

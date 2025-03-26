@@ -3,3 +3,11 @@ plugins {
     id("kotlin-library-unit-test")
     id("android-library-release")
 }
+
+android {
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
+}

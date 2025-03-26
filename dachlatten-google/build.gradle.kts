@@ -9,3 +9,11 @@ dependencies {
 
     testImplementation(libs.kotlinx.coroutines.play.services)
 }
+
+android {
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
+}

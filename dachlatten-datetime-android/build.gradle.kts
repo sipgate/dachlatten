@@ -14,3 +14,11 @@ dependencies {
 
     testImplementation(libs.kotlinx.datetime)
 }
+
+android {
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
+}
