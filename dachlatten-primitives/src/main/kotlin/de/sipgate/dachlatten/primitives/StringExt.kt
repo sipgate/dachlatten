@@ -12,12 +12,12 @@ fun String.trimWhitespace(): String = this.trimIndent().replace("\n", "")
 
 fun String.ensureEndsWithSlash(): String = if (last() == '/') this else "$this/"
 
-fun String.nullIfEmpty() = if(isEmpty()) null else this
+fun String.nullIfEmpty() = ifEmpty { null }
 
 infix fun String?.or(other: String): String =
     when {
         this == null -> other
-        this.isEmpty() -> other
-        this.isBlank() -> other
+        isEmpty() -> other
+        isBlank() -> other
         else -> this
     }
