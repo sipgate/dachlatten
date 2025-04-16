@@ -24,7 +24,7 @@ class AndroidLibraryBasePlugin : Plugin<Project> {
             }
 
             setJdkVersion(JavaVersion.VERSION_1_8)
-            enableContextReceivers()
+            enableContextParameters()
         }
     }
 }
@@ -42,12 +42,12 @@ private fun Project.setJdkVersion(version: JavaVersion) {
     }
 }
 
-private fun Project.enableContextReceivers() {
+private fun Project.enableContextParameters() {
     tasks.withType<KotlinCompile>().configureEach {
         compilerOptions {
             languageVersion.set(KotlinVersion.KOTLIN_2_1)
             freeCompilerArgs.addAll(listOf(
-                "-Xcontext-receivers"
+                "-Xcontext-parameters"
                 )
             )
         }
