@@ -8,13 +8,14 @@ import androidx.compose.ui.res.stringResource
 import de.sipgate.dachlatten.compose.resolveLocale
 import de.sipgate.dachlatten.text.TranslatedText
 import de.sipgate.dachlatten.text.UiText
+import de.sipgate.dachlatten.text.UiText.*
 import java.util.Locale
 
 @Composable
 fun UiText.resolve(fallbackLocale: Locale? = null) = when (this) {
-    is UiText.DynamicString -> value
-    is UiText.StringResource -> stringResource(id = resId, formatArgs = args.toTypedArray())
-    is UiText.MultiLangString -> {
+    is DynamicString -> value()
+    is StringResource -> stringResource(id = resId, formatArgs = args.toTypedArray())
+    is MultiLangString -> {
         val arguments = args.toTypedArray()
         LocalConfiguration.current.getStringForLocales(language, fallbackLocale) ?.format(*arguments)
             ?: fallbackResource?.let { stringResource(id = it, formatArgs = arguments) }

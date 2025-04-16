@@ -8,7 +8,7 @@ import de.sipgate.dachlatten.text.UiText
 import java.util.Locale
 
 fun UiText.resolve(resources: Resources, fallbackLocale: Locale? = null) = when (this) {
-    is UiText.DynamicString -> value
+    is UiText.DynamicString -> value()
     is UiText.StringResource -> resources.getString(resId, *(args.toTypedArray()))
     is UiText.MultiLangString -> {
         val arguments = args.toTypedArray()

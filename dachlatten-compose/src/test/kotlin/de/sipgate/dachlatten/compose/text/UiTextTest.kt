@@ -10,6 +10,8 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import java.util.Locale
+import kotlin.random.Random
+import kotlin.random.nextUInt
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
@@ -68,6 +70,21 @@ class UiTextTest {
             "de" to "Zeichenfolge"
         ))
         expectResolvedComposeString("String", uiText, fallbackLocale = Locale.ENGLISH)
+    }
+
+    @Test
+    @Config(qualifiers = "en")
+    fun fixedStringPassesStringsVerbatim() {
+        val uiText = UiText.DynamicString("asdf")
+        expectResolvedComposeString("asdf", uiText)
+    }
+
+    @Test
+    @Config(qualifiers = "en")
+    fun dynamicStringPassesStringsVerbatim() {
+        val duringRuntime by lazy { Random(1337).nextUInt().toString() }
+        val uiText = UiText.DynamicString { duringRuntime }
+        expectResolvedComposeString(duringRuntime, uiText)
     }
 
     private fun expectResolvedComposeString(expected: String, uiText: UiText, fallbackLocale: Locale? = null) {

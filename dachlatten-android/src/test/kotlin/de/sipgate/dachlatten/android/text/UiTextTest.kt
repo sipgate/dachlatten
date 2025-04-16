@@ -9,6 +9,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 import java.util.Locale
+import java.util.UUID
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
@@ -19,9 +20,17 @@ class UiTextTest {
 
     @Test
     @Config(qualifiers = "en")
-    fun dynamicStringPassesStringsVerbatim() {
+    fun fixedStringPassesStringsVerbatim() {
         val uiText = UiText.DynamicString("asdf")
         expectResolvedResourceString("asdf", uiText)
+    }
+
+    @Test
+    @Config(qualifiers = "en")
+    fun dynamicStringPassesStringsVerbatim() {
+        val duringRuntime by lazy { UUID.randomUUID().toString() }
+        val uiText = UiText.DynamicString { duringRuntime }
+        expectResolvedResourceString(duringRuntime, uiText)
     }
 
     @Test
@@ -115,7 +124,11 @@ class UiTextTest {
         }
     }
 
-    private fun expectResolvedResourceString(expected: String, uiText: UiText, fallbackLocale: Locale? = null) {
+    private fun expectResolvedResourceString(
+        expected: String,
+        uiText: UiText,
+        fallbackLocale: Locale? = null
+    ) {
         assertEquals(expected, uiText.resolve(context.resources, fallbackLocale))
     }
 }
