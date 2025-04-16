@@ -36,18 +36,18 @@ class AndroidHandlerFuncTest {
         assertTrue(result.isNotEmpty())
     }
 
-    context (Context)
+    context (context: Context)
     private fun someFunctionThatAccessesTheAndroidContext() {
-        packageName
+        context.packageName
     }
 
-    context (Context)
+    context (context: Context)
     private fun someFunctionThatAccessesTheAndroidContextAndReturnsSomething(): String {
-        return packageName
+        return context.packageName
     }
 
-    context (Context)
+    context (context: Context)
     private fun someFunctionThatReceivesAParameter(parameter: Int): String {
-        return packageName + parameter.toString()
+        return context.packageName + parameter.toString()
     }
 }

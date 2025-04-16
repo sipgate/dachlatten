@@ -29,8 +29,7 @@ inline fun <reified T, R> Context.withContext(
 }
 
 inline fun <R> Context.withContext(
-    crossinline target: context (Context)
-        () -> R,
+    crossinline target: context (Context) () -> R,
 ): () -> R = {
     target.invoke(this)
 }
