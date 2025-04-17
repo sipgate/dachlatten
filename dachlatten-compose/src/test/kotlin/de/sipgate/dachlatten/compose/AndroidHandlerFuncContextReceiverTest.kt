@@ -1,5 +1,6 @@
 package de.sipgate.dachlatten.compose
 
+import android.content.Context
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -26,13 +27,13 @@ class AndroidHandlerFuncTest {
         assertTrue(result.isNotEmpty())
     }
 
-    context (ContextProvider)
+    context (Context)
     private fun someFunctionThatAccessesTheAndroidContext() {
-        context.packageName
+        packageName
     }
 
-    context (ContextProvider)
+    context (Context)
     private fun someFunctionThatAccessesTheAndroidContextAndReturnsSomething(): String {
-        return context.packageName
+        return packageName
     }
 }

@@ -12,29 +12,25 @@ import androidx.compose.ui.platform.LocalContext
 
 @Composable
 inline fun <reified R> withContext(
-    crossinline target: context (ContextProvider) () -> R
+    crossinline target: context (Context) () -> R
 ): () -> R = LocalContext.current.withContext(target)
 
 @Composable
 inline fun <reified T, R> withContext(
-    crossinline target: context (ContextProvider)
+    crossinline target: context (Context)
         (T) -> R,
 ): (T) -> R = LocalContext.current.withContext(target)
 
 inline fun <reified T, R> Context.withContext(
-    crossinline target: context (ContextProvider)
+    crossinline target: context (Context)
         (T) -> R,
 ): (T) -> R = { param ->
-    with(ContextProviderImpl(this)) {
-        target.invoke(this, param)
-    }
+    target(this, param)
 }
 
 inline fun <R> Context.withContext(
-    crossinline target: context (ContextProvider)
+    crossinline target: context (Context)
         () -> R,
 ): () -> R = {
-    with(ContextProviderImpl(this)) {
-        target(this)
-    }
+    target.invoke(this)
 }

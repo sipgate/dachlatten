@@ -1,5 +1,6 @@
 package de.sipgate.dachlatten.compose
 
+import android.content.Context
 import androidx.compose.ui.test.junit4.createComposeRule
 import org.junit.Rule
 import org.junit.Test
@@ -46,13 +47,13 @@ class AndroidHandlerFuncComposeTest {
         assertTrue(result.isNotEmpty())
     }
 
-    context (ContextProvider)
+    context (Context)
     private fun someFunctionThatAccessesTheAndroidContext() {
-        context.packageName
+        packageName
     }
 
-    context (ContextProvider)
+    context (Context)
     private fun someFunctionThatAccessesTheAndroidContextAndReturnsSomething(): String {
-        return context.packageName
+        return packageName
     }
 }
