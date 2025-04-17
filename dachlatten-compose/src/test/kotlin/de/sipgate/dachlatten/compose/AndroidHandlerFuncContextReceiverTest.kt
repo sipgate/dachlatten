@@ -27,6 +27,15 @@ class AndroidHandlerFuncTest {
         assertTrue(result.isNotEmpty())
     }
 
+    @Test
+    fun testAndroidHandlerFuncWillReceiveAContextAndPassParameterThrough() {
+        val context = RuntimeEnvironment.getApplication().applicationContext
+        val handlerFunc = context.withContext(::someFunctionThatReceivesAParameter)
+
+        val result = handlerFunc.invoke(20)
+        assertTrue(result.isNotEmpty())
+    }
+
     context (Context)
     private fun someFunctionThatAccessesTheAndroidContext() {
         packageName
@@ -35,5 +44,10 @@ class AndroidHandlerFuncTest {
     context (Context)
     private fun someFunctionThatAccessesTheAndroidContextAndReturnsSomething(): String {
         return packageName
+    }
+
+    context (Context)
+    private fun someFunctionThatReceivesAParameter(parameter: Int): String {
+        return packageName + parameter.toString()
     }
 }

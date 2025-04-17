@@ -32,6 +32,15 @@ class AndroidHandlerFuncComposeTest {
     }
 
     @Test
+    fun testAndroidHandlerFuncWillReceiveComposeContextAndPassParameterThrough() {
+        composeTestRule.setContent {
+            val handlerFunc = withContext(::someFunctionThatReceivesAParameter)
+            val result = handlerFunc.invoke(123)
+            assertTrue(result.isNotEmpty())
+        }
+    }
+
+    @Test
     fun testAndroidHandlerFuncWillReceiveAContext() {
         val context = RuntimeEnvironment.getApplication().applicationContext
         val handlerFunc = context.withContext(::someFunctionThatAccessesTheAndroidContext)
@@ -47,6 +56,15 @@ class AndroidHandlerFuncComposeTest {
         assertTrue(result.isNotEmpty())
     }
 
+    @Test
+    fun testAndroidHandlerFuncWillReceiveAContextAndPassParameterThrough() {
+        val context = RuntimeEnvironment.getApplication().applicationContext
+        val handlerFunc = context.withContext(::someFunctionThatReceivesAParameter)
+
+        val result = handlerFunc.invoke(55)
+        assertTrue(result.isNotEmpty())
+    }
+
     context (Context)
     private fun someFunctionThatAccessesTheAndroidContext() {
         packageName
@@ -55,5 +73,10 @@ class AndroidHandlerFuncComposeTest {
     context (Context)
     private fun someFunctionThatAccessesTheAndroidContextAndReturnsSomething(): String {
         return packageName
+    }
+
+    context (Context)
+    private fun someFunctionThatReceivesAParameter(parameter: Int): String {
+        return packageName + parameter.toString()
     }
 }
