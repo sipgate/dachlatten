@@ -9,7 +9,10 @@ dependencies {
 
     compileOnly(libs.kotlinx.datetime)
     compileOnly(libs.androidx.core)
+
+    compileOnly(platform(libs.androidx.compose.bom))
     compileOnly(libs.androidx.compose.animation)
+
     compileOnly(libs.android.support.annotations)
 
     testImplementation(libs.kotlinx.datetime)

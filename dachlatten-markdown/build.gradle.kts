@@ -9,9 +9,11 @@ plugins {
 dependencies {
     implementation(libs.jetbrains.markdown)
 
+    compileOnly(platform(libs.androidx.compose.bom))
     compileOnly(libs.androidx.compose.foundation)
     compileOnly(libs.androidx.compose.ui)
 
+    testImplementation(platform(libs.androidx.compose.bom))
     testImplementation(libs.bundles.androidx.compose.ui.test)
     testImplementation(libs.androidx.compose.foundation)
 }
