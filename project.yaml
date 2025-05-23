@@ -1,5 +1,6 @@
 modules:
     - dachlatten-datetime
     - dachlatten-debug
+    - dachlatten-flow
     - dachlatten-markdown
     - dachlatten-primitives

@@ -1,0 +1,9 @@
+product:
+    type: lib
+    platforms: [jvm]
+
+apply:
+    - ../common/maven-repositories.module-template.yaml
+    - ../common/coroutines.module-template.yaml
+    - ../common/kover.module-template.yaml
+    - ../common/publishing.module-template.yaml

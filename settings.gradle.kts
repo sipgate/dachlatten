@@ -24,6 +24,5 @@ rootProject.name = "Dachlatten"
 include(":dachlatten-android")
 include(":dachlatten-compose")
 include(":dachlatten-datetime-android")
-include(":dachlatten-flow")
 include(":dachlatten-google")
 include(":dachlatten-retrofit")
