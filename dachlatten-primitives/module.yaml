@@ -1,0 +1,14 @@
+product:
+  type: lib
+  platforms: [ jvm ]
+
+dependencies:
+  - $libs.androidx.annotation
+  - $libs.kotlinx.serialization:
+      scope: compile-only
+
+apply:
+  - ../common/maven-repositories.module-template.yaml
+  - ../common/coroutines.module-template.yaml
+  - ../common/kover.module-template.yaml
+  - ../common/publishing.module-template.yaml
