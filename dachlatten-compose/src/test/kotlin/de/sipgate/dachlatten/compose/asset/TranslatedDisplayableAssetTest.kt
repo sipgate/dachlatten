@@ -1,6 +1,7 @@
 package de.sipgate.dachlatten.compose.asset
 
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.text.intl.Locale
 import de.sipgate.dachlatten.asset.DisplayableAsset
 import de.sipgate.dachlatten.asset.TranslatedDisplayableAsset
 import org.junit.Rule
@@ -8,7 +9,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import java.util.Locale
 import kotlin.test.assertEquals
 
 @RunWith(RobolectricTestRunner::class)
@@ -83,7 +83,7 @@ class TranslatedDisplayableAssetTest {
                 light = germanLightModeVariantUrl
             )
         )
-        expectResolvedComposeUrl(germanLightModeVariantUrl, germanLightVariantOnly, fallbackLocale = Locale.GERMAN)
+        expectResolvedComposeUrl(germanLightModeVariantUrl, germanLightVariantOnly, fallbackLocale = Locale("DE"))
     }
 
     @Test
@@ -94,7 +94,7 @@ class TranslatedDisplayableAssetTest {
                 light = germanLightModeVariantUrl
             )
         )
-        expectResolvedComposeUrl(germanLightModeVariantUrl, germanLightVariantOnly, fallbackLocale = Locale.GERMAN)
+        expectResolvedComposeUrl(germanLightModeVariantUrl, germanLightVariantOnly, fallbackLocale = Locale("DE"))
     }
 
     private fun expectResolvedComposeUrl(expected: String, image: TranslatedDisplayableAsset,

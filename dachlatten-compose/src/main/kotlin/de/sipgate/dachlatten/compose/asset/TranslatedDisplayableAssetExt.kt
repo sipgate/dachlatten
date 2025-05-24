@@ -5,12 +5,12 @@ import android.content.res.Resources
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.text.intl.Locale
 import de.sipgate.dachlatten.asset.AssetUrl
 import de.sipgate.dachlatten.asset.DisplayableAsset
 import de.sipgate.dachlatten.asset.TranslatedDisplayableAsset
 import de.sipgate.dachlatten.compose.resolveLocale
 import de.sipgate.dachlatten.compose.text.get
-import java.util.Locale
 
 @Composable
 fun TranslatedDisplayableAsset.resolve(

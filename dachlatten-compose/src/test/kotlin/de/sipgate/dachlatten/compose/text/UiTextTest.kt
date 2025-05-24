@@ -2,6 +2,7 @@ package de.sipgate.dachlatten.compose.text
 
 import android.content.res.Resources
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.text.intl.Locale
 import androidx.core.R
 import de.sipgate.dachlatten.text.UiText
 import org.junit.Rule
@@ -9,7 +10,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import java.util.Locale
 import kotlin.random.Random
 import kotlin.random.nextUInt
 import kotlin.test.assertEquals
@@ -69,7 +69,7 @@ class UiTextTest {
             "en" to "String",
             "de" to "Zeichenfolge"
         ))
-        expectResolvedComposeString("String", uiText, fallbackLocale = Locale.ENGLISH)
+        expectResolvedComposeString("String", uiText, fallbackLocale = Locale("EN"))
     }
 
     @Test

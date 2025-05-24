@@ -5,11 +5,11 @@ import android.content.res.Resources
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.intl.Locale
 import de.sipgate.dachlatten.compose.resolveLocale
 import de.sipgate.dachlatten.text.TranslatedText
 import de.sipgate.dachlatten.text.UiText
 import de.sipgate.dachlatten.text.UiText.*
-import java.util.Locale
 
 @Composable
 fun UiText.resolve(fallbackLocale: Locale? = null) = when (this) {
