@@ -1,0 +1,9 @@
+{
+    "configurations": [
+        {
+            "type": "amper",
+            "name": "test",
+            "tasks": ["test"]
+        }
+    ]
+}
