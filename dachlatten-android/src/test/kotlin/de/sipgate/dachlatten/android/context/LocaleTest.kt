@@ -1,7 +1,5 @@
-package de.sipgate.dachlatten.android.text
+package de.sipgate.dachlatten.android.context
 
-import de.sipgate.dachlatten.android.context.DEFAULT_LANGUAGE
-import de.sipgate.dachlatten.android.context.language
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
