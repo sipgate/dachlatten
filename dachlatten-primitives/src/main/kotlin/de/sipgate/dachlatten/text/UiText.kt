@@ -5,7 +5,8 @@ import androidx.annotation.StringRes
 typealias TranslatedText = Map<String, String>
 
 sealed interface UiText {
-    data class DynamicString(val value: () -> String) : UiText {
+    @JvmInline
+    value class DynamicString(val value: () -> String) : UiText {
         constructor(fixed: String) : this({ fixed })
     }
 
