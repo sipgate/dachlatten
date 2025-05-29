@@ -52,7 +52,7 @@ mockk-agent = { group = "io.mockk", name = "mockk-agent", version.ref = "mockk" 
 mockk-jvm = { group = "io.mockk", name = "mockk-jvm", version.ref = "mockk" }
 
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
-okhttp-mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver3-junit5", version.prefer = "5.0.0-alpha.14" }
+okhttp-mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver3-junit5", version.prefer = "5.0.0-alpha.16" }
 
 retrofit-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofit-serialization" }
 
