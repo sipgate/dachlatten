@@ -1,7 +1,6 @@
 plugins {
-    id("android-library-base")
+    id("kotlin-library")
     id("kotlin-library-unit-test")
-    id("android-library-release")
     alias(libs.plugins.kotlin.serialization)
 }
 
@@ -12,12 +11,4 @@ dependencies {
 
     testImplementation(libs.kotlinx.serialization)
     testImplementation(libs.okhttp.mockwebserver)
-}
-
-android {
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-        }
-    }
 }
