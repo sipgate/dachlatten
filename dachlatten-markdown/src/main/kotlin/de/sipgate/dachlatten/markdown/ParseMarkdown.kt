@@ -153,7 +153,7 @@ private fun AnnotatedString.Builder.processNode(
     }
 
     fun ASTNode.processHtmlTag() {
-        append(getTextInNode(markdown))
+        append(value = arrayOf(getTextInNode(markdown)))
         tempNodesToRemoveAfter(this)
     }
 
