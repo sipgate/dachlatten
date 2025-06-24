@@ -17,13 +17,11 @@ inline fun <reified R> withContext(
 
 @Composable
 inline fun <reified T, R> withContext(
-    crossinline target: context (Context)
-        (T) -> R,
+    crossinline target: context (Context) (T) -> R,
 ): (T) -> R = LocalContext.current.withContext(target)
 
 inline fun <reified T, R> Context.withContext(
-    crossinline target: context (Context)
-        (T) -> R,
+    crossinline target: context (Context) (T) -> R,
 ): (T) -> R = { param ->
     target(this, param)
 }

@@ -18,7 +18,7 @@ class AndroidHandlerFuncComposeTest {
     @Test
     fun testAndroidHandlerFuncWillReceiveComposeContext() {
         composeTestRule.setContent {
-            val handlerFunc: () -> Unit = withContext(::someFunctionThatAccessesTheAndroidContext)
+            val handlerFunc: () -> Unit = withContext<Unit> { someFunctionThatAccessesTheAndroidContext() }
             handlerFunc.invoke()
         }
     }
@@ -26,7 +26,7 @@ class AndroidHandlerFuncComposeTest {
     @Test
     fun testAndroidHandlerFuncWithReturnValueWillReceiveComposeContextAndReturnValue() {
         composeTestRule.setContent {
-            val handlerFunc: () -> String = withContext(::someFunctionThatAccessesTheAndroidContextAndReturnsSomething)
+            val handlerFunc: () -> String = withContext<String> { someFunctionThatAccessesTheAndroidContextAndReturnsSomething() }
             handlerFunc.invoke()
         }
     }
@@ -34,7 +34,7 @@ class AndroidHandlerFuncComposeTest {
     @Test
     fun testAndroidHandlerFuncWillReceiveComposeContextAndPassParameterThrough() {
         composeTestRule.setContent {
-            val handlerFunc = withContext(::someFunctionThatReceivesAParameter)
+            val handlerFunc = withContext<Int, String> { someFunctionThatReceivesAParameter(it) }
             val result = handlerFunc.invoke(123)
             assertTrue(result.isNotEmpty())
         }
@@ -43,14 +43,14 @@ class AndroidHandlerFuncComposeTest {
     @Test
     fun testAndroidHandlerFuncWillReceiveAContext() {
         val context = RuntimeEnvironment.getApplication().applicationContext
-        val handlerFunc = context.withContext(::someFunctionThatAccessesTheAndroidContext)
+        val handlerFunc = context.withContext<Unit> { someFunctionThatAccessesTheAndroidContext() }
         handlerFunc.invoke()
     }
 
     @Test
     fun testAndroidHandlerFuncWillReceiveAContextAndReturnValueIsPassedBack() {
         val context = RuntimeEnvironment.getApplication().applicationContext
-        val handlerFunc = context.withContext(::someFunctionThatAccessesTheAndroidContextAndReturnsSomething)
+        val handlerFunc = context.withContext<String> { someFunctionThatAccessesTheAndroidContextAndReturnsSomething() }
 
         val result = handlerFunc.invoke()
         assertTrue(result.isNotEmpty())
@@ -59,7 +59,7 @@ class AndroidHandlerFuncComposeTest {
     @Test
     fun testAndroidHandlerFuncWillReceiveAContextAndPassParameterThrough() {
         val context = RuntimeEnvironment.getApplication().applicationContext
-        val handlerFunc = context.withContext(::someFunctionThatReceivesAParameter)
+        val handlerFunc = context.withContext<Int, String> { someFunctionThatReceivesAParameter(it) }
 
         val result = handlerFunc.invoke(55)
         assertTrue(result.isNotEmpty())

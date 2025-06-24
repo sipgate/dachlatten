@@ -13,7 +13,7 @@ class AndroidHandlerFuncTest {
     @Test
     fun testAndroidHandlerFuncWillReceiveAContext() {
         val context = RuntimeEnvironment.getApplication().applicationContext
-        val handlerFunc = context.withContext(::someFunctionThatAccessesTheAndroidContext)
+        val handlerFunc = context.withContext<Unit> { someFunctionThatAccessesTheAndroidContext() }
 
         handlerFunc.invoke()
     }
@@ -21,7 +21,7 @@ class AndroidHandlerFuncTest {
     @Test
     fun testAndroidHandlerFuncWillReceiveAContextAndReturnValueIsPassedBack() {
         val context = RuntimeEnvironment.getApplication().applicationContext
-        val handlerFunc = context.withContext(::someFunctionThatAccessesTheAndroidContextAndReturnsSomething)
+        val handlerFunc = context.withContext<String> { someFunctionThatAccessesTheAndroidContextAndReturnsSomething() }
 
         val result = handlerFunc.invoke()
         assertTrue(result.isNotEmpty())
@@ -30,7 +30,7 @@ class AndroidHandlerFuncTest {
     @Test
     fun testAndroidHandlerFuncWillReceiveAContextAndPassParameterThrough() {
         val context = RuntimeEnvironment.getApplication().applicationContext
-        val handlerFunc = context.withContext(::someFunctionThatReceivesAParameter)
+        val handlerFunc = context.withContext<Int, String> { someFunctionThatReceivesAParameter(it) }
 
         val result = handlerFunc.invoke(20)
         assertTrue(result.isNotEmpty())
