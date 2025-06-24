@@ -45,7 +45,7 @@ private fun Project.setJdkVersion(version: JavaVersion) {
 private fun Project.enableContextParameters() {
     tasks.withType<KotlinCompile>().configureEach {
         compilerOptions {
-            languageVersion.set(KotlinVersion.KOTLIN_2_1)
+            languageVersion.set(KotlinVersion.KOTLIN_2_2)
             freeCompilerArgs.addAll(listOf(
                 "-Xcontext-parameters"
                 )
