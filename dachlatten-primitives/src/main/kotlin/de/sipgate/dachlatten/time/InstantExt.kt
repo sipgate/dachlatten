@@ -6,8 +6,8 @@ import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
 
 @ExperimentalTime
-infix fun Duration.ago(now: Instant = Clock.System.now()): Instant {
-    return now - this
+infix fun Duration.ago(from: Instant = Clock.System.now()): Instant {
+    return from - this
 }
 
 @ExperimentalTime
