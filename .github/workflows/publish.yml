@@ -31,6 +31,13 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      - name: Create tag and release
+        run: |
+          VERSION="0.0.${{ github.run_number }}"
+          gh release create $VERSION --generate-notes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build release with Gradle
         run: ./gradlew assemble check
 
