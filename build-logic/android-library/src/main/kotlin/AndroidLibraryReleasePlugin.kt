@@ -1,6 +1,4 @@
 import com.android.build.gradle.LibraryExtension
-import java.io.File
-import java.util.Properties
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.component.SoftwareComponent
@@ -45,21 +43,10 @@ private fun Project.setupReleaseBuild() {
 }
 
 internal fun Project.setupVersionInfo() {
-    val versionProperties = File(project.rootDir, "version.properties")
-    versionProperties.inputStream().use { inputStream ->
-        Properties().apply {
-            load(inputStream)
-            project.version = getVersionName()
-        }
-    }
+    project.version = getVersionName()
 }
 
-internal fun Properties.getVersionName(): String {
-    val major = (get("majorVersion") as String).toInt()
-    val minor = (get("minorVersion") as String).toInt()
-    val patch = (get("patchVersion") as String).toInt()
-    return "$major.$minor.$patch"
-}
+internal fun getVersionName() = "0.0.${System.getenv("GITHUB_RUN_NUMBER") ?: "0"}"
 
 internal fun Project.setupPublishing(component: SoftwareComponent) {
     extensions.configure<PublishingExtension> {
