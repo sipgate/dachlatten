@@ -10,7 +10,8 @@ Think of it as the modern-day variant of Louis CAD's [Splitties Library][splitti
 
 ## Future plans and contributions
 
-Currently there are no plans to support KMM, since we just don't have the need yet.
+~~Currently there are no plans to support KMM, since we just don't have the need yet.~~
+Once Amper is sufficiently usable, we'll switch to it and provide the right code for the right targets, but still not all.
 
 PRs are welcome on a case by case base, we can't promise they'll get merged though.
 
