@@ -18,7 +18,7 @@ class AndroidLibraryBasePlugin : Plugin<Project> {
 
             extensions.configure<LibraryExtension> {
                 namespace = "de.sipgate.${target.name.replace("-", ".")}"
-                compileSdk = 35
+                compileSdk = 36
 
                 defaultConfig.minSdk = 23
             }
