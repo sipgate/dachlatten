@@ -1,12 +1,6 @@
 package de.sipgate.dachlatten.compose
 
-/**
- * This typealias exists only for aesthetic reasons.
- * Declaring a HandlerFunc return type reads easier than having to
- * parse function declaration syntax.
- */
-typealias HandlerFunc = () -> Unit
+@Deprecated("This definition has moved to the Primitives package", ReplaceWith("HandlerFunc", "de.sipgate.dachlatten.primitives.HandlerFunc"))
+typealias HandlerFunc = de.sipgate.dachlatten.primitives.HandlerFunc
 
-typealias ClickHandler = HandlerFunc
-
-val EmptyHandlerFunc: HandlerFunc = {}
+typealias ClickHandler = de.sipgate.dachlatten.primitives.HandlerFunc
