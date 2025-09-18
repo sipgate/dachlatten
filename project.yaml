@@ -4,3 +4,4 @@ modules:
     - dachlatten-flow
     - dachlatten-markdown
     - dachlatten-primitives
+    - dachlatten-retrofit
