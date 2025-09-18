@@ -4,6 +4,7 @@ kotlin = "2.2.20"
 
 android-support-annotations = "28.0.0"
 androidx-activity = "1.11.0"
+androidx-animation = "1.9.1"
 androidx-annotation = "1.9.1"
 androidx-compose-bom = "2025.09.00"
 androidx-core = "1.17.0"
@@ -28,7 +29,7 @@ kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-p
 android-support-annotations = { module = "com.android.support:support-annotations", version.ref = "android-support-annotations" }
 androidx-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activity" }
 androidx-annotation = { group = "androidx.annotation", name = "annotation-jvm", version.ref = "androidx-annotation" }
-androidx-compose-animation = { group = "androidx.compose.animation", name = "animation" }
+androidx-compose-animation = { module = "androidx.compose.animation:animation", version.ref = "androidx-animation" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidx-compose-bom" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
