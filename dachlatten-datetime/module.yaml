@@ -7,6 +7,11 @@ product:
 dependencies:
   - $libs.kotlinx.datetime
 
+dependencies@android:
+  - $libs.androidx.core: compile-only
+  - $libs.androidx.compose.animation: compile-only
+  - $libs.android.support.annotations
+
 apply:
   - ../common/kotlin.module-template.yaml
   - ../common/maven-repositories.module-template.yaml
