@@ -1,0 +1,23 @@
+product:
+  type: lib
+  platforms:
+    - jvm
+    - android
+
+dependencies:
+  - $libs.retrofit.serialization
+  - $libs.okhttp
+
+test-dependencies:
+  - $libs.okhttp.mockwebserver
+
+settings:
+  kotlin:
+    serialization: json
+
+apply:
+  - ../common/kotlin.module-template.yaml
+  - ../common/maven-repositories.module-template.yaml
+  - ../common/coroutines.module-template.yaml
+  - ../common/kover.module-template.yaml
+  - ../common/publishing.module-template.yaml
