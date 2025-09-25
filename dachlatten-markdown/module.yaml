@@ -1,0 +1,24 @@
+product:
+  type: lib
+  platforms:
+    - jvm
+    - android
+
+dependencies:
+  - $libs.jetbrains.markdown
+  - $compose.foundation
+  - $compose.ui
+
+test-dependencies:
+  - $compose.uiTest
+  - $compose.desktop.currentOs
+
+settings:
+  compose: enabled
+
+apply:
+  - ../common/kotlin.module-template.yaml
+  - ../common/maven-repositories.module-template.yaml
+  - ../common/coroutines.module-template.yaml
+  - ../common/kover.module-template.yaml
+  - ../common/publishing.module-template.yaml
