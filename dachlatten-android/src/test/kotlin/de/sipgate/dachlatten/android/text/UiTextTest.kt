@@ -9,9 +9,10 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 import java.util.Locale
-import java.util.UUID
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 @RunWith(RobolectricTestRunner::class)
 class UiTextTest {
@@ -26,9 +27,10 @@ class UiTextTest {
     }
 
     @Test
+    @OptIn(ExperimentalUuidApi::class)
     @Config(qualifiers = "en")
     fun dynamicStringPassesStringsVerbatim() {
-        val duringRuntime by lazy { UUID.randomUUID().toString() }
+        val duringRuntime by lazy { Uuid.random().toString() }
         val uiText = UiText.DynamicString { duringRuntime }
         expectResolvedResourceString(duringRuntime, uiText)
     }
