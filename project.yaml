@@ -1,3 +1,4 @@
 modules:
-  - dachlatten-markdown
-  - dachlatten-primitives
+    - dachlatten-debug
+    - dachlatten-markdown
+    - dachlatten-primitives
