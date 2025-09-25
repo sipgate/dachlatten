@@ -4,8 +4,10 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 class AndroidLibraryBasePlugin : Plugin<Project> {
@@ -26,6 +28,8 @@ class AndroidLibraryBasePlugin : Plugin<Project> {
             setJdkVersion(JavaVersion.VERSION_1_8)
             enableContextParameters()
         }
+
+        target.kotlinExtension.explicitApi = ExplicitApiMode.Strict
     }
 }
 

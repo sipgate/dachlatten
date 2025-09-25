@@ -6,7 +6,7 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.LifecycleObserver
 
 @Composable
-fun LifecycleObserver(lifecycleObserver: LifecycleObserver) {
+public fun LifecycleObserver(lifecycleObserver: LifecycleObserver) {
     val lifecycle = LocalLifecycleOwner.current
     DisposableEffect(lifecycle) {
         lifecycle.lifecycle.addObserver(lifecycleObserver)

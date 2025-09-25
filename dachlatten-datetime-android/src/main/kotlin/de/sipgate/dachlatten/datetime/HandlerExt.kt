@@ -17,7 +17,7 @@ import kotlin.time.Duration
  * @return the created Runnable
  */
 @Suppress("unused")
-inline fun Handler.postDelayed(
+public inline fun Handler.postDelayed(
     delay: Duration,
     token: Any? = null,
     crossinline action: () -> Unit
@@ -28,5 +28,5 @@ inline fun Handler.postDelayed(
 )
 
 @Suppress("unused")
-fun Handler.postDelayed(delay: Duration, runnable: Runnable): Boolean =
+public fun Handler.postDelayed(delay: Duration, runnable: Runnable): Boolean =
     postDelayed(runnable, delay.inWholeMilliseconds)

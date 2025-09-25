@@ -7,7 +7,7 @@ import de.sipgate.dachlatten.text.TranslatedText
 import de.sipgate.dachlatten.text.UiText
 import java.util.Locale
 
-fun UiText.resolve(resources: Resources, fallbackLocale: Locale? = null) = when (this) {
+public fun UiText.resolve(resources: Resources, fallbackLocale: Locale? = null): String = when (this) {
     is UiText.DynamicString -> value()
     is UiText.StringResource -> resources.getString(resId, *(args.toTypedArray()))
     is UiText.MultiLangString -> {
@@ -24,7 +24,7 @@ private fun Configuration.getStringForLocales(translations: TranslatedText, fall
         ?: fallbackLocale?.let { fallback -> translations[fallback] }
 }
 
-operator fun TranslatedText.get(locale: Locale): String? =
+public operator fun TranslatedText.get(locale: Locale): String? =
     this[locale.language.lowercase()] ?: this[locale.language.uppercase()]
 
 private fun Configuration.resolveLocale(supportedLanguages: Set<String>): Locale? {

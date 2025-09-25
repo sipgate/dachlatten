@@ -13,13 +13,13 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 
 @get:RequiresPermission(ACCESS_NETWORK_STATE)
-val ConnectivityManager.isOffline: Flow<Boolean>
+public val ConnectivityManager.isOffline: Flow<Boolean>
     @RequiresApi(Build.VERSION_CODES.N)
     get() = observeConnectivityAsFlow()
         .map { it == ConnectionState.Unavailable }
 
 @get:RequiresPermission(ACCESS_NETWORK_STATE)
-val ConnectivityManager.isOnline: Flow<Boolean>
+public val ConnectivityManager.isOnline: Flow<Boolean>
     @RequiresApi(Build.VERSION_CODES.N)
     get() = observeConnectivityAsFlow()
         .map { it == ConnectionState.Available }

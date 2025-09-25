@@ -15,7 +15,7 @@ import androidx.annotation.AnyRes
  * @param resourceId - Resource Id to be referenced
  * @return - Uri referencing the given Resource
  */
-fun Resources.getUriToDrawable(
+public fun Resources.getUriToDrawable(
     @AnyRes resourceId: Int,
 ): Uri = Uri.Builder()
     .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
@@ -24,6 +24,6 @@ fun Resources.getUriToDrawable(
     .appendPath(getResourceEntryName(resourceId))
     .build()
 
-fun Context.getUriToDrawable(
+public fun Context.getUriToDrawable(
     @AnyRes resourceId: Int,
 ): Uri = resources.getUriToDrawable(resourceId)

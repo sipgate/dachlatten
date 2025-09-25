@@ -6,7 +6,7 @@ import de.sipgate.dachlatten.asset.AssetUrl
 import de.sipgate.dachlatten.asset.DisplayableAsset
 
 @Composable
-fun DisplayableAsset.resolve(
+public fun DisplayableAsset.resolve(
     useDarkMode: Boolean = isSystemInDarkTheme()
 ): AssetUrl = when {
     useDarkMode -> dark ?: light

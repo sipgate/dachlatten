@@ -2,7 +2,7 @@ package de.sipgate.dachlatten.compose.color
 
 import androidx.compose.ui.graphics.Color
 
-fun blend(
+public fun blend(
     color1: Color,
     color2: Color,
     ratio: Float,

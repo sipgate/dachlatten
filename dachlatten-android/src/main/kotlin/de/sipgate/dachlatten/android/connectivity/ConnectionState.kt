@@ -1,6 +1,6 @@
 package de.sipgate.dachlatten.android.connectivity
 
-enum class ConnectionState {
+public enum class ConnectionState {
     Available,
     Unavailable
 }

@@ -12,7 +12,7 @@ import de.sipgate.dachlatten.text.UiText
 import de.sipgate.dachlatten.text.UiText.*
 
 @Composable
-fun UiText.resolve(fallbackLocale: Locale? = null) = when (this) {
+public fun UiText.resolve(fallbackLocale: Locale? = null): String = when (this) {
     is DynamicString -> value()
     is StringResource -> stringResource(id = resId, formatArgs = args.toTypedArray())
     is MultiLangString -> {
@@ -29,5 +29,5 @@ private fun Configuration.getStringForLocales(translations: TranslatedText, fall
         ?: fallbackLocale?.let { fallback -> translations[fallback] }
 }
 
-operator fun <T> Map<String, T>.get(locale: Locale): T? =
+public operator fun <T> Map<String, T>.get(locale: Locale): T? =
     this[locale.language.lowercase()] ?: this[locale.language.uppercase()]

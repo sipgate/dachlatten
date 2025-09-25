@@ -7,7 +7,7 @@ import kotlin.time.Duration
 
 @Suppress("unused")
 @RequiresPermission(Manifest.permission.VIBRATE)
-fun Vibrator.vibrate(duration: Duration) {
+public fun Vibrator.vibrate(duration: Duration) {
     @Suppress("DEPRECATION")
     vibrate(duration.inWholeMilliseconds)
 }

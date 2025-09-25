@@ -7,7 +7,7 @@ import kotlin.time.Duration
 
 @Suppress("unused")
 @RequiresApi(Build.VERSION_CODES.O)
-fun createWaveform(timings: Array<Duration>, amplitudes: IntArray, repeat: Int): VibrationEffect =
+public fun createWaveform(timings: Array<Duration>, amplitudes: IntArray, repeat: Int): VibrationEffect =
     VibrationEffect.createWaveform(
         /* timings = */ timings.map { it.inWholeMilliseconds }.toLongArray(),
         /* amplitudes = */ amplitudes,

@@ -13,7 +13,7 @@ import de.sipgate.dachlatten.compose.resolveLocale
 import de.sipgate.dachlatten.compose.text.get
 
 @Composable
-fun TranslatedDisplayableAsset.resolve(
+public fun TranslatedDisplayableAsset.resolve(
     fallbackLocale: Locale? = null,
     useDarkMode: Boolean = isSystemInDarkTheme()
 ): AssetUrl {

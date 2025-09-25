@@ -7,6 +7,7 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.map
@@ -26,7 +27,7 @@ private val lifecycleEventFlow =
         }
     }
 
-val isInForeground =
+public val isInForeground: SharedFlow<Boolean> =
     lifecycleEventFlow.map { event ->
         when (event) {
             Lifecycle.Event.ON_CREATE,

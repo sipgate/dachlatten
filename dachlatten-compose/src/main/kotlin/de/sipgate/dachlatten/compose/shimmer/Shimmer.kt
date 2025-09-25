@@ -19,11 +19,11 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
-fun Modifier.shimmer(
+public fun Modifier.shimmer(
     visible: Boolean,
     defaultColor: Color,
     highlightColor: Color
-) =
+): Modifier =
     when (visible) {
         true ->
             then(

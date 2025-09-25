@@ -8,7 +8,7 @@ import kotlin.time.Duration
 
 @Suppress("unused")
 @RequiresApi(Build.VERSION_CODES.R)
-fun Composition.addPrimitive(
+public fun Composition.addPrimitive(
     primitiveId: Int,
     @FloatRange(from = 0.0, to = 1.0) scale: Float,
     delay: Duration

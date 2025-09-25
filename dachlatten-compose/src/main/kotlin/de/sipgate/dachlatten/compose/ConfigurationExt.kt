@@ -4,7 +4,7 @@ import android.content.res.Configuration
 import android.os.Build
 import androidx.compose.ui.text.intl.Locale
 
-val Configuration.primaryLocale: Locale
+public val Configuration.primaryLocale: Locale
     get() = Locale(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             locales[0]
@@ -14,7 +14,7 @@ val Configuration.primaryLocale: Locale
         }.language
     )
 
-fun Configuration.resolveLocale(supportedLanguages: Set<String>) =
+public fun Configuration.resolveLocale(supportedLanguages: Set<String>): Locale? =
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         locales.getFirstMatch(supportedLanguages.toTypedArray())
     } else {

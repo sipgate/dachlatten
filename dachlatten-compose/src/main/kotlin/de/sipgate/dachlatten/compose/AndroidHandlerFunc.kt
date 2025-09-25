@@ -11,22 +11,22 @@ import androidx.compose.ui.platform.LocalContext
 // Depending on the situation this can easily leak the Context!
 
 @Composable
-inline fun <reified R> withContext(
+public inline fun <reified R> withContext(
     crossinline target: context (Context) () -> R
 ): () -> R = LocalContext.current.withContext(target)
 
 @Composable
-inline fun <reified T, R> withContext(
+public inline fun <reified T, R> withContext(
     crossinline target: context (Context) (T) -> R,
 ): (T) -> R = LocalContext.current.withContext(target)
 
-inline fun <reified T, R> Context.withContext(
+public inline fun <reified T, R> Context.withContext(
     crossinline target: context (Context) (T) -> R,
 ): (T) -> R = { param ->
     target(this, param)
 }
 
-inline fun <R> Context.withContext(
+public inline fun <R> Context.withContext(
     crossinline target: context (Context) () -> R,
 ): () -> R = {
     target.invoke(this)

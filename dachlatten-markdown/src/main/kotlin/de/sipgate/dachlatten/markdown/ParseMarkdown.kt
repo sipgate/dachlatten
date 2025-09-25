@@ -33,7 +33,7 @@ internal val H5SPanStyle = SpanStyle(fontSize = 0.83.em, fontWeight = FontWeight
 internal val H6SPanStyle = SpanStyle(fontSize = 0.75.em, fontWeight = FontWeight.Bold)
 internal val LinkSpanStyle = SpanStyle(color = Color.Blue, textDecoration = TextDecoration.Underline)
 
-data class MarkdownStyles(
+public data class MarkdownStyles(
     val boldSpanStyle: SpanStyle = BoldSpanStyle,
     val italicSpanStyle: SpanStyle = ItalicSpanStyle,
     val monospaceSpanStyle: SpanStyle = MonospaceSpanStyle,
@@ -50,7 +50,7 @@ data class MarkdownStyles(
 private fun AnnotatedString.removeRange(start: Int, end: Int) =
     subSequence(0, start) + subSequence(end, length)
 
-fun parseMarkdown(markdown: String, styles: MarkdownStyles = MarkdownStyles()): AnnotatedString {
+public fun parseMarkdown(markdown: String, styles: MarkdownStyles = MarkdownStyles()): AnnotatedString {
     val tempNodesToRemoveAfter = mutableListOf<ASTNode>()
     var tempString = buildAnnotatedString {
         /*
