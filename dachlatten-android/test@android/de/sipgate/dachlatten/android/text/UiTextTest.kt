@@ -1,50 +1,50 @@
 package de.sipgate.dachlatten.android.text
 
+import android.content.Context
 import android.content.res.Resources
-import androidx.core.R
+import de.sipgate.dachlatten.android.R
 import de.sipgate.dachlatten.text.UiText
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
-import org.robolectric.RuntimeEnvironment
-import org.robolectric.annotation.Config
+import de.sipgate.dachlatten.android.setLocale
 import java.util.Locale
+import kotlin.test.assertEquals
+import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
-@RunWith(RobolectricTestRunner::class)
 class UiTextTest {
 
-    private val context = RuntimeEnvironment.getApplication().applicationContext
-
     @Test
-    @Config(qualifiers = "en")
     fun fixedStringPassesStringsVerbatim() {
+        setLocale("en")
+
         val uiText = UiText.DynamicString("asdf")
         expectResolvedResourceString("asdf", uiText)
     }
 
     @Test
     @OptIn(ExperimentalUuidApi::class)
-    @Config(qualifiers = "en")
     fun dynamicStringPassesStringsVerbatim() {
+        setLocale("en")
+
         val duringRuntime by lazy { Uuid.random().toString() }
         val uiText = UiText.DynamicString { duringRuntime }
         expectResolvedResourceString(duringRuntime, uiText)
     }
 
     @Test
-    @Config(qualifiers = "de")
     fun stringResourceResolvesValueWhenRequestedDe() {
+        setLocale("de")
+
         val uiText = UiText.StringResource(R.string.call_notification_answer_action)
         expectResolvedResourceString("Annehmen", uiText)
     }
 
     @Test
-    @Config(qualifiers = "en-rUS")
     fun stringResourceResolvesValueWhenRequestedEn() {
+        setLocale("en-rUS")
+
         val uiText = UiText.StringResource(R.string.call_notification_answer_action)
         expectResolvedResourceString("Answer", uiText)
     }
@@ -55,15 +55,17 @@ class UiTextTest {
     )
 
     @Test
-    @Config(qualifiers = "de")
     fun multiLangStringResolvesValueWhenRequestedUpperCaseDe() {
+        setLocale("de")
+
         val uiText = UiText.MultiLangString(upperCaseLanguageMap)
         expectResolvedResourceString("Zeichenfolge", uiText)
     }
 
     @Test
-    @Config(qualifiers = "en")
     fun multiLangStringResolvesValueWhenRequestedUpperCaseEn() {
+        setLocale("en")
+
         val uiText = UiText.MultiLangString(upperCaseLanguageMap)
         expectResolvedResourceString("String", uiText)
     }
@@ -74,29 +76,33 @@ class UiTextTest {
     )
 
     @Test
-    @Config(qualifiers = "de")
     fun multiLangStringResolvesValueWhenRequestedLowerCaseDe() {
+        setLocale("de")
+
         val uiText = UiText.MultiLangString(lowerCaseLanguageMap)
         expectResolvedResourceString("Zeichenfolge", uiText)
     }
 
     @Test
-    @Config(qualifiers = "en")
     fun multiLangStringResolvesValueWhenRequestedLowerCaseEn() {
+        setLocale("en")
+
         val uiText = UiText.MultiLangString(lowerCaseLanguageMap)
         expectResolvedResourceString("String", uiText)
     }
 
     @Test
-    @Config(qualifiers = "fr")
     fun multilangResolvesFallbackWhenLanguageCannotBeFound() {
+        setLocale("fr")
+
         val uiText = UiText.MultiLangString(lowerCaseLanguageMap)
         expectResolvedResourceString("String", uiText, fallbackLocale = Locale.ENGLISH)
     }
 
     @Test
-    @Config(qualifiers = "en")
     fun stringSubstitutionWorks() {
+        setLocale("en")
+
         val uiText = UiText.MultiLangString(
             mapOf("EN" to "string %s"),
             fallbackResource = null,
@@ -106,8 +112,9 @@ class UiTextTest {
     }
 
     @Test
-    @Config(qualifiers = "en")
     fun stringSubstitutionWorksForMultipleArguments() {
+        setLocale("en")
+
         val uiText = UiText.MultiLangString(
             mapOf("EN" to "string %s and %s"),
             fallbackResource = null,
@@ -117,8 +124,9 @@ class UiTextTest {
     }
 
     @Test
-    @Config(qualifiers = "en")
     fun exceptionIsThrownWhenTheTranslationCannotBeFound() {
+        setLocale("en")
+
         val uiText = UiText.MultiLangString(mapOf("invalid-key" to "some string"))
 
         assertFailsWith<Resources.NotFoundException> {

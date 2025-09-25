@@ -21,6 +21,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Dachlatten"
-include(":dachlatten-android")
 include(":dachlatten-compose")
 include(":dachlatten-google")

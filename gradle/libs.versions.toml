@@ -27,6 +27,7 @@ android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", ve
 kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 
 android-support-annotations = { module = "com.android.support:support-annotations", version.ref = "android-support-annotations" }
+android-support-test = { module = "com.android.support:support-annotations", version.ref = "android-support-annotations" }
 androidx-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activity" }
 androidx-annotation = { group = "androidx.annotation", name = "annotation-jvm", version.ref = "androidx-annotation" }
 androidx-compose-animation = { module = "androidx.compose.animation:animation", version.ref = "androidx-animation" }

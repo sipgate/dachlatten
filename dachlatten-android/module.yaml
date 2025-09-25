@@ -1,0 +1,24 @@
+product:
+  type: lib
+  platforms:
+    - android
+
+dependencies@android:
+    - ../dachlatten-primitives
+    - $libs.androidx.activity: compile-only
+
+    - $libs.android.support.annotations
+    - $libs.androidx.lifecycle.process
+
+settings:
+    compose:
+        resources:
+            exposedAccessors: true
+            packageName: de.sipgate.dachlatten.android
+
+apply:
+  - ../common/kotlin.module-template.yaml
+  - ../common/maven-repositories.module-template.yaml
+  - ../common/coroutines.module-template.yaml
+  - ../common/kover.module-template.yaml
+  - ../common/publishing.module-template.yaml
