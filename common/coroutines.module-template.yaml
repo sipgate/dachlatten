@@ -1,0 +1,6 @@
+dependencies:
+    - $libs.kotlinx.coroutines
+
+test-dependencies:
+    - $libs.kotlinx.coroutines.test
+    - $libs.turbine
