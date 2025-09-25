@@ -1,4 +1,4 @@
-package de.sipgate.dachlatten.time
+package de.sipgate.dachlatten.datetime
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -21,10 +21,10 @@ class InstantExtTest {
 
     @Test
     fun testRelativeDurationAgoWorks() {
-        val now = Instant.parse("2024-01-15T10:30:00Z")
+        val now = Instant.Companion.parse("2024-01-15T10:30:00Z")
 
         val result = 2.hours ago(now)
 
-        assertEquals(Instant.parse("2024-01-15T08:30:00Z"), result)
+        assertEquals(Instant.Companion.parse("2024-01-15T08:30:00Z"), result)
     }
 }

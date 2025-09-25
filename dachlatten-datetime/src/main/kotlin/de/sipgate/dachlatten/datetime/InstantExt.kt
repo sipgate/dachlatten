@@ -1,4 +1,4 @@
-package de.sipgate.dachlatten.time
+package de.sipgate.dachlatten.datetime
 
 import kotlin.time.Clock
 import kotlin.time.Duration
@@ -6,12 +6,10 @@ import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
 
 @ExperimentalTime
-@Deprecated("This has moved to dachlatten-datetime", ReplaceWith("ago", "de.sipgate.dachlatten.datetime"))
 public infix fun Duration.ago(from: Instant = Clock.System.now()): Instant {
     return from - this
 }
 
 @ExperimentalTime
-@Deprecated("This has moved to dachlatten-datetime", ReplaceWith("ago", "de.sipgate.dachlatten.datetime"))
 public val Duration.ago: Instant
     get() = Clock.System.now() - this
