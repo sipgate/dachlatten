@@ -1,11 +1,10 @@
 package de.sipgate.dachlatten.compose
 
 import de.sipgate.dachlatten.primitives.EmptyHandlerFunc
+import de.sipgate.dachlatten.primitives.HandlerFunc
 import kotlin.test.Test
-import kotlin.test.assertTrue
 
 class HandlerFuncTest {
-    @Suppress("DEPRECATION")
     @Test
     fun testClickHandlerAndHandlerFuncCanBeUsedInterchangeably() {
         val clickHandler: ClickHandler = EmptyHandlerFunc
