@@ -2,10 +2,10 @@ package de.sipgate.dachlatten.asset
 
 import kotlinx.serialization.Serializable
 
-typealias AssetUrl = String
+public typealias AssetUrl = String
 
 @Serializable
-data class DisplayableAsset(
+public data class DisplayableAsset(
     val light: AssetUrl,
     val dark: AssetUrl? = null
 )

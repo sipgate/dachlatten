@@ -12,7 +12,7 @@ import kotlin.math.min
  */
 
 @ExperimentalCoroutinesApi
-fun <T> Flow<T>.windowed(size: Int, step: Int): Flow<List<T>> = when {
+public fun <T> Flow<T>.windowed(size: Int, step: Int): Flow<List<T>> = when {
     size == step -> chunked(2)
     else -> flow {
         // check that size and step are > 0

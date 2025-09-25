@@ -11,6 +11,6 @@ import kotlin.time.Duration.Companion.seconds
  * @param stopTimeout configures a delay between the disappearance of the last subscriber and the
  *                    stopping of the sharing coroutine. It defaults to zero (stop immediately).
  */
-fun WhileSubscribed(stopTimeout: Duration = 0.seconds): SharingStarted {
+public fun WhileSubscribed(stopTimeout: Duration = 0.seconds): SharingStarted {
     return SharingStarted.WhileSubscribed(stopTimeoutMillis = stopTimeout.inWholeMilliseconds)
 }

@@ -4,12 +4,12 @@ private const val HEX_BITS_PER_CHAR = 16
 private const val BYTE_PADDING = 2
 
 @ExperimentalUnsignedTypes
-fun ByteArray.toHexString() = asUByteArray()
+public fun ByteArray.toHexString(): String = asUByteArray()
     .joinToString("") {
         it.toString(HEX_BITS_PER_CHAR)
             .padStart(BYTE_PADDING, '0')
     }
 
-fun String.hexStringToByteArray() = chunked(2)
+public fun String.hexStringToByteArray(): ByteArray = chunked(2)
     .map { it.trim().toInt(HEX_BITS_PER_CHAR).toByte() }
     .toByteArray()

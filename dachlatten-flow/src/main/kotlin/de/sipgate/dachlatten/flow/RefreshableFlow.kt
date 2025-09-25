@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.receiveAsFlow
  *
  * @param refreshSignal Can be any Channel<Unit> or a RefreshSignal created with `createRefreshSignal()`
  */
-class RefreshableFlow<T>(
+public class RefreshableFlow<T>(
     private val sharedFlow: SharedFlow<T>,
     private val refreshSignal: RefreshSignal
 ) : Flow<T> {
@@ -26,7 +26,7 @@ class RefreshableFlow<T>(
     /**
      * Exposes the RefreshSignal.refresh function for your convenience.
      */
-    fun refresh() {
+    public fun refresh() {
         refreshSignal.refresh()
     }
 
@@ -36,15 +36,15 @@ class RefreshableFlow<T>(
     }
 }
 
-fun <T> SharedFlow<T>.refreshableFlow(
+public fun <T> SharedFlow<T>.refreshableFlow(
     refreshSignal: RefreshSignal = createRefreshSignal()
-) = RefreshableFlow(this, refreshSignal)
+): RefreshableFlow<T> = RefreshableFlow(this, refreshSignal)
 
-typealias RefreshSignal = Channel<Unit>
+public typealias RefreshSignal = Channel<Unit>
 
-fun createRefreshSignal(): RefreshSignal =
+public fun createRefreshSignal(): RefreshSignal =
     Channel<Unit>(capacity = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST).also { it.refresh() }
 
-fun RefreshSignal.refresh() {
+public fun RefreshSignal.refresh() {
     trySendBlocking(Unit)
 }

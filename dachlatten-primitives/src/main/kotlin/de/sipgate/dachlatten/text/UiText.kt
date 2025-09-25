@@ -2,30 +2,30 @@ package de.sipgate.dachlatten.text
 
 import androidx.annotation.StringRes
 
-typealias TranslatedText = Map<String, String>
+public typealias TranslatedText = Map<String, String>
 
-sealed interface UiText {
+public sealed interface UiText {
     @JvmInline
-    value class DynamicString(val value: () -> String) : UiText {
-        constructor(fixed: String) : this({ fixed })
+    public value class DynamicString(public val value: () -> String) : UiText {
+        public constructor(fixed: String) : this({ fixed })
     }
 
-    data class StringResource(
+    public data class StringResource(
         @StringRes val resId: Int,
         val args: List<Any>,
     ) : UiText {
-        constructor(
+        public constructor(
             @StringRes resId: Int,
             vararg args: Any
         ) : this(resId, args.asList())
     }
 
-    data class MultiLangString(
+    public data class MultiLangString(
         val language: TranslatedText,
         @StringRes val fallbackResource: Int? = null,
         val args: List<Any>,
     ) : UiText {
-        constructor(
+        public constructor(
             language: TranslatedText,
             @StringRes fallbackResource: Int? = null,
             vararg args: Any,

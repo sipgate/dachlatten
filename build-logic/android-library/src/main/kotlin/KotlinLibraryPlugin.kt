@@ -1,6 +1,8 @@
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.get
+import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
+import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 
 class KotlinLibraryPlugin: Plugin<Project> {
     override fun apply(target: Project) {
@@ -17,5 +19,7 @@ class KotlinLibraryPlugin: Plugin<Project> {
             }
             setupSigning()
         }
+
+        target.kotlinExtension.explicitApi = ExplicitApiMode.Strict
     }
 }

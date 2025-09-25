@@ -1,4 +1,4 @@
 package de.sipgate.dachlatten.primitives
 
-val Array<Boolean>.allTrue
+public val Array<Boolean>.allTrue: Boolean
     get() = all { it }

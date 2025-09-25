@@ -16,7 +16,7 @@ import java.lang.reflect.Type
 
 @JvmName("convert")
 @ExperimentalSerializationApi
-fun Json.asConverterFactory(contentType: MediaType): Converter.Factory =
+public fun Json.asConverterFactory(contentType: MediaType): Converter.Factory =
     object : Converter.Factory() {
         override fun responseBodyConverter(
             type: Type,

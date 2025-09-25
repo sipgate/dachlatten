@@ -1,6 +1,6 @@
 package de.sipgate.dachlatten.primitives
 
-infix fun HandlerFunc.then(other: HandlerFunc): () -> Unit = {
+public infix fun HandlerFunc.then(other: HandlerFunc): () -> Unit = {
     invoke()
     other()
 }

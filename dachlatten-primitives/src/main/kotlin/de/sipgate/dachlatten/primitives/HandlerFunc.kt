@@ -5,6 +5,6 @@ package de.sipgate.dachlatten.primitives
  * Declaring a HandlerFunc return type reads easier than having to
  * parse function declaration syntax.
  */
-typealias HandlerFunc = () -> Unit
+public typealias HandlerFunc = () -> Unit
 
-val EmptyHandlerFunc: HandlerFunc = {}
+public val EmptyHandlerFunc: HandlerFunc = {}

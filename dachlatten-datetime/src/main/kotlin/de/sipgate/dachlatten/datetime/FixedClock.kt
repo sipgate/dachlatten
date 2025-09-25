@@ -11,6 +11,6 @@ import kotlin.time.Instant
  */
 @ExperimentalTime
 @Suppress("FunctionName")
-fun Clock.Companion.Fixed(instant: Instant) = object : Clock {
+public fun Clock.Companion.Fixed(instant: Instant): Clock = object : Clock {
     override fun now(): Instant = instant
 }

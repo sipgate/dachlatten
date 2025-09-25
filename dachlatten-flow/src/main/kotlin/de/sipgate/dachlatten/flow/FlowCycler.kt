@@ -6,10 +6,10 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow
 import kotlin.time.Duration
 
-fun tickEvery(
+public fun tickEvery(
     interval: Duration,
     initialDelay: Duration = Duration.ZERO
-) = flow {
+): Flow<Unit> = flow {
     delay(initialDelay)
     while (true) {
         emit(Unit)
@@ -17,14 +17,14 @@ fun tickEvery(
     }
 }
 
-fun <T> cycleBetween(
+public fun <T> cycleBetween(
     interval: Duration,
     flow1: Flow<T>,
     flow2: Flow<T>,
     initialDelay: Duration = Duration.ZERO
 ): Flow<T> = cycleBetween(tickEvery(interval, initialDelay), flow1, flow2)
 
-fun <I, T> cycleBetween(
+public fun <I, T> cycleBetween(
     ticker: Flow<I?>,
     flow1: Flow<T>,
     flow2: Flow<T>,
@@ -36,13 +36,13 @@ fun <I, T> cycleBetween(
     }
 }
 
-fun <T> cycleBetweenNonNull(
+public fun <T> cycleBetweenNonNull(
     tickerInterval: Duration,
     flow1: Flow<T>,
     flow2: Flow<T>,
 ): Flow<T> = cycleBetween(tickEvery(tickerInterval), flow1, flow2)
 
-fun <I, T> cycleBetweenNonNull(ticker: Flow<I?>, flow1: Flow<T>, flow2: Flow<T>): Flow<T> {
+public fun <I, T> cycleBetweenNonNull(ticker: Flow<I?>, flow1: Flow<T>, flow2: Flow<T>): Flow<T> {
     var first = false
     return combine(ticker, flow1, flow2) { _, a, b ->
         first = !first

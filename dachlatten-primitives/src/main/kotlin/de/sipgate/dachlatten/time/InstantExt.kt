@@ -6,10 +6,10 @@ import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
 
 @ExperimentalTime
-infix fun Duration.ago(from: Instant = Clock.System.now()): Instant {
+public infix fun Duration.ago(from: Instant = Clock.System.now()): Instant {
     return from - this
 }
 
 @ExperimentalTime
-val Duration.ago: Instant
+public val Duration.ago: Instant
     get() = Clock.System.now() - this
