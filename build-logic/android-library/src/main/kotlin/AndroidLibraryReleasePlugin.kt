@@ -73,7 +73,7 @@ internal fun Project.setupPublishing(component: SoftwareComponent) {
             }
             maven {
                 name = "alphaDev"
-                url = uri("https://maven.alphadev.net")
+                url = uri("https://maven.alphadev.net/releases")
                 credentials {
                     username = "GitHub"
                     password = System.getenv("ADEV_TOKEN")
