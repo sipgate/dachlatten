@@ -76,11 +76,16 @@ public fun parseMarkdown(markdown: String, styles: MarkdownStyles = MarkdownStyl
     return tempString
 }
 
+private class ListContext {
+    var orderedListCounter = 0
+}
+
 private fun AnnotatedString.Builder.processNode(
     node: ASTNode,
     markdown: String,
     colors: MarkdownStyles,
-    tempNodesToRemoveAfter: (ASTNode) -> Unit
+    tempNodesToRemoveAfter: (ASTNode) -> Unit,
+    listContext: ListContext = ListContext(),
 ) {
     fun ASTNode.processOneCharMarkdown(spanStyle: SpanStyle) {
         tempNodesToRemoveAfter(children[0])
@@ -158,19 +163,23 @@ private fun AnnotatedString.Builder.processNode(
     }
 
     fun ASTNode.processList() {
-        children.fastForEach { processNode(it, markdown, colors, tempNodesToRemoveAfter) }
+        if (type == MarkdownElementTypes.ORDERED_LIST) {
+            listContext.orderedListCounter = 0
+        }
+        children.fastForEach { processNode(it, markdown, colors, tempNodesToRemoveAfter, listContext) }
     }
 
     fun ASTNode.processListItem() {
-
         if (parent?.type == MarkdownElementTypes.UNORDERED_LIST) {
             append("• ")
-
-        } else {
-            append("• ")
+        } else if (parent?.type == MarkdownElementTypes.ORDERED_LIST) {
+            listContext.orderedListCounter++
+            append("${listContext.orderedListCounter}. ")
         }
 
-        processNode(children[1], markdown, colors, tempNodesToRemoveAfter)
+        for (i in 1 until children.size) {
+            processNode(children[i], markdown, colors, tempNodesToRemoveAfter, listContext)
+        }
     }
 
     when (node.type) {
@@ -201,6 +210,7 @@ private fun AnnotatedString.Builder.processNode(
         MarkdownElementTypes.LINK_DESTINATION -> append(node.getTextInNode(markdown).toString())
         MarkdownTokenTypes.HTML_TAG -> node.processHtmlTag()
         MarkdownElementTypes.INLINE_LINK -> node.processInlineLink()
+        MarkdownElementTypes.ORDERED_LIST -> node.processList()
         MarkdownElementTypes.UNORDERED_LIST -> node.processList()
         MarkdownElementTypes.LIST_ITEM -> node.processListItem()
         else -> {

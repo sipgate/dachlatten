@@ -227,6 +227,44 @@ class MarkdownConverterTest {
         val parsedText = parseMarkdown(markdownWithUnorderedList)
         assertEquals("some list\n• item 1\n• item2", parsedText.text)
     }
+
+    @Test
+    fun orderedListIsRendered() {
+        val markdownWithUnorderedList = "some list\n1. item 1\n1. item2"
+        val parsedText = parseMarkdown(markdownWithUnorderedList)
+        assertEquals("some list\n1. item 1\n2. item2", parsedText.text)
+    }
+
+    @Test
+    fun orderedListWithMultiDigitCounterIsRendered() {
+        val markdownWithUnorderedList = "some list\n" +
+            "1. item 1\n" +
+            "1. item2\n" +
+            "1. item3\n" +
+            "1. item4\n" +
+            "1. item5\n" +
+            "1. item6\n" +
+            "1. item7\n" +
+            "1. item8\n" +
+            "1. item9\n" +
+            "1. item10\n" +
+            "text after"
+        val parsedText = parseMarkdown(markdownWithUnorderedList)
+        assertEquals(
+            "some list\n" +
+            "1. item 1\n" +
+            "2. item2\n" +
+            "3. item3\n" +
+            "4. item4\n" +
+            "5. item5\n" +
+            "6. item6\n" +
+            "7. item7\n" +
+            "8. item8\n" +
+            "9. item9\n" +
+            "10. item10\n" +
+            "text after",
+            parsedText.text)
+    }
 }
 
 private fun AnnotatedString.slice(span: AnnotatedString.Range<SpanStyle>): String =
