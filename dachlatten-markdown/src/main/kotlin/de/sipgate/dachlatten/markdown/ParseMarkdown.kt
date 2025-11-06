@@ -164,11 +164,9 @@ private fun AnnotatedString.Builder.processNode(
     fun ASTNode.processListItem() {
 
         if (parent?.type == MarkdownElementTypes.UNORDERED_LIST) {
-            println("unordered")
             append("• ")
 
         } else {
-            println("ordered")
             append("• ")
         }
 
