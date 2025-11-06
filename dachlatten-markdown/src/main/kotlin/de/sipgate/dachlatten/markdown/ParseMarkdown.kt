@@ -157,6 +157,24 @@ private fun AnnotatedString.Builder.processNode(
         tempNodesToRemoveAfter(this)
     }
 
+    fun ASTNode.processList() {
+        children.fastForEach { processNode(it, markdown, colors, tempNodesToRemoveAfter) }
+    }
+
+    fun ASTNode.processListItem() {
+
+        if (parent?.type == MarkdownElementTypes.UNORDERED_LIST) {
+            println("unordered")
+            append("• ")
+
+        } else {
+            println("ordered")
+            append("• ")
+        }
+
+        processNode(children[1], markdown, colors, tempNodesToRemoveAfter)
+    }
+
     when (node.type) {
         MarkdownTokenTypes.TEXT -> append(node.getTextInNode(markdown).toString())
         MarkdownTokenTypes.ATX_CONTENT -> append(node.getTextInNode(markdown).toString())
@@ -185,6 +203,8 @@ private fun AnnotatedString.Builder.processNode(
         MarkdownElementTypes.LINK_DESTINATION -> append(node.getTextInNode(markdown).toString())
         MarkdownTokenTypes.HTML_TAG -> node.processHtmlTag()
         MarkdownElementTypes.INLINE_LINK -> node.processInlineLink()
+        MarkdownElementTypes.UNORDERED_LIST -> node.processList()
+        MarkdownElementTypes.LIST_ITEM -> node.processListItem()
         else -> {
             val nodeType = node.type
             if (nodeType is MarkdownElementType && !nodeType.isToken) {

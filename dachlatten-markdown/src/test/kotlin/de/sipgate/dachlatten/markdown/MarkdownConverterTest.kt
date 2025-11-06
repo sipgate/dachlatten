@@ -220,6 +220,13 @@ class MarkdownConverterTest {
         assertEquals("Wir haben in den letzten Wochen jede Menge Änderungen an der Inbox gemacht. " +
             "Und werden in den kommenden weitere vornehmen....", parsedText.text)
     }
+
+    @Test
+    fun unorderedListIsRendered() {
+        val markdownWithUnorderedList = "some list\n- item 1\n- item2"
+        val parsedText = parseMarkdown(markdownWithUnorderedList)
+        assertEquals("some list\n• item 1\n• item2", parsedText.text)
+    }
 }
 
 private fun AnnotatedString.slice(span: AnnotatedString.Range<SpanStyle>): String =
