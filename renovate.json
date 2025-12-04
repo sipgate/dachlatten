@@ -3,5 +3,11 @@
   "extends": [
     "config:recommended",
     "mergeConfidence:all-badges"
+  ],
+  "packageRules": [
+    {
+      "automerge": true,
+      "platformAutomerge": true
+    }
   ]
 }
