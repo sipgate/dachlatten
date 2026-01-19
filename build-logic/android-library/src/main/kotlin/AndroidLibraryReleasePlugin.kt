@@ -1,4 +1,4 @@
-import com.android.build.gradle.LibraryExtension
+import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.component.SoftwareComponent
@@ -29,14 +29,16 @@ class AndroidLibraryReleasePlugin : Plugin<Project> {
 }
 
 private fun Project.setupReleaseBuild() {
-    extensions.configure<LibraryExtension> {
-        buildTypes {
-            release {
-                isMinifyEnabled = false
-                proguardFiles(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro"
-                )
+    extensions.configure<LibraryAndroidComponentsExtension> {
+        finalizeDsl { extension ->
+            extension.buildTypes {
+                extension.buildTypes.getByName("release") {
+                    isMinifyEnabled = false
+                    proguardFiles(
+                        extension.getDefaultProguardFile("proguard-android-optimize.txt"),
+                        "proguard-rules.pro"
+                    )
+                }
             }
         }
     }

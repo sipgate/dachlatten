@@ -1,4 +1,4 @@
-import com.android.build.api.dsl.LibraryExtension
+import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
@@ -28,10 +28,12 @@ private fun Project.setUpRobolectric() {
         add("testRuntimeOnly", "org.junit.platform:junit-platform-console")
     }
 
-    extensions.configure<LibraryExtension> {
-        testOptions {
-            unitTests {
-                isIncludeAndroidResources = true
+    extensions.configure<LibraryAndroidComponentsExtension> {
+        finalizeDsl { extension ->
+            extension.testOptions {
+                unitTests {
+                    isIncludeAndroidResources = true
+                }
             }
         }
     }
