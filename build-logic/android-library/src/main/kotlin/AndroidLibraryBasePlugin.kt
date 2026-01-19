@@ -1,4 +1,4 @@
-import com.android.build.gradle.LibraryExtension
+import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -15,14 +15,19 @@ class AndroidLibraryBasePlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("com.android.library")
-                apply("org.jetbrains.kotlin.android")
             }
 
-            extensions.configure<LibraryExtension> {
-                namespace = "de.sipgate.${target.name.replace("-", ".")}"
-                compileSdk = 36
+            extensions.configure<LibraryAndroidComponentsExtension> {
+                finalizeDsl { extension ->
+                    extension.namespace = "de.sipgate.${target.name.replace("-", ".")}"
+                    extension.compileSdk = 36
+                    extension.defaultConfig.minSdk = 23
 
-                defaultConfig.minSdk = 23
+                    extension.compileOptions {
+                        sourceCompatibility = JavaVersion.VERSION_1_8
+                        targetCompatibility = JavaVersion.VERSION_1_8
+                    }
+                }
             }
 
             setJdkVersion(JavaVersion.VERSION_1_8)
@@ -34,10 +39,12 @@ class AndroidLibraryBasePlugin : Plugin<Project> {
 }
 
 private fun Project.setJdkVersion(version: JavaVersion) {
-    extensions.configure<LibraryExtension> {
-        compileOptions {
-            sourceCompatibility = version
-            targetCompatibility = version
+    extensions.configure<LibraryAndroidComponentsExtension> {
+        finalizeDsl { extension ->
+            extension.compileOptions {
+                sourceCompatibility = version
+                targetCompatibility = version
+            }
         }
     }
 
