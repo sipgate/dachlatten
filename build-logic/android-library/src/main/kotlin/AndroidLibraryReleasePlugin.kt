@@ -87,7 +87,7 @@ internal fun MavenPublication.setPom() {
     pom {
         name.set("Dachlatten-flow")
         description.set("")
-        url.set("https://github.com/sipgate/Dachlatten")
+        url.set("https://github.com/sipgate/dachlatten")
         licenses {
             license {
                 name.set("The Apache License, Version 2.0")
@@ -96,8 +96,8 @@ internal fun MavenPublication.setPom() {
         }
         scm {
             connection.set("scm:git:git://git@github.com:sipgate/Dachlatten.git")
-            developerConnection.set("scm:git:ssh://git@github.com:sipgate/Dachlatten.git")
-            url.set("https://github.com/sipgate/Dachlatten")
+            developerConnection.set("scm:git:ssh://git@github.com:sipgate/dachlatten.git")
+            url.set("https://github.com/sipgate/dachlatten")
         }
     }
 }
