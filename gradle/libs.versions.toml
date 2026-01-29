@@ -3,7 +3,7 @@ agp = "9.0.0"
 kotlin = "2.3.0"
 
 android-support-annotations = "28.0.0"
-androidx-activity = "1.12.2"
+androidx-activity = "1.12.3"
 androidx-annotation = "1.9.1"
 androidx-compose-bom = "2026.01.00"
 androidx-core = "1.17.0"
