@@ -38,6 +38,27 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Enhance release notes with AI summary
+        run: |
+          VERSION="0.0.${{ github.run_number }}"
+          EXISTING_NOTES=$(gh release view $VERSION --json body -q '.body')
+          
+          SUMMARY=$(curl -s https://models.inference.ai.azure.com/chat/completions \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"model\": \"gpt-4o-mini\",
+              \"messages\": [{
+                \"role\": \"user\",
+                \"content\": \"Summarize these GitHub release notes into a concise, user-friendly changelog. Use plain markdown. Focus on what changed and why it matters to users, not the technical commit details.\n\n$EXISTING_NOTES\"
+              }]
+            }" | jq -r '.choices[0].message.content')
+          
+          UPDATED_NOTES="## Summary\n$SUMMARY\n\n---\n\n## Full Changelog\n$EXISTING_NOTES"
+          gh release edit $VERSION --notes "$UPDATED_NOTES"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build release with Gradle
         run: ./gradlew assemble check
 
