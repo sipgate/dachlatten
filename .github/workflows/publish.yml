@@ -13,14 +13,49 @@ jobs:
       contents: write
       packages: write
       pull-requests: read
+      models: read
 
     steps:
       - uses: actions/checkout@v6
+
+      - name: Create tag and release
+        run: |
+          VERSION="0.0.${{ github.run_number }}"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          gh release create $VERSION --generate-notes
+          git fetch --tags
+        id: release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: set up JDK 21
         uses: actions/setup-java@v5
         with:
           java-version: '21'
           distribution: 'adopt'
+
+      - name: Enhance release notes with AI summary
+        run: |
+          VERSION="${{ steps.release.outputs.version }}"
+          PREV_TAG=$(gh release list --limit 2 --json tagName -q '.[1].tagName')
+          
+          COMMITS=$(git log ${PREV_TAG}..HEAD --pretty=format:"- %s" --no-merges)
+          EXISTING_NOTES=$(gh release view $VERSION --json body -q '.body')
+          
+          PAYLOAD=$(jq -n --arg commits "$COMMITS" '{
+            model: "gpt-4o-mini",
+            messages: [{ role: "user", content: ("Categorize these git commit messages into Features, Fixes, and Internal. Keep the original messages as-is. Output only the grouped markdown list, no intro text.\n\nCommits:\n" + $commits) }]
+          }')
+          
+          SUMMARY=$(curl -s https://models.inference.ai.azure.com/chat/completions \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD" | jq -r '.choices[0].message.content')
+          
+          UPDATED_NOTES=$(printf "%s\n\n---\n\n%s" "$SUMMARY" "$EXISTING_NOTES")
+          gh release edit $VERSION --notes "$UPDATED_NOTES"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
@@ -30,13 +65,6 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-
-      - name: Create tag and release
-        run: |
-          VERSION="0.0.${{ github.run_number }}"
-          gh release create $VERSION --generate-notes
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build release with Gradle
         run: ./gradlew assemble check
