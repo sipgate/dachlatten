@@ -14,6 +14,7 @@ dependencies {
     compileOnly(platform(libs.androidx.compose.bom))
     compileOnly(libs.androidx.compose.foundation)
     compileOnly(libs.androidx.compose.ui)
+    compileOnly(libs.androidx.compose.material3)
 
     testImplementation(platform(libs.androidx.compose.bom))
     testImplementation(libs.bundles.androidx.compose.ui.test)
