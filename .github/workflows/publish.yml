@@ -34,7 +34,32 @@ jobs:
       - name: Create tag and release
         run: |
           VERSION="0.0.${{ github.run_number }}"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
           gh release create $VERSION --generate-notes
+        id: release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Enhance release notes with AI summary
+        run: |
+          VERSION="${{ steps.release.outputs.version }}"
+          PREV_TAG=$(gh release list --limit 2 --json tagName -q '.[1].tagName')
+          
+          COMMITS=$(git log ${PREV_TAG}..HEAD --pretty=format:"- %s" --no-merges)
+          PRS=$(gh pr list --state merged --search "merged:>=$(gh release view $PREV_TAG --json createdAt -q '.createdAt')" --json title --jq '.[].title | "- " + .')
+          
+          PAYLOAD=$(jq -n --arg notes "Commits:\n$COMMITS\n\nPull Requests:\n$PRS" '{
+            model: "gpt-4o-mini",
+            messages: [{ role: "user", content: ("Categorize these git commits and pull requests into Features, Fixes, and Internal. Prefer the PR title over a commit message if they overlap. Keep the original messages as-is. Output only the grouped markdown list, no intro text.\n\n" + $notes) }]
+          }')
+          
+          SUMMARY=$(curl -s https://models.inference.ai.azure.com/chat/completions \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD" | jq -r '.choices[0].message.content')
+          
+          UPDATED_NOTES=$(printf "%s" "$SUMMARY")
+          gh release edit $VERSION --notes "$UPDATED_NOTES"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
