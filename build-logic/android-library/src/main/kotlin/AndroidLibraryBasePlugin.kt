@@ -32,6 +32,7 @@ class AndroidLibraryBasePlugin : Plugin<Project> {
 
             setJdkVersion(JavaVersion.VERSION_1_8)
             enableContextParameters()
+            enableNewParamPropertyTargetBehavior()
         }
 
         target.kotlinExtension.explicitApi = ExplicitApiMode.Strict
@@ -59,6 +60,18 @@ private fun Project.enableContextParameters() {
             languageVersion.set(KotlinVersion.KOTLIN_2_3)
             freeCompilerArgs.addAll(listOf(
                 "-Xcontext-parameters"
+                )
+            )
+        }
+    }
+}
+
+private fun Project.enableNewParamPropertyTargetBehavior() {
+    tasks.withType<KotlinCompile>().configureEach {
+        compilerOptions {
+            languageVersion.set(KotlinVersion.KOTLIN_2_3)
+            freeCompilerArgs.addAll(listOf(
+                "-Xannotation-default-target=param-property"
                 )
             )
         }
