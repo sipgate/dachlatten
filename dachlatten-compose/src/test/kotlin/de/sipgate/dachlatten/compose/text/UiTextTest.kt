@@ -1,7 +1,7 @@
 package de.sipgate.dachlatten.compose.text
 
 import android.content.res.Resources
-import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.text.intl.Locale
 import androidx.core.R
 import de.sipgate.dachlatten.text.UiText

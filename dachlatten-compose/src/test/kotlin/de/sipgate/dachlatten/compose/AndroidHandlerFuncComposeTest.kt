@@ -1,7 +1,7 @@
 package de.sipgate.dachlatten.compose
 
 import android.content.Context
-import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.junit4.v2.createComposeRule
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
