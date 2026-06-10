@@ -1,11 +1,9 @@
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.get
-import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 class KotlinLibraryPlugin: Plugin<Project> {
@@ -33,7 +31,7 @@ class KotlinLibraryPlugin: Plugin<Project> {
 private fun Project.enableNewParamPropertyTargetBehavior() {
     tasks.withType<KotlinCompile>().configureEach {
         compilerOptions {
-            languageVersion.set(KotlinVersion.KOTLIN_2_3)
+            languageVersion.set(KOTLIN_VERSION)
             freeCompilerArgs.addAll(listOf(
                 "-Xannotation-default-target=param-property"
                 )
