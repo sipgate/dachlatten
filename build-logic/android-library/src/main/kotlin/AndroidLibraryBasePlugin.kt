@@ -20,7 +20,7 @@ class AndroidLibraryBasePlugin : Plugin<Project> {
             extensions.configure<LibraryAndroidComponentsExtension> {
                 finalizeDsl { extension ->
                     extension.namespace = "de.sipgate.${target.name.replace("-", ".")}"
-                    extension.compileSdk = 36
+                    extension.compileSdk = 37
                     extension.defaultConfig.minSdk = 23
 
                     extension.compileOptions {
