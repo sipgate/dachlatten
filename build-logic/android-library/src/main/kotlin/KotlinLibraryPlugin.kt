@@ -20,22 +20,8 @@ class KotlinLibraryPlugin: Plugin<Project> {
                 setupPublishing(components["java"])
             }
             setupSigning()
-
-            enableNewParamPropertyTargetBehavior()
         }
 
         target.kotlinExtension.explicitApi = ExplicitApiMode.Strict
-    }
-}
-
-private fun Project.enableNewParamPropertyTargetBehavior() {
-    tasks.withType<KotlinCompile>().configureEach {
-        compilerOptions {
-            languageVersion.set(KOTLIN_VERSION)
-            freeCompilerArgs.addAll(listOf(
-                "-Xannotation-default-target=param-property"
-                )
-            )
-        }
     }
 }
