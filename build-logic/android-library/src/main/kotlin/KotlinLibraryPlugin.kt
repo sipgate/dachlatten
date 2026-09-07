@@ -1,5 +1,6 @@
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
@@ -13,6 +14,10 @@ class KotlinLibraryPlugin: Plugin<Project> {
                 apply("org.jetbrains.kotlin.jvm")
                 apply("maven-publish")
                 apply("signing")
+            }
+
+            extensions.configure<JavaPluginExtension> {
+                withSourcesJar()
             }
 
             setupVersionInfo()
