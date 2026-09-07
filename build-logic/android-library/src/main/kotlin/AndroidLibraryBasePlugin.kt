@@ -20,19 +20,18 @@ class AndroidLibraryBasePlugin : Plugin<Project> {
             extensions.configure<LibraryAndroidComponentsExtension> {
                 finalizeDsl { extension ->
                     extension.namespace = "de.sipgate.${target.name.replace("-", ".")}"
-                    extension.compileSdk = 36
+                    extension.compileSdk = 37
                     extension.defaultConfig.minSdk = 23
 
                     extension.compileOptions {
-                        sourceCompatibility = JavaVersion.VERSION_1_8
-                        targetCompatibility = JavaVersion.VERSION_1_8
+                        sourceCompatibility = JAVA_VERSION
+                        targetCompatibility = JAVA_VERSION
                     }
                 }
             }
 
-            setJdkVersion(JavaVersion.VERSION_1_8)
-            enableContextParameters()
-            enableNewParamPropertyTargetBehavior()
+            setJdkVersion(JAVA_VERSION)
+            setKotlinVersion(KOTLIN_VERSION)
         }
 
         target.kotlinExtension.explicitApi = ExplicitApiMode.Strict
@@ -54,26 +53,10 @@ private fun Project.setJdkVersion(version: JavaVersion) {
     }
 }
 
-private fun Project.enableContextParameters() {
+private fun Project.setKotlinVersion(version: KotlinVersion) {
     tasks.withType<KotlinCompile>().configureEach {
         compilerOptions {
-            languageVersion.set(KotlinVersion.KOTLIN_2_3)
-            freeCompilerArgs.addAll(listOf(
-                "-Xcontext-parameters"
-                )
-            )
-        }
-    }
-}
-
-private fun Project.enableNewParamPropertyTargetBehavior() {
-    tasks.withType<KotlinCompile>().configureEach {
-        compilerOptions {
-            languageVersion.set(KotlinVersion.KOTLIN_2_3)
-            freeCompilerArgs.addAll(listOf(
-                "-Xannotation-default-target=param-property"
-                )
-            )
+            languageVersion.set(version)
         }
     }
 }
