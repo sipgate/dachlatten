@@ -16,9 +16,7 @@ class KotlinLibraryPlugin: Plugin<Project> {
                 apply("signing")
             }
 
-            extensions.configure<JavaPluginExtension> {
-                withSourcesJar()
-            }
+            extensions.getByType(JavaPluginExtension::class.java).withSourcesJar()
 
             setupVersionInfo()
             afterEvaluate {
