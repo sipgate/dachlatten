@@ -32,7 +32,7 @@ jobs:
         uses: actions/setup-java@v6
         with:
           java-version: '21'
-          distribution: 'adopt'
+          distribution: 'temurin'
 
       - name: Enhance release notes with AI summary
         run: |
