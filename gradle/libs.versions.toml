@@ -7,7 +7,6 @@ androidx-activity = "1.13.0"
 androidx-annotation = "1.11.0"
 androidx-compose-bom = "2026.09.00"
 androidx-core = "1.19.0"
-jetbrains-markdown = "0.7.12"
 junit5 = "5.10.0"
 junit4 = "4.13.2"
 kotlinx-coroutines = "1.11.0"
@@ -39,7 +38,6 @@ androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-
 androidx-core = { module = "androidx.core:core-ktx", version.ref="androidx-core" }
 androidx-lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "androidx-lifecycle" }
 
-jetbrains-markdown = { module = "org.jetbrains:markdown", version.ref = "jetbrains-markdown" }
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test-junit5", version.ref = "kotlin" }
